@@ -1,4 +1,3 @@
-import { randomUUID } from 'crypto';
 import { MigrationInterface, QueryRunner } from 'typeorm';
 import fs from 'fs';
 

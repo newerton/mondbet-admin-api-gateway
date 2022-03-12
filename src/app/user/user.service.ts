@@ -8,7 +8,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { hash } from 'bcrypt';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 
 @Injectable()
@@ -48,7 +47,7 @@ export class UserService {
     return this.repository.findOne({ email });
   }
 
-  async update(id: string, payload: UpdateUserDto): Promise<void> {
+  async update(id: string): Promise<void> {
     const client = await this.repository.findOne(id);
 
     if (!client) {
