@@ -1,0 +1,218 @@
+[
+  {
+    "id": "14427069-6a84-45c5-9110-7ad18a81b9cb",
+    "country_id": "730253d6-4bc6-465d-8efb-9b620db07815",
+    "region_id": "c6b9e793-0e5f-418d-8c72-c0e953509b12",
+    "title": "Piauí",
+    "letter": "PI",
+    "iso_code": 22
+  },
+  {
+    "id": "199b0b63-3ded-4384-945c-df21a927e38f",
+    "country_id": "730253d6-4bc6-465d-8efb-9b620db07815",
+    "region_id": "c6b9e793-0e5f-418d-8c72-c0e953509b12",
+    "title": "Pernambuco",
+    "letter": "PE",
+    "iso_code": 26
+  },
+  {
+    "id": "1c35a7ff-bf72-4a55-ba30-c38ce41dcd18",
+    "country_id": "730253d6-4bc6-465d-8efb-9b620db07815",
+    "region_id": "9e37ec80-6636-4fc8-bc1f-397abe9a0a45",
+    "title": "Distrito Federal",
+    "letter": "DF",
+    "iso_code": 53
+  },
+  {
+    "id": "2ee07d36-36b3-484c-b027-3ccdbf5b52b2",
+    "country_id": "730253d6-4bc6-465d-8efb-9b620db07815",
+    "region_id": "5e225fbd-3126-487a-b251-55e480855f5e",
+    "title": "Santa Catarina",
+    "letter": "SC",
+    "iso_code": 42
+  },
+  {
+    "id": "2fd01b15-fc83-43ae-9e56-6ffb6a787466",
+    "country_id": "730253d6-4bc6-465d-8efb-9b620db07815",
+    "region_id": "3d8a7726-ee50-4baf-97c9-d1d93dfd365e",
+    "title": "São Paulo",
+    "letter": "SP",
+    "iso_code": 35
+  },
+  {
+    "id": "32530dc2-3fb0-4d31-9e9f-f48654801e6d",
+    "country_id": "730253d6-4bc6-465d-8efb-9b620db07815",
+    "region_id": "9e37ec80-6636-4fc8-bc1f-397abe9a0a45",
+    "title": "Mato Grosso",
+    "letter": "MT",
+    "iso_code": 51
+  },
+  {
+    "id": "39b0790e-8b31-484a-88da-697a2bf16031",
+    "country_id": "730253d6-4bc6-465d-8efb-9b620db07815",
+    "region_id": "9e37ec80-6636-4fc8-bc1f-397abe9a0a45",
+    "title": "Mato Grosso do Sul",
+    "letter": "MS",
+    "iso_code": 50
+  },
+  {
+    "id": "5150bec7-69fa-4f9c-ac5b-f28ff02558e7",
+    "country_id": "730253d6-4bc6-465d-8efb-9b620db07815",
+    "region_id": "c6b9e793-0e5f-418d-8c72-c0e953509b12",
+    "title": "Sergipe",
+    "letter": "SE",
+    "iso_code": 28
+  },
+  {
+    "id": "51b5a29d-0a81-468b-9e21-5fc3dd9d18cc",
+    "country_id": "730253d6-4bc6-465d-8efb-9b620db07815",
+    "region_id": "3d8a7726-ee50-4baf-97c9-d1d93dfd365e",
+    "title": "Minas Gerais",
+    "letter": "MG",
+    "iso_code": 31
+  },
+  {
+    "id": "5d725859-152b-4f65-8fe3-687af976ef4f",
+    "country_id": "730253d6-4bc6-465d-8efb-9b620db07815",
+    "region_id": "c6b9e793-0e5f-418d-8c72-c0e953509b12",
+    "title": "Paraiba",
+    "letter": "PB",
+    "iso_code": 25
+  },
+  {
+    "id": "628cb1ab-d28f-471f-88e3-8011f70e625b",
+    "country_id": "730253d6-4bc6-465d-8efb-9b620db07815",
+    "region_id": "c6b9e793-0e5f-418d-8c72-c0e953509b12",
+    "title": "Rio Grande do Norte",
+    "letter": "RN",
+    "iso_code": 24
+  },
+  {
+    "id": "72058f38-6870-42c4-8293-d6f04e5d9c09",
+    "country_id": "730253d6-4bc6-465d-8efb-9b620db07815",
+    "region_id": "d530f353-03e4-4c29-a4d2-41fc462427da",
+    "title": "Pará",
+    "letter": "PA",
+    "iso_code": 15
+  },
+  {
+    "id": "734fe854-d9d3-4e19-a3f0-fe95973a89d7",
+    "country_id": "730253d6-4bc6-465d-8efb-9b620db07815",
+    "region_id": "d530f353-03e4-4c29-a4d2-41fc462427da",
+    "title": "Amazonas",
+    "letter": "AM",
+    "iso_code": 13
+  },
+  {
+    "id": "758535b9-613d-48c6-95ab-c0db08f6c58a",
+    "country_id": "730253d6-4bc6-465d-8efb-9b620db07815",
+    "region_id": "d530f353-03e4-4c29-a4d2-41fc462427da",
+    "title": "Amapá",
+    "letter": "AP",
+    "iso_code": 16
+  },
+  {
+    "id": "7bbf9c21-f60f-44a1-ade9-6d2517379b8e",
+    "country_id": "730253d6-4bc6-465d-8efb-9b620db07815",
+    "region_id": "5e225fbd-3126-487a-b251-55e480855f5e",
+    "title": "Rio Grande do Sul",
+    "letter": "RS",
+    "iso_code": 43
+  },
+  {
+    "id": "99dd3913-f11e-4fbe-8af9-910fcb9f3d88",
+    "country_id": "730253d6-4bc6-465d-8efb-9b620db07815",
+    "region_id": "c6b9e793-0e5f-418d-8c72-c0e953509b12",
+    "title": "Ceará",
+    "letter": "CE",
+    "iso_code": 23
+  },
+  {
+    "id": "bb734aa0-3601-4349-b8e6-f245c2b8f685",
+    "country_id": "730253d6-4bc6-465d-8efb-9b620db07815",
+    "region_id": "c6b9e793-0e5f-418d-8c72-c0e953509b12",
+    "title": "Alagoas",
+    "letter": "AL",
+    "iso_code": 27
+  },
+  {
+    "id": "bbcedb42-4335-4e76-a397-d6766848b692",
+    "country_id": "730253d6-4bc6-465d-8efb-9b620db07815",
+    "region_id": "5e225fbd-3126-487a-b251-55e480855f5e",
+    "title": "Paraná",
+    "letter": "PR",
+    "iso_code": 41
+  },
+  {
+    "id": "bbf94ff6-d4f5-4b85-b48c-1c635c3856af",
+    "country_id": "730253d6-4bc6-465d-8efb-9b620db07815",
+    "region_id": "3d8a7726-ee50-4baf-97c9-d1d93dfd365e",
+    "title": "Espírito Santo",
+    "letter": "ES",
+    "iso_code": 32
+  },
+  {
+    "id": "c7b2e037-60f7-4952-9214-f2f08967acc8",
+    "country_id": "730253d6-4bc6-465d-8efb-9b620db07815",
+    "region_id": "d530f353-03e4-4c29-a4d2-41fc462427da",
+    "title": "Acre",
+    "letter": "AC",
+    "iso_code": 12
+  },
+  {
+    "id": "d69639f6-fd5e-42a8-b3e6-3e9c8893f336",
+    "country_id": "730253d6-4bc6-465d-8efb-9b620db07815",
+    "region_id": "d530f353-03e4-4c29-a4d2-41fc462427da",
+    "title": "Roraima",
+    "letter": "RR",
+    "iso_code": 14
+  },
+  {
+    "id": "dcb57017-a64a-4dd9-bc55-1501aad66d13",
+    "country_id": "730253d6-4bc6-465d-8efb-9b620db07815",
+    "region_id": "d530f353-03e4-4c29-a4d2-41fc462427da",
+    "title": "Rondônia",
+    "letter": "RO",
+    "iso_code": 11
+  },
+  {
+    "id": "e2bc6d9d-1375-4e07-a97d-f434ede6d17f",
+    "country_id": "730253d6-4bc6-465d-8efb-9b620db07815",
+    "region_id": "d530f353-03e4-4c29-a4d2-41fc462427da",
+    "title": "Tocantins",
+    "letter": "TO",
+    "iso_code": 17
+  },
+  {
+    "id": "e50ed3f6-f7a0-4879-bb52-3ccb80065255",
+    "country_id": "730253d6-4bc6-465d-8efb-9b620db07815",
+    "region_id": "c6b9e793-0e5f-418d-8c72-c0e953509b12",
+    "title": "Bahia",
+    "letter": "BA",
+    "iso_code": 29
+  },
+  {
+    "id": "e9693f82-8b61-464d-b14c-5a0693f6dcb7",
+    "country_id": "730253d6-4bc6-465d-8efb-9b620db07815",
+    "region_id": "3d8a7726-ee50-4baf-97c9-d1d93dfd365e",
+    "title": "Rio de Janeiro",
+    "letter": "RJ",
+    "iso_code": 33
+  },
+  {
+    "id": "ea7a2efa-e0af-41cc-9cdb-4a190506c56a",
+    "country_id": "730253d6-4bc6-465d-8efb-9b620db07815",
+    "region_id": "c6b9e793-0e5f-418d-8c72-c0e953509b12",
+    "title": "Maranhão",
+    "letter": "MA",
+    "iso_code": 21
+  },
+  {
+    "id": "f28bdfd5-48f6-4295-a03f-c0a099480dff",
+    "country_id": "730253d6-4bc6-465d-8efb-9b620db07815",
+    "region_id": "9e37ec80-6636-4fc8-bc1f-397abe9a0a45",
+    "title": "Goiás",
+    "letter": "GO",
+    "iso_code": 52
+  }
+]

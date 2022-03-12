@@ -1,0 +1,1739 @@
+[
+  {
+    "iso_code": "AD",
+    "title": "Andorra",
+    "latitude": "42.506285",
+    "longitude": "1.521801",
+    "calling_code": "376"
+  },
+  {
+    "iso_code": "AQ",
+    "title": "Antártida",
+    "latitude": "-75.250973",
+    "longitude": "-0.071389",
+    "calling_code": null
+  },
+  {
+    "iso_code": "HU",
+    "title": "Hungria",
+    "latitude": "47.162494",
+    "longitude": "19.503304",
+    "calling_code": "36"
+  },
+  {
+    "iso_code": "ID",
+    "title": "Indonésia",
+    "latitude": "-0.789275",
+    "longitude": "113.921327",
+    "calling_code": "62"
+  },
+  {
+    "iso_code": "IE",
+    "title": "Irlanda",
+    "latitude": "53.41291",
+    "longitude": "-8.24389",
+    "calling_code": "353"
+  },
+  {
+    "iso_code": "IL",
+    "title": "Israel",
+    "latitude": "31.046051",
+    "longitude": "34.851612",
+    "calling_code": "972"
+  },
+  {
+    "iso_code": "IM",
+    "title": "Ilha de Man",
+    "latitude": "54.236107",
+    "longitude": "-4.548056",
+    "calling_code": "44"
+  },
+  {
+    "iso_code": "IN",
+    "title": "Índia",
+    "latitude": "20.593684",
+    "longitude": "78.96288",
+    "calling_code": "91"
+  },
+  {
+    "iso_code": "IO",
+    "title": "Território Britânico do Oceano Índico",
+    "latitude": "-7.3346232",
+    "longitude": "72.4242508",
+    "calling_code": "246"
+  },
+  {
+    "iso_code": "IQ",
+    "title": "Iraque",
+    "latitude": "33.223191",
+    "longitude": "43.679291",
+    "calling_code": "964"
+  },
+  {
+    "iso_code": "IR",
+    "title": "Irã",
+    "latitude": "35.8517933",
+    "longitude": "52.1713236",
+    "calling_code": "98"
+  },
+  {
+    "iso_code": "IS",
+    "title": "Islândia",
+    "latitude": "64.963051",
+    "longitude": "-19.020835",
+    "calling_code": "354"
+  },
+  {
+    "iso_code": "AR",
+    "title": "Argentina",
+    "latitude": "-38.416097",
+    "longitude": "-63.616672",
+    "calling_code": "54"
+  },
+  {
+    "iso_code": "IT",
+    "title": "Itália",
+    "latitude": "41.87194",
+    "longitude": "12.56738",
+    "calling_code": "39"
+  },
+  {
+    "iso_code": "JE",
+    "title": "Jersey",
+    "latitude": "49.214439",
+    "longitude": "-2.13125",
+    "calling_code": "44"
+  },
+  {
+    "iso_code": "JM",
+    "title": "Jamaica",
+    "latitude": "18.109581",
+    "longitude": "-77.297508",
+    "calling_code": "1876"
+  },
+  {
+    "iso_code": "JO",
+    "title": "Jordânia",
+    "latitude": "30.585164",
+    "longitude": "36.238414",
+    "calling_code": "962"
+  },
+  {
+    "iso_code": "JP",
+    "title": "Japão",
+    "latitude": "36.204824",
+    "longitude": "138.252924",
+    "calling_code": "81"
+  },
+  {
+    "iso_code": "KE",
+    "title": "Quênia",
+    "latitude": "-0.023559",
+    "longitude": "37.906193",
+    "calling_code": "254"
+  },
+  {
+    "iso_code": "KG",
+    "title": "Quirguistão",
+    "latitude": "41.20438",
+    "longitude": "74.766098",
+    "calling_code": "996"
+  },
+  {
+    "iso_code": "KH",
+    "title": "Camboja",
+    "latitude": "12.565679",
+    "longitude": "104.990963",
+    "calling_code": "855"
+  },
+  {
+    "iso_code": "KI",
+    "title": "Quiribati",
+    "latitude": "1.8709422",
+    "longitude": "-157.3628595",
+    "calling_code": "686"
+  },
+  {
+    "iso_code": "KM",
+    "title": "Comores",
+    "latitude": "-11.6455",
+    "longitude": "43.3333",
+    "calling_code": "269"
+  },
+  {
+    "iso_code": "AS",
+    "title": "Samoa Americana",
+    "latitude": "-14.3016396",
+    "longitude": "-170.6961815",
+    "calling_code": "1684"
+  },
+  {
+    "iso_code": "KN",
+    "title": "São Cristovão e Nevis",
+    "latitude": "17.357822",
+    "longitude": "-62.782998",
+    "calling_code": "1869"
+  },
+  {
+    "iso_code": "KP",
+    "title": "Coreia do Norte",
+    "latitude": "40.339852",
+    "longitude": "127.510093",
+    "calling_code": "850"
+  },
+  {
+    "iso_code": "KR",
+    "title": "Coreia do Sul",
+    "latitude": "35.907757",
+    "longitude": "127.766922",
+    "calling_code": "82"
+  },
+  {
+    "iso_code": "KW",
+    "title": "Kuwait",
+    "latitude": "29.31166",
+    "longitude": "47.481766",
+    "calling_code": "965"
+  },
+  {
+    "iso_code": "KY",
+    "title": "Ilhas Caiman",
+    "latitude": "19.3133",
+    "longitude": "-81.2546",
+    "calling_code": "1345"
+  },
+  {
+    "iso_code": "KZ",
+    "title": "Casaquistão",
+    "latitude": "48.019573",
+    "longitude": "66.923684",
+    "calling_code": "76"
+  },
+  {
+    "iso_code": "LA",
+    "title": "República Popular Democrática do Laos",
+    "latitude": null,
+    "longitude": null,
+    "calling_code": "856"
+  },
+  {
+    "iso_code": "LB",
+    "title": "Líbano",
+    "latitude": "33.854721",
+    "longitude": "35.862285",
+    "calling_code": "961"
+  },
+  {
+    "iso_code": "LC",
+    "title": "Santa Lúcia",
+    "latitude": "13.909444",
+    "longitude": "-60.978893",
+    "calling_code": "1758"
+  },
+  {
+    "iso_code": "LI",
+    "title": "Liechtenstein",
+    "latitude": "47.166",
+    "longitude": "9.555373",
+    "calling_code": "423"
+  },
+  {
+    "iso_code": "AT",
+    "title": "Áustria",
+    "latitude": "47.516231",
+    "longitude": "14.550072",
+    "calling_code": "43"
+  },
+  {
+    "iso_code": "LK",
+    "title": "Sri Lanka",
+    "latitude": "7.873054",
+    "longitude": "80.771797",
+    "calling_code": "94"
+  },
+  {
+    "iso_code": "LR",
+    "title": "Libéria",
+    "latitude": "6.428055",
+    "longitude": "-9.429499",
+    "calling_code": "231"
+  },
+  {
+    "iso_code": "LS",
+    "title": "Lesoto",
+    "latitude": "-29.609988",
+    "longitude": "28.233608",
+    "calling_code": "266"
+  },
+  {
+    "iso_code": "LT",
+    "title": "Lituânia",
+    "latitude": "55.169438",
+    "longitude": "23.881275",
+    "calling_code": "370"
+  },
+  {
+    "iso_code": "LU",
+    "title": "Luxemburgo",
+    "latitude": "49.815273",
+    "longitude": "6.129583",
+    "calling_code": "352"
+  },
+  {
+    "iso_code": "LV",
+    "title": "Letônia",
+    "latitude": "56.879635",
+    "longitude": "24.603189",
+    "calling_code": "371"
+  },
+  {
+    "iso_code": "LY",
+    "title": "Líbia",
+    "latitude": "26.3351",
+    "longitude": "17.228331",
+    "calling_code": "218"
+  },
+  {
+    "iso_code": "MA",
+    "title": "Marrocos",
+    "latitude": "31.791702",
+    "longitude": "-7.09262",
+    "calling_code": "212"
+  },
+  {
+    "iso_code": "MC",
+    "title": "Mônaco",
+    "latitude": "43.7384176",
+    "longitude": "7.4246158",
+    "calling_code": "377"
+  },
+  {
+    "iso_code": "MD",
+    "title": "Moldávia",
+    "latitude": "47.411631",
+    "longitude": "28.369885",
+    "calling_code": "373"
+  },
+  {
+    "iso_code": "AU",
+    "title": "Austrália",
+    "latitude": "-25.274398",
+    "longitude": "133.775136",
+    "calling_code": "61"
+  },
+  {
+    "iso_code": "ME",
+    "title": "Montenegro",
+    "latitude": "42.708678",
+    "longitude": "19.37439",
+    "calling_code": "382"
+  },
+  {
+    "iso_code": "MF",
+    "title": "São Martinho",
+    "latitude": "18.08255",
+    "longitude": "-63.052251",
+    "calling_code": "590"
+  },
+  {
+    "iso_code": "MG",
+    "title": "Madagascar",
+    "latitude": "-18.766947",
+    "longitude": "46.869107",
+    "calling_code": "261"
+  },
+  {
+    "iso_code": "MH",
+    "title": "Ilhas Marshall",
+    "latitude": "11.3246908",
+    "longitude": "166.8417424",
+    "calling_code": "692"
+  },
+  {
+    "iso_code": "MK",
+    "title": "Macedônia",
+    "latitude": "41.608635",
+    "longitude": "21.745275",
+    "calling_code": "389"
+  },
+  {
+    "iso_code": "ML",
+    "title": "Mali",
+    "latitude": "17.570692",
+    "longitude": "-3.996166",
+    "calling_code": "223"
+  },
+  {
+    "iso_code": "MM",
+    "title": "Mianmar",
+    "latitude": "21.916221",
+    "longitude": "95.955974",
+    "calling_code": "95"
+  },
+  {
+    "iso_code": "MN",
+    "title": "Mongólia",
+    "latitude": "46.862496",
+    "longitude": "103.846656",
+    "calling_code": "976"
+  },
+  {
+    "iso_code": "MO",
+    "title": "Macau, Região Admin. Especial da China",
+    "latitude": "22.198745",
+    "longitude": "113.543873",
+    "calling_code": "853"
+  },
+  {
+    "iso_code": "MP",
+    "title": "Ilhas Marianas do Norte",
+    "latitude": "15.0979",
+    "longitude": "145.6739",
+    "calling_code": "1670"
+  },
+  {
+    "iso_code": "AW",
+    "title": "Aruba",
+    "latitude": "12.52111",
+    "longitude": "-69.968338",
+    "calling_code": "297"
+  },
+  {
+    "iso_code": "MQ",
+    "title": "Martinica",
+    "latitude": "14.641528",
+    "longitude": "-61.024174",
+    "calling_code": "596"
+  },
+  {
+    "iso_code": "MR",
+    "title": "Mauritânia",
+    "latitude": "21.00789",
+    "longitude": "-10.940835",
+    "calling_code": "222"
+  },
+  {
+    "iso_code": "MS",
+    "title": "Montserrat",
+    "latitude": "16.742498",
+    "longitude": "-62.187366",
+    "calling_code": "1664"
+  },
+  {
+    "iso_code": "MT",
+    "title": "Malta",
+    "latitude": "48.3597197",
+    "longitude": "-107.8742831",
+    "calling_code": "356"
+  },
+  {
+    "iso_code": "MU",
+    "title": "Maurício",
+    "latitude": "-20.348404",
+    "longitude": "57.552152",
+    "calling_code": "230"
+  },
+  {
+    "iso_code": "MV",
+    "title": "Maldivas",
+    "latitude": "1.9772276",
+    "longitude": "73.536101",
+    "calling_code": "960"
+  },
+  {
+    "iso_code": "MW",
+    "title": "Malawi",
+    "latitude": "-13.254308",
+    "longitude": "34.301525",
+    "calling_code": "265"
+  },
+  {
+    "iso_code": "MX",
+    "title": "México",
+    "latitude": "23.634501",
+    "longitude": "-102.552784",
+    "calling_code": "52"
+  },
+  {
+    "iso_code": "MY",
+    "title": "Malásia",
+    "latitude": "4.210484",
+    "longitude": "101.975766",
+    "calling_code": "60"
+  },
+  {
+    "iso_code": "MZ",
+    "title": "Moçambique",
+    "latitude": "-18.665695",
+    "longitude": "35.529562",
+    "calling_code": "258"
+  },
+  {
+    "iso_code": "AX",
+    "title": "Ilhas Aland",
+    "latitude": "60.1785247",
+    "longitude": "19.9156105",
+    "calling_code": "358"
+  },
+  {
+    "iso_code": "NA",
+    "title": "Namíbia",
+    "latitude": "-22.95764",
+    "longitude": "18.49041",
+    "calling_code": "264"
+  },
+  {
+    "iso_code": "NC",
+    "title": "Nova Caledônia",
+    "latitude": "-20.904305",
+    "longitude": "165.618042",
+    "calling_code": "687"
+  },
+  {
+    "iso_code": "NE",
+    "title": "Níger",
+    "latitude": "17.607789",
+    "longitude": "8.081666",
+    "calling_code": "227"
+  },
+  {
+    "iso_code": "NF",
+    "title": "Ilha Norfolk",
+    "latitude": "-29.040835",
+    "longitude": "167.954712",
+    "calling_code": "672"
+  },
+  {
+    "iso_code": "NG",
+    "title": "Nigéria",
+    "latitude": "9.081999",
+    "longitude": "8.675277",
+    "calling_code": "234"
+  },
+  {
+    "iso_code": "NI",
+    "title": "Nicarágua",
+    "latitude": "12.865416",
+    "longitude": "-85.207229",
+    "calling_code": "505"
+  },
+  {
+    "iso_code": "NL",
+    "title": "Holanda",
+    "latitude": "52.132633",
+    "longitude": "5.291266",
+    "calling_code": "31"
+  },
+  {
+    "iso_code": "NO",
+    "title": "Noruega",
+    "latitude": "60.472024",
+    "longitude": "8.468946",
+    "calling_code": "47"
+  },
+  {
+    "iso_code": "NP",
+    "title": "Nepal",
+    "latitude": "28.394857",
+    "longitude": "84.124008",
+    "calling_code": "977"
+  },
+  {
+    "iso_code": "NR",
+    "title": "Nauru",
+    "latitude": "-0.522778",
+    "longitude": "166.931503",
+    "calling_code": "674"
+  },
+  {
+    "iso_code": "AZ",
+    "title": "Azerbaijão",
+    "latitude": "40.143105",
+    "longitude": "47.576927",
+    "calling_code": "994"
+  },
+  {
+    "iso_code": "NU",
+    "title": "Niue",
+    "latitude": "-19.054445",
+    "longitude": "-169.867233",
+    "calling_code": "683"
+  },
+  {
+    "iso_code": "NZ",
+    "title": "Nova Zelândia",
+    "latitude": "-40.900557",
+    "longitude": "174.885971",
+    "calling_code": "64"
+  },
+  {
+    "iso_code": "OM",
+    "title": "Omã",
+    "latitude": "21.4735329",
+    "longitude": "55.975413",
+    "calling_code": "968"
+  },
+  {
+    "iso_code": "PA",
+    "title": "Panamá",
+    "latitude": "8.9823792",
+    "longitude": "-79.5198696",
+    "calling_code": "507"
+  },
+  {
+    "iso_code": "PE",
+    "title": "Peru",
+    "latitude": "-9.189967",
+    "longitude": "-75.015152",
+    "calling_code": "51"
+  },
+  {
+    "iso_code": "PF",
+    "title": "Polinésia Francesa",
+    "latitude": "-17.679742",
+    "longitude": "-149.406843",
+    "calling_code": "689"
+  },
+  {
+    "iso_code": "PG",
+    "title": "Papua-Nova Guiné",
+    "latitude": "-6.314993",
+    "longitude": "143.95555",
+    "calling_code": "675"
+  },
+  {
+    "iso_code": "PH",
+    "title": "Filipinas",
+    "latitude": "12.879721",
+    "longitude": "121.774017",
+    "calling_code": "63"
+  },
+  {
+    "iso_code": "PK",
+    "title": "Paquistão",
+    "latitude": "30.375321",
+    "longitude": "69.345116",
+    "calling_code": "92"
+  },
+  {
+    "iso_code": "PL",
+    "title": "Polônia",
+    "latitude": "51.919438",
+    "longitude": "19.145136",
+    "calling_code": "48"
+  },
+  {
+    "iso_code": "BA",
+    "title": "Bósnia-Herzegovina",
+    "latitude": "43.915886",
+    "longitude": "17.679076",
+    "calling_code": "387"
+  },
+  {
+    "iso_code": "PM",
+    "title": "Saint Pierre e Miquelon",
+    "latitude": "46.8852",
+    "longitude": "-56.3159",
+    "calling_code": "508"
+  },
+  {
+    "iso_code": "PN",
+    "title": "Pitcairn",
+    "latitude": "-24.3767537",
+    "longitude": "-128.3242376",
+    "calling_code": "64"
+  },
+  {
+    "iso_code": "PR",
+    "title": "Porto Rico",
+    "latitude": "-22.7713328",
+    "longitude": "-53.266603",
+    "calling_code": "1787"
+  },
+  {
+    "iso_code": "PS",
+    "title": "Território da Palestina",
+    "latitude": "31.952162",
+    "longitude": "35.233154",
+    "calling_code": "970"
+  },
+  {
+    "iso_code": "PT",
+    "title": "Portugal",
+    "latitude": "39.399872",
+    "longitude": "-8.224454",
+    "calling_code": "351"
+  },
+  {
+    "iso_code": "PW",
+    "title": "Palau",
+    "latitude": "7.51498",
+    "longitude": "134.58252",
+    "calling_code": "680"
+  },
+  {
+    "iso_code": "PY",
+    "title": "Paraguai",
+    "latitude": "-23.442503",
+    "longitude": "-58.443832",
+    "calling_code": "595"
+  },
+  {
+    "iso_code": "QA",
+    "title": "Catar",
+    "latitude": "25.354826",
+    "longitude": "51.183884",
+    "calling_code": "974"
+  },
+  {
+    "iso_code": "RE",
+    "title": "Reunião",
+    "latitude": "-21.115141",
+    "longitude": "55.536384",
+    "calling_code": "262"
+  },
+  {
+    "iso_code": "RO",
+    "title": "Romênia",
+    "latitude": "45.943161",
+    "longitude": "24.96676",
+    "calling_code": "40"
+  },
+  {
+    "iso_code": "BB",
+    "title": "Barbados",
+    "latitude": "13.193887",
+    "longitude": "-59.543198",
+    "calling_code": "1246"
+  },
+  {
+    "iso_code": "RS",
+    "title": "Sérvia",
+    "latitude": "44.016521",
+    "longitude": "21.005859",
+    "calling_code": "381"
+  },
+  {
+    "iso_code": "RU",
+    "title": "Rússia",
+    "latitude": "61.52401",
+    "longitude": "105.318756",
+    "calling_code": "7"
+  },
+  {
+    "iso_code": "RW",
+    "title": "Ruanda",
+    "latitude": "-1.940278",
+    "longitude": "29.873888",
+    "calling_code": "250"
+  },
+  {
+    "iso_code": "SA",
+    "title": "Arábia Saudita",
+    "latitude": "23.885942",
+    "longitude": "45.079162",
+    "calling_code": "966"
+  },
+  {
+    "iso_code": "SB",
+    "title": "Ilhas Salomão",
+    "latitude": "-9.64571",
+    "longitude": "160.156194",
+    "calling_code": "677"
+  },
+  {
+    "iso_code": "SC",
+    "title": "Seychelles",
+    "latitude": "-4.679574",
+    "longitude": "55.491977",
+    "calling_code": "248"
+  },
+  {
+    "iso_code": "SD",
+    "title": "Sudão",
+    "latitude": "12.862807",
+    "longitude": "30.217636",
+    "calling_code": "249"
+  },
+  {
+    "iso_code": "SE",
+    "title": "Suécia",
+    "latitude": "60.128161",
+    "longitude": "18.643501",
+    "calling_code": "46"
+  },
+  {
+    "iso_code": "SG",
+    "title": "Cingapura",
+    "latitude": "1.352083",
+    "longitude": "103.819836",
+    "calling_code": "65"
+  },
+  {
+    "iso_code": "SH",
+    "title": "Santa Helena",
+    "latitude": "-15.9654353",
+    "longitude": "-5.7115281",
+    "calling_code": null
+  },
+  {
+    "iso_code": "AE",
+    "title": "Emirados Árabes Unidos",
+    "latitude": "23.424076",
+    "longitude": "53.847818",
+    "calling_code": "971"
+  },
+  {
+    "iso_code": "BD",
+    "title": "Bangladesh",
+    "latitude": "23.684994",
+    "longitude": "90.356331",
+    "calling_code": "880"
+  },
+  {
+    "iso_code": "SI",
+    "title": "Eslovênia",
+    "latitude": "46.151241",
+    "longitude": "14.995463",
+    "calling_code": "386"
+  },
+  {
+    "iso_code": "SJ",
+    "title": "Svalbard e Jan Mayen",
+    "latitude": "77.553604",
+    "longitude": "23.670272",
+    "calling_code": "4779"
+  },
+  {
+    "iso_code": "SK",
+    "title": "Eslováquia",
+    "latitude": "48.669026",
+    "longitude": "19.699024",
+    "calling_code": "421"
+  },
+  {
+    "iso_code": "SL",
+    "title": "Serra Leoa",
+    "latitude": "8.460555",
+    "longitude": "-11.779889",
+    "calling_code": "232"
+  },
+  {
+    "iso_code": "SM",
+    "title": "San Marino",
+    "latitude": "43.94236",
+    "longitude": "12.457777",
+    "calling_code": "378"
+  },
+  {
+    "iso_code": "SN",
+    "title": "Senegal",
+    "latitude": "14.497401",
+    "longitude": "-14.452362",
+    "calling_code": "221"
+  },
+  {
+    "iso_code": "SO",
+    "title": "Somália",
+    "latitude": "5.152149",
+    "longitude": "46.199616",
+    "calling_code": "252"
+  },
+  {
+    "iso_code": "SR",
+    "title": "Suriname",
+    "latitude": "3.919305",
+    "longitude": "-56.027783",
+    "calling_code": "597"
+  },
+  {
+    "iso_code": "ST",
+    "title": "São Tomé e Príncipe",
+    "latitude": "0.18636",
+    "longitude": "6.613081",
+    "calling_code": "239"
+  },
+  {
+    "iso_code": "SV",
+    "title": "El Salvador",
+    "latitude": "13.794185",
+    "longitude": "-88.89653",
+    "calling_code": "503"
+  },
+  {
+    "iso_code": "BE",
+    "title": "Bélgica",
+    "latitude": "50.7573733",
+    "longitude": "5.4823477",
+    "calling_code": "32"
+  },
+  {
+    "iso_code": "SY",
+    "title": "Síria",
+    "latitude": "34.802075",
+    "longitude": "38.996815",
+    "calling_code": "963"
+  },
+  {
+    "iso_code": "SZ",
+    "title": "Suazilândia",
+    "latitude": "-26.522503",
+    "longitude": "31.465866",
+    "calling_code": "268"
+  },
+  {
+    "iso_code": "TC",
+    "title": "Ilhas Turks e Caicos",
+    "latitude": "21.694025",
+    "longitude": "-71.797928",
+    "calling_code": "1649"
+  },
+  {
+    "iso_code": "TD",
+    "title": "Chade",
+    "latitude": "15.454166",
+    "longitude": "18.732207",
+    "calling_code": "235"
+  },
+  {
+    "iso_code": "TF",
+    "title": "Territórios Franceses do Sul",
+    "latitude": null,
+    "longitude": null,
+    "calling_code": null
+  },
+  {
+    "iso_code": "TG",
+    "title": "Togo",
+    "latitude": "8.619543",
+    "longitude": "0.824782",
+    "calling_code": "228"
+  },
+  {
+    "iso_code": "TH",
+    "title": "Tailândia",
+    "latitude": "15.870032",
+    "longitude": "100.992541",
+    "calling_code": "66"
+  },
+  {
+    "iso_code": "TJ",
+    "title": "Tadjiquistão",
+    "latitude": "38.861034",
+    "longitude": "71.276093",
+    "calling_code": "992"
+  },
+  {
+    "iso_code": "TK",
+    "title": "Tokelau",
+    "latitude": "-9.2002",
+    "longitude": "-171.8484",
+    "calling_code": "690"
+  },
+  {
+    "iso_code": "TL",
+    "title": "Timor Leste",
+    "latitude": "-8.874217",
+    "longitude": "125.727539",
+    "calling_code": "670"
+  },
+  {
+    "iso_code": "BF",
+    "title": "Burquina Faso",
+    "latitude": "12.238333",
+    "longitude": "-1.561593",
+    "calling_code": "226"
+  },
+  {
+    "iso_code": "TM",
+    "title": "Turcomenistão",
+    "latitude": "38.969719",
+    "longitude": "59.556278",
+    "calling_code": "993"
+  },
+  {
+    "iso_code": "TN",
+    "title": "Tunísia",
+    "latitude": "33.886917",
+    "longitude": "9.537499",
+    "calling_code": "216"
+  },
+  {
+    "iso_code": "TO",
+    "title": "Tonga",
+    "latitude": "-21.178986",
+    "longitude": "-175.198242",
+    "calling_code": "676"
+  },
+  {
+    "iso_code": "TR",
+    "title": "Turquia",
+    "latitude": "38.963745",
+    "longitude": "35.243322",
+    "calling_code": "90"
+  },
+  {
+    "iso_code": "TT",
+    "title": "Trinidad e Tobago",
+    "latitude": "10.691803",
+    "longitude": "-61.222503",
+    "calling_code": "1868"
+  },
+  {
+    "iso_code": "TV",
+    "title": "Tuvalu",
+    "latitude": "-7.4784205",
+    "longitude": "178.679924",
+    "calling_code": "688"
+  },
+  {
+    "iso_code": "TW",
+    "title": "Taiwan",
+    "latitude": "23.69781",
+    "longitude": "120.960515",
+    "calling_code": "886"
+  },
+  {
+    "iso_code": "TZ",
+    "title": "Tanzânia",
+    "latitude": "-6.369028",
+    "longitude": "34.888822",
+    "calling_code": "255"
+  },
+  {
+    "iso_code": "UA",
+    "title": "Ucrânia",
+    "latitude": "48.379433",
+    "longitude": "31.16558",
+    "calling_code": "380"
+  },
+  {
+    "iso_code": "UG",
+    "title": "Uganda",
+    "latitude": "1.373333",
+    "longitude": "32.290275",
+    "calling_code": "256"
+  },
+  {
+    "iso_code": "BG",
+    "title": "Bulgária",
+    "latitude": "42.733883",
+    "longitude": "25.48583",
+    "calling_code": "359"
+  },
+  {
+    "iso_code": "UM",
+    "title": "Ilhas Menores Distantes dos Estados Unidos",
+    "latitude": "19.2823192",
+    "longitude": "166.647047",
+    "calling_code": null
+  },
+  {
+    "iso_code": "US",
+    "title": "Estados Unidos",
+    "latitude": "37.09024",
+    "longitude": "-95.712891",
+    "calling_code": "1"
+  },
+  {
+    "iso_code": "UY",
+    "title": "Uruguai",
+    "latitude": "-32.522779",
+    "longitude": "-55.765835",
+    "calling_code": "598"
+  },
+  {
+    "iso_code": "UZ",
+    "title": "Uzbequistão",
+    "latitude": "41.377491",
+    "longitude": "64.585262",
+    "calling_code": "998"
+  },
+  {
+    "iso_code": "VA",
+    "title": "Vaticano",
+    "latitude": "41.902916",
+    "longitude": "12.453389",
+    "calling_code": "3906698"
+  },
+  {
+    "iso_code": "VC",
+    "title": "São Vicente e Granadinas",
+    "latitude": "13.2528179",
+    "longitude": "-61.1971628",
+    "calling_code": "1784"
+  },
+  {
+    "iso_code": "VE",
+    "title": "Venezuela",
+    "latitude": "6.42375",
+    "longitude": "-66.58973",
+    "calling_code": "58"
+  },
+  {
+    "iso_code": "VG",
+    "title": "Ilhas Virgens Britânicas",
+    "latitude": "18.420695",
+    "longitude": "-64.639968",
+    "calling_code": "1284"
+  },
+  {
+    "iso_code": "VI",
+    "title": "Ilhas Virgens dos EUA",
+    "latitude": null,
+    "longitude": null,
+    "calling_code": "1340"
+  },
+  {
+    "iso_code": "VN",
+    "title": "Vietnã",
+    "latitude": "14.058324",
+    "longitude": "108.277199",
+    "calling_code": "84"
+  },
+  {
+    "iso_code": "BH",
+    "title": "Bahrain",
+    "latitude": "26.0667",
+    "longitude": "50.5577",
+    "calling_code": "973"
+  },
+  {
+    "iso_code": "VU",
+    "title": "Vanuatu",
+    "latitude": "-15.376706",
+    "longitude": "166.959158",
+    "calling_code": "678"
+  },
+  {
+    "iso_code": "WF",
+    "title": "Wallis e Futuna",
+    "latitude": "-14.2938",
+    "longitude": "-178.1165",
+    "calling_code": "681"
+  },
+  {
+    "iso_code": "WS",
+    "title": "Samoa",
+    "latitude": "-13.759029",
+    "longitude": "-172.104629",
+    "calling_code": "685"
+  },
+  {
+    "iso_code": "YE",
+    "title": "Iêmen",
+    "latitude": "15.552727",
+    "longitude": "48.516388",
+    "calling_code": "967"
+  },
+  {
+    "iso_code": "YT",
+    "title": "Mayotte",
+    "latitude": "-12.8275",
+    "longitude": "45.166244",
+    "calling_code": "262"
+  },
+  {
+    "iso_code": "ZA",
+    "title": "África do Sul",
+    "latitude": "-30.559482",
+    "longitude": "22.937506",
+    "calling_code": "27"
+  },
+  {
+    "iso_code": "ZM",
+    "title": "Zâmbia",
+    "latitude": "-13.133897",
+    "longitude": "27.849332",
+    "calling_code": "260"
+  },
+  {
+    "iso_code": "ZW",
+    "title": "Zimbábue",
+    "latitude": "-19.015438",
+    "longitude": "29.154857",
+    "calling_code": "263"
+  },
+  {
+    "iso_code": "ZZ",
+    "title": "Região desconhecida ou inválida",
+    "latitude": null,
+    "longitude": null,
+    "calling_code": ""
+  },
+  {
+    "iso_code": "BI",
+    "title": "Burundi",
+    "latitude": "-3.373056",
+    "longitude": "29.918886",
+    "calling_code": "257"
+  },
+  {
+    "iso_code": "BJ",
+    "title": "Benin",
+    "latitude": "9.30769",
+    "longitude": "2.315834",
+    "calling_code": "229"
+  },
+  {
+    "iso_code": "BL",
+    "title": "São Bartolomeu",
+    "latitude": "17.9",
+    "longitude": "-62.833333",
+    "calling_code": "590"
+  },
+  {
+    "iso_code": "BM",
+    "title": "Bermudas",
+    "latitude": "32.3078",
+    "longitude": "-64.7505",
+    "calling_code": "1441"
+  },
+  {
+    "iso_code": "BN",
+    "title": "Brunei",
+    "latitude": "4.535277",
+    "longitude": "114.727669",
+    "calling_code": "673"
+  },
+  {
+    "iso_code": "AF",
+    "title": "Afeganistão",
+    "latitude": "33.93911",
+    "longitude": "67.709953",
+    "calling_code": "93"
+  },
+  {
+    "iso_code": "BO",
+    "title": "Bolívia",
+    "latitude": "-16.290154",
+    "longitude": "-63.588653",
+    "calling_code": "591"
+  },
+  {
+    "iso_code": "BS",
+    "title": "Bahamas",
+    "latitude": "25.03428",
+    "longitude": "-77.39628",
+    "calling_code": "1242"
+  },
+  {
+    "iso_code": "BT",
+    "title": "Butão",
+    "latitude": "27.514162",
+    "longitude": "90.433601",
+    "calling_code": "975"
+  },
+  {
+    "iso_code": "BV",
+    "title": "Ilha Bouvet",
+    "latitude": "-54.423199",
+    "longitude": "3.413194",
+    "calling_code": null
+  },
+  {
+    "iso_code": "BW",
+    "title": "Botsuana",
+    "latitude": "-22.328474",
+    "longitude": "24.684866",
+    "calling_code": "267"
+  },
+  {
+    "iso_code": "BY",
+    "title": "Belarus",
+    "latitude": "53.709807",
+    "longitude": "27.953389",
+    "calling_code": "375"
+  },
+  {
+    "iso_code": "BZ",
+    "title": "Belize",
+    "latitude": "17.189877",
+    "longitude": "-88.49765",
+    "calling_code": "501"
+  },
+  {
+    "iso_code": "CA",
+    "title": "Canadá",
+    "latitude": "56.130366",
+    "longitude": "-106.346771",
+    "calling_code": "1"
+  },
+  {
+    "iso_code": "CC",
+    "title": "Ilhas Coco",
+    "latitude": "-12.1706919",
+    "longitude": "96.8417478",
+    "calling_code": "61"
+  },
+  {
+    "iso_code": "AG",
+    "title": "Antígua e Barbuda",
+    "latitude": "17.060816",
+    "longitude": "-61.796428",
+    "calling_code": "1268"
+  },
+  {
+    "iso_code": "CD",
+    "title": "Congo-Kinshasa",
+    "latitude": "-4.4419311",
+    "longitude": "15.2662931",
+    "calling_code": "243"
+  },
+  {
+    "iso_code": "CF",
+    "title": "República Centro-Africana",
+    "latitude": "6.611111",
+    "longitude": "20.939444",
+    "calling_code": "236"
+  },
+  {
+    "iso_code": "CG",
+    "title": "Congo",
+    "latitude": "-0.228021",
+    "longitude": "15.827659",
+    "calling_code": "242"
+  },
+  {
+    "iso_code": "CH",
+    "title": "Suíça",
+    "latitude": "46.818188",
+    "longitude": "8.227512",
+    "calling_code": "41"
+  },
+  {
+    "iso_code": "CI",
+    "title": "Costa do Marfim",
+    "latitude": "7.539989",
+    "longitude": "-5.54708",
+    "calling_code": "225"
+  },
+  {
+    "iso_code": "CK",
+    "title": "Ilhas Cook",
+    "latitude": "-21.236736",
+    "longitude": "-159.777671",
+    "calling_code": "682"
+  },
+  {
+    "iso_code": "CL",
+    "title": "Chile",
+    "latitude": "-35.675147",
+    "longitude": "-71.542969",
+    "calling_code": "56"
+  },
+  {
+    "iso_code": "CM",
+    "title": "República dos Camarões",
+    "latitude": null,
+    "longitude": null,
+    "calling_code": "237"
+  },
+  {
+    "iso_code": "CN",
+    "title": "China",
+    "latitude": "35.86166",
+    "longitude": "104.195397",
+    "calling_code": "86"
+  },
+  {
+    "iso_code": "CO",
+    "title": "Colômbia",
+    "latitude": "4.570868",
+    "longitude": "-74.297333",
+    "calling_code": "57"
+  },
+  {
+    "iso_code": "AI",
+    "title": "Anguilla",
+    "latitude": "18.220554",
+    "longitude": "-63.068615",
+    "calling_code": "1264"
+  },
+  {
+    "iso_code": "CR",
+    "title": "Costa Rica",
+    "latitude": "9.748917",
+    "longitude": "-83.753428",
+    "calling_code": "506"
+  },
+  {
+    "iso_code": "CS",
+    "title": "Sérvia e Montenegro",
+    "latitude": null,
+    "longitude": null,
+    "calling_code": ""
+  },
+  {
+    "iso_code": "CU",
+    "title": "Cuba",
+    "latitude": "21.521757",
+    "longitude": "-77.781167",
+    "calling_code": "53"
+  },
+  {
+    "iso_code": "CV",
+    "title": "Cabo Verde",
+    "latitude": "15.120142",
+    "longitude": "-23.6051868",
+    "calling_code": "238"
+  },
+  {
+    "iso_code": "CX",
+    "title": "Ilhas Natal",
+    "latitude": "-10.447525",
+    "longitude": "105.690449",
+    "calling_code": "61"
+  },
+  {
+    "iso_code": "CY",
+    "title": "Chipre",
+    "latitude": "35.126413",
+    "longitude": "33.429859",
+    "calling_code": "357"
+  },
+  {
+    "iso_code": "CZ",
+    "title": "República Tcheca",
+    "latitude": "49.817492",
+    "longitude": "15.472962",
+    "calling_code": "420"
+  },
+  {
+    "iso_code": "DE",
+    "title": "Alemanha",
+    "latitude": "51.165691",
+    "longitude": "10.451526",
+    "calling_code": "49"
+  },
+  {
+    "iso_code": "DJ",
+    "title": "Djibuti",
+    "latitude": "11.5720765",
+    "longitude": "43.1456475",
+    "calling_code": "253"
+  },
+  {
+    "iso_code": "DK",
+    "title": "Dinamarca",
+    "latitude": "56.26392",
+    "longitude": "9.501785",
+    "calling_code": "45"
+  },
+  {
+    "iso_code": "AL",
+    "title": "Albânia",
+    "latitude": "41.153332",
+    "longitude": "20.168331",
+    "calling_code": "355"
+  },
+  {
+    "iso_code": "DM",
+    "title": "Dominica",
+    "latitude": "15.414999",
+    "longitude": "-61.370976",
+    "calling_code": "1767"
+  },
+  {
+    "iso_code": "DO",
+    "title": "República Dominicana",
+    "latitude": "18.735693",
+    "longitude": "-70.162651",
+    "calling_code": "1809"
+  },
+  {
+    "iso_code": "DZ",
+    "title": "Argélia",
+    "latitude": "28.033886",
+    "longitude": "1.659626",
+    "calling_code": "213"
+  },
+  {
+    "iso_code": "EC",
+    "title": "Equador",
+    "latitude": "-1.831239",
+    "longitude": "-78.183406",
+    "calling_code": "593"
+  },
+  {
+    "iso_code": "EE",
+    "title": "Estônia",
+    "latitude": "58.595272",
+    "longitude": "25.013607",
+    "calling_code": "372"
+  },
+  {
+    "iso_code": "EG",
+    "title": "Egito",
+    "latitude": "26.820553",
+    "longitude": "30.802498",
+    "calling_code": "20"
+  },
+  {
+    "iso_code": "EH",
+    "title": "Saara Ocidental",
+    "latitude": "24.215527",
+    "longitude": "-12.885834",
+    "calling_code": "212"
+  },
+  {
+    "iso_code": "ER",
+    "title": "Eritreia",
+    "latitude": "15.179384",
+    "longitude": "39.782334",
+    "calling_code": "291"
+  },
+  {
+    "iso_code": "ES",
+    "title": "Espanha",
+    "latitude": "40.463667",
+    "longitude": "-3.74922",
+    "calling_code": "34"
+  },
+  {
+    "iso_code": "ET",
+    "title": "Etiópia",
+    "latitude": "9.145",
+    "longitude": "40.489673",
+    "calling_code": "251"
+  },
+  {
+    "iso_code": "AM",
+    "title": "Armênia",
+    "latitude": "40.069099",
+    "longitude": "45.038189",
+    "calling_code": "374"
+  },
+  {
+    "iso_code": "FI",
+    "title": "Finlândia",
+    "latitude": "61.92411",
+    "longitude": "25.748151",
+    "calling_code": "358"
+  },
+  {
+    "iso_code": "FJ",
+    "title": "Fiji",
+    "latitude": "-17.713371",
+    "longitude": "178.065032",
+    "calling_code": "679"
+  },
+  {
+    "iso_code": "FK",
+    "title": "Ilhas Malvinas",
+    "latitude": "-51.796253",
+    "longitude": "-59.523613",
+    "calling_code": "500"
+  },
+  {
+    "iso_code": "FM",
+    "title": "Micronésia",
+    "latitude": "6.8874581",
+    "longitude": "158.2225229",
+    "calling_code": "691"
+  },
+  {
+    "id": "730253d6-4bc6-465d-8efb-9b620db07815",
+    "iso_code": "BR",
+    "title": "Brasil",
+    "latitude": "-14.235004",
+    "longitude": "-51.92528",
+    "calling_code": "55"
+  },
+  {
+    "iso_code": "FO",
+    "title": "Ilhas Faroe",
+    "latitude": "61.892635",
+    "longitude": "-6.911806",
+    "calling_code": "298"
+  },
+  {
+    "iso_code": "FR",
+    "title": "França",
+    "latitude": "46.227638",
+    "longitude": "2.213749",
+    "calling_code": "33"
+  },
+  {
+    "iso_code": "GA",
+    "title": "Gabão",
+    "latitude": "-0.803689",
+    "longitude": "11.609444",
+    "calling_code": "241"
+  },
+  {
+    "iso_code": "GB",
+    "title": "Reino Unido",
+    "latitude": "53.7190281",
+    "longitude": "-2.0727839",
+    "calling_code": "44"
+  },
+  {
+    "iso_code": "GD",
+    "title": "Granada",
+    "latitude": "12.1165",
+    "longitude": "-61.679",
+    "calling_code": "1473"
+  },
+  {
+    "iso_code": "GE",
+    "title": "Geórgia",
+    "latitude": "42.315407",
+    "longitude": "43.356892",
+    "calling_code": "995"
+  },
+  {
+    "iso_code": "AN",
+    "title": "Antilhas Holandesas",
+    "latitude": "17.05",
+    "longitude": "-61.8",
+    "calling_code": ""
+  },
+  {
+    "iso_code": "GF",
+    "title": "Guiana Francesa",
+    "latitude": "3.933889",
+    "longitude": "-53.125782",
+    "calling_code": "594"
+  },
+  {
+    "iso_code": "GG",
+    "title": "Guernsey",
+    "latitude": "49.465691",
+    "longitude": "-2.585278",
+    "calling_code": "44"
+  },
+  {
+    "iso_code": "GH",
+    "title": "Gana",
+    "latitude": "7.946527",
+    "longitude": "-1.023194",
+    "calling_code": "233"
+  },
+  {
+    "iso_code": "GI",
+    "title": "Gibraltar",
+    "latitude": "36.140751",
+    "longitude": "-5.353585",
+    "calling_code": "350"
+  },
+  {
+    "iso_code": "GL",
+    "title": "Groênlandia",
+    "latitude": "71.706936",
+    "longitude": "-42.604303",
+    "calling_code": "299"
+  },
+  {
+    "iso_code": "GM",
+    "title": "Gâmbia",
+    "latitude": "13.443182",
+    "longitude": "-15.310139",
+    "calling_code": "220"
+  },
+  {
+    "iso_code": "GN",
+    "title": "Guiné",
+    "latitude": "9.945587",
+    "longitude": "-9.696645",
+    "calling_code": "224"
+  },
+  {
+    "iso_code": "GP",
+    "title": "Guadalupe",
+    "latitude": "16.265",
+    "longitude": "-61.551",
+    "calling_code": "590"
+  },
+  {
+    "iso_code": "GQ",
+    "title": "Guiné Equatorial",
+    "latitude": "1.650801",
+    "longitude": "10.267895",
+    "calling_code": "240"
+  },
+  {
+    "iso_code": "GR",
+    "title": "Grécia",
+    "latitude": "39.074208",
+    "longitude": "21.824312",
+    "calling_code": "30"
+  },
+  {
+    "iso_code": "AO",
+    "title": "Angola",
+    "latitude": "-11.202692",
+    "longitude": "17.873887",
+    "calling_code": "244"
+  },
+  {
+    "iso_code": "GS",
+    "title": "Geórgia do Sul e Ilhas Sandwich do Sul",
+    "latitude": "-54.429579",
+    "longitude": "-36.587909",
+    "calling_code": "500"
+  },
+  {
+    "iso_code": "GT",
+    "title": "Guatemala",
+    "latitude": "14.6349149",
+    "longitude": "-90.5068824",
+    "calling_code": "502"
+  },
+  {
+    "iso_code": "GU",
+    "title": "Guam",
+    "latitude": "13.444304",
+    "longitude": "144.793731",
+    "calling_code": "1671"
+  },
+  {
+    "iso_code": "GW",
+    "title": "Guiné Bissau",
+    "latitude": "11.803749",
+    "longitude": "-15.180413",
+    "calling_code": "245"
+  },
+  {
+    "iso_code": "GY",
+    "title": "Guiana",
+    "latitude": "4.860416",
+    "longitude": "-58.93018",
+    "calling_code": "592"
+  },
+  {
+    "iso_code": "HK",
+    "title": "Hong Kong, Região Admin. Especial da China",
+    "latitude": null,
+    "longitude": null,
+    "calling_code": "852"
+  },
+  {
+    "iso_code": "HM",
+    "title": "Ilha Heard e Ilhas McDonald",
+    "latitude": "-53.08181",
+    "longitude": "73.504158",
+    "calling_code": null
+  },
+  {
+    "iso_code": "HN",
+    "title": "Honduras",
+    "latitude": "15.199999",
+    "longitude": "-86.241905",
+    "calling_code": "504"
+  },
+  {
+    "iso_code": "HR",
+    "title": "Croácia",
+    "latitude": "45.1",
+    "longitude": "15.2",
+    "calling_code": "385"
+  },
+  {
+    "iso_code": "HT",
+    "title": "Haiti",
+    "latitude": "18.971187",
+    "longitude": "-72.285215",
+    "calling_code": "509"
+  }
+]
