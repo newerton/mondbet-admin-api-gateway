@@ -65,7 +65,7 @@ export class UserController {
   ): Promise<void> {
     console.log({ request });
     const id = request.user.id;
-    return this.userService.update(id, payload);
+    return this.userService.update(id);
   }
 
   @Get()

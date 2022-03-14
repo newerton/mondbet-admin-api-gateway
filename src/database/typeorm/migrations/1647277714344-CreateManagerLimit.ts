@@ -6,11 +6,11 @@ import {
   TableIndex,
 } from 'typeorm';
 
-export class CreateCity1647053730213 implements MigrationInterface {
+export class CreateManagerLimit1647277714344 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'city',
+        name: 'manager_limit',
         columns: [
           {
             name: 'id',
@@ -19,49 +19,54 @@ export class CreateCity1647053730213 implements MigrationInterface {
             generationStrategy: 'uuid',
           },
           {
-            name: 'state_id',
+            name: 'manager_id',
             type: 'uuid',
           },
           {
-            name: 'title',
-            type: 'varchar',
+            name: 'general_limit',
+            type: 'decimal',
+            precision: 10,
+            scale: 2,
           },
           {
-            name: 'iso_code',
-            type: 'varchar',
+            name: 'agent_max',
+            type: 'integer',
           },
           {
-            name: 'iso_calling',
-            type: 'varchar',
+            name: 'daily_limit',
+            type: 'decimal',
+            precision: 10,
+            scale: 2,
           },
           {
-            name: 'latitude',
-            type: 'varchar',
-            default: null,
-            isNullable: true,
+            name: 'weekly_limit',
+            type: 'decimal',
+            precision: 10,
+            scale: 2,
           },
           {
-            name: 'longitude',
-            type: 'varchar',
-            default: null,
-            isNullable: true,
+            name: 'daily_limit_single_bet',
+            type: 'decimal',
+            precision: 10,
+            scale: 2,
           },
           {
-            name: 'timezone',
-            type: 'varchar',
-            default: null,
-            isNullable: true,
+            name: 'weekly_limit_single_bet',
+            type: 'decimal',
+            precision: 10,
+            scale: 2,
           },
           {
-            name: 'gmt',
-            type: 'varchar',
-            default: null,
-            isNullable: true,
+            name: 'daily_limit_multiple_bet',
+            type: 'decimal',
+            precision: 10,
+            scale: 2,
           },
           {
-            name: 'visible',
-            type: 'boolean',
-            default: true,
+            name: 'weekly_limit_multiple_bet',
+            type: 'decimal',
+            precision: 10,
+            scale: 2,
           },
           {
             name: 'created_at',
@@ -84,27 +89,27 @@ export class CreateCity1647053730213 implements MigrationInterface {
     );
 
     await queryRunner.createForeignKey(
-      'city',
+      'manager_limit',
       new TableForeignKey({
-        name: 'fk-city-state_id',
-        columnNames: ['state_id'],
-        referencedTableName: 'state',
+        name: 'fk-manager_limit-manager_id',
+        columnNames: ['manager_id'],
+        referencedTableName: 'manager',
         referencedColumnNames: ['id'],
         onUpdate: 'CASCADE',
       }),
     );
 
     await queryRunner.createIndex(
-      'city',
+      'manager_limit',
       new TableIndex({
-        name: 'fk-city-state_id',
-        columnNames: ['state_id'],
+        name: 'fk-manager_limit-manager_id',
+        columnNames: ['manager_id'],
         parser: 'btree',
       }),
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('city');
+    await queryRunner.dropTable('manager_limit');
   }
 }

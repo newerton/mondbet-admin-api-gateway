@@ -1,16 +1,32 @@
-import { MigrationInterface, QueryRunner, Table, TableIndex } from 'typeorm';
+import {
+  MigrationInterface,
+  QueryRunner,
+  Table,
+  TableForeignKey,
+  TableIndex,
+} from 'typeorm';
 
-export class CreateUser1647043223930 implements MigrationInterface {
+export class CreateSubManager1647274613238 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'user',
+        name: 'manager',
         columns: [
           {
             name: 'id',
             type: 'uuid',
             isPrimary: true,
             generationStrategy: 'uuid',
+          },
+          {
+            name: 'manager_id',
+            type: 'uuid',
+            default: null,
+            isNullable: true,
+          },
+          {
+            name: 'profile_detail_id',
+            type: 'uuid',
           },
           {
             name: 'first_name',
@@ -53,6 +69,10 @@ export class CreateUser1647043223930 implements MigrationInterface {
             isNullable: true,
           },
           {
+            name: 'permission_delete_tocket',
+            type: 'boolean',
+          },
+          {
             name: 'visible',
             type: 'boolean',
           },
@@ -76,18 +96,28 @@ export class CreateUser1647043223930 implements MigrationInterface {
       }),
     );
 
+    await queryRunner.createForeignKey(
+      'manager',
+      new TableForeignKey({
+        name: 'fk-manager-profile_detail_id',
+        columnNames: ['profile_detail_id'],
+        referencedTableName: 'profile_detail',
+        referencedColumnNames: ['id'],
+        onUpdate: 'CASCADE',
+      }),
+    );
+
     await queryRunner.createIndex(
-      'user',
+      'manager',
       new TableIndex({
-        name: 'idx_email',
-        columnNames: ['email'],
-        isUnique: true,
+        name: 'fk-manager-profile_detail_id',
+        columnNames: ['profile_detail_id'],
         parser: 'btree',
       }),
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('user');
+    await queryRunner.dropTable('manager');
   }
 }

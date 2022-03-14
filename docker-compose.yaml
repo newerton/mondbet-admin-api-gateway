@@ -17,17 +17,6 @@ services:
     networks:
       - default
 
-  redis:
-    image: redis:alpine
-    container_name: admin-api-gateway-redis
-    restart: always
-    ports:
-      - '6379:6379'
-    environment:
-      - REDIS_PASSWORD=redis
-    networks:
-      - default
-
 volumes:
   db_data: {}
 

@@ -3,6 +3,7 @@ import {
   QueryRunner,
   Table,
   TableForeignKey,
+  TableIndex,
 } from 'typeorm';
 
 export class CreateState1647053670283 implements MigrationInterface {
@@ -81,6 +82,24 @@ export class CreateState1647053670283 implements MigrationInterface {
         referencedTableName: 'region',
         referencedColumnNames: ['id'],
         onUpdate: 'CASCADE',
+      }),
+    );
+
+    await queryRunner.createIndex(
+      'state',
+      new TableIndex({
+        name: 'fk-state-country_id',
+        columnNames: ['country_id'],
+        parser: 'btree',
+      }),
+    );
+
+    await queryRunner.createIndex(
+      'state',
+      new TableIndex({
+        name: 'fk-state-region_id',
+        columnNames: ['region_id'],
+        parser: 'btree',
       }),
     );
   }

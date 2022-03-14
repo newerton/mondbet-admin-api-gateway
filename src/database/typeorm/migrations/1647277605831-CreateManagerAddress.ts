@@ -6,11 +6,11 @@ import {
   TableIndex,
 } from 'typeorm';
 
-export class CreateUserAddress1647053775962 implements MigrationInterface {
+export class CreateManagerAddress1647277605831 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'user_address',
+        name: 'manager_address',
         columns: [
           {
             name: 'id',
@@ -19,7 +19,7 @@ export class CreateUserAddress1647053775962 implements MigrationInterface {
             generationStrategy: 'uuid',
           },
           {
-            name: 'user_id',
+            name: 'manager_id',
             type: 'uuid',
           },
           {
@@ -73,20 +73,20 @@ export class CreateUserAddress1647053775962 implements MigrationInterface {
     );
 
     await queryRunner.createForeignKey(
-      'user_address',
+      'manager_address',
       new TableForeignKey({
-        name: 'fk-user_address-user_id',
-        columnNames: ['user_id'],
-        referencedTableName: 'user',
+        name: 'fk-manager_address-manager_id',
+        columnNames: ['manager_id'],
+        referencedTableName: 'manager',
         referencedColumnNames: ['id'],
         onUpdate: 'CASCADE',
       }),
     );
 
     await queryRunner.createForeignKey(
-      'user_address',
+      'manager_address',
       new TableForeignKey({
-        name: 'fk-user_address-state_id',
+        name: 'fk-manager_address-state_id',
         columnNames: ['state_id'],
         referencedTableName: 'state',
         referencedColumnNames: ['id'],
@@ -95,9 +95,9 @@ export class CreateUserAddress1647053775962 implements MigrationInterface {
     );
 
     await queryRunner.createForeignKey(
-      'user_address',
+      'manager_address',
       new TableForeignKey({
-        name: 'fk-user_address-city_id',
+        name: 'fk-manager_address-city_id',
         columnNames: ['city_id'],
         referencedTableName: 'city',
         referencedColumnNames: ['id'],
@@ -106,27 +106,27 @@ export class CreateUserAddress1647053775962 implements MigrationInterface {
     );
 
     await queryRunner.createIndex(
-      'user_address',
+      'manager_address',
       new TableIndex({
-        name: 'fk-user_address-user_id',
-        columnNames: ['user_id'],
+        name: 'fk-manager_address-manager_id',
+        columnNames: ['manager_id'],
         parser: 'btree',
       }),
     );
 
     await queryRunner.createIndex(
-      'user_address',
+      'manager_address',
       new TableIndex({
-        name: 'fk-user_address-state_id',
+        name: 'fk-manager_address-state_id',
         columnNames: ['state_id'],
         parser: 'btree',
       }),
     );
 
     await queryRunner.createIndex(
-      'user_address',
+      'manager_address',
       new TableIndex({
-        name: 'fk-user_address-city_id',
+        name: 'fk-manager_address-city_id',
         columnNames: ['city_id'],
         parser: 'btree',
       }),
@@ -134,6 +134,6 @@ export class CreateUserAddress1647053775962 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('user_address');
+    await queryRunner.dropTable('manager_address');
   }
 }

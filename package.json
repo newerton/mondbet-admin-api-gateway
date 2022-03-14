@@ -1,7 +1,7 @@
 {
-  "name": "admin-api-gateway",
+  "name": "mondbet-admin-api-gateway",
   "version": "0.0.1",
-  "description": "A API Gateway with nest framework.",
+  "description": "Admin API Gateway",
   "author": "",
   "private": true,
   "scripts": {

@@ -22,9 +22,10 @@ export class CitySeed1647057798558 implements MigrationInterface {
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     await Promise.all(
-      json.map((data) =>
-        queryRunner.query(`DELETE FROM city WHERE title='${data.title}';`),
-      ),
+      json.map((data) => {
+        data.title = data.title.replace(/'/g, "\\'");
+        queryRunner.query(`DELETE FROM city WHERE title=E'${data.title}';`);
+      }),
     );
   }
 }
