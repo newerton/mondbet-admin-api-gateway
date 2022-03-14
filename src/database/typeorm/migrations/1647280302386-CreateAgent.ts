@@ -6,11 +6,11 @@ import {
   TableIndex,
 } from 'typeorm';
 
-export class CreateManagerLimit1647277714344 implements MigrationInterface {
+export class CreateAgent1647280302386 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'manager_limit',
+        name: 'agent',
         columns: [
           {
             name: 'id',
@@ -23,72 +23,53 @@ export class CreateManagerLimit1647277714344 implements MigrationInterface {
             type: 'uuid',
           },
           {
-            name: 'general_limit',
-            type: 'decimal',
-            precision: 10,
-            scale: 2,
+            name: 'profile_detail_id',
+            type: 'uuid',
           },
           {
-            name: 'reward_percentage',
-            type: 'integer',
+            name: 'first_name',
+            type: 'varchar',
+          },
+          {
+            name: 'last_name',
+            type: 'varchar',
+          },
+          {
+            name: 'email',
+            type: 'varchar',
+            isUnique: true,
+          },
+          {
+            name: 'email_verified',
+            type: 'boolean',
+            default: false,
+          },
+          {
+            name: 'password',
+            type: 'varchar',
+          },
+          {
+            name: 'document',
+            type: 'varchar',
             default: null,
             isNullable: true,
           },
           {
-            name: 'agent_max',
-            type: 'integer',
-          },
-          {
-            name: 'daily_limit',
-            type: 'decimal',
-            precision: 10,
-            scale: 2,
-          },
-          {
-            name: 'weekly_limit',
-            type: 'decimal',
-            precision: 10,
-            scale: 2,
-          },
-          {
-            name: 'daily_limit_single_bet',
-            type: 'decimal',
-            precision: 10,
-            scale: 2,
-          },
-          {
-            name: 'weekly_limit_single_bet',
-            type: 'decimal',
-            precision: 10,
-            scale: 2,
-          },
-          {
-            name: 'daily_limit_double_bet',
-            type: 'decimal',
-            precision: 10,
-            scale: 2,
-          },
-          {
-            name: 'weekly_limit_double_bet',
-            type: 'decimal',
-            precision: 10,
-            scale: 2,
-          },
-          {
-            name: 'daily_limit_triple_bet',
-            type: 'decimal',
-            precision: 10,
-            scale: 2,
+            name: 'birthday',
+            type: 'date',
             default: null,
             isNullable: true,
           },
           {
-            name: 'weekly_limit_triple_bet',
-            type: 'decimal',
-            precision: 10,
-            scale: 2,
+            name: 'phone',
+            type: 'varchar',
             default: null,
             isNullable: true,
+          },
+
+          {
+            name: 'visible',
+            type: 'boolean',
           },
           {
             name: 'created_at',
@@ -111,9 +92,9 @@ export class CreateManagerLimit1647277714344 implements MigrationInterface {
     );
 
     await queryRunner.createForeignKey(
-      'manager_limit',
+      'agent',
       new TableForeignKey({
-        name: 'fk-manager_limit-manager_id',
+        name: 'fk-agent-manager_id',
         columnNames: ['manager_id'],
         referencedTableName: 'manager',
         referencedColumnNames: ['id'],
@@ -121,17 +102,37 @@ export class CreateManagerLimit1647277714344 implements MigrationInterface {
       }),
     );
 
+    await queryRunner.createForeignKey(
+      'agent',
+      new TableForeignKey({
+        name: 'fk-agent-profile_detail_id',
+        columnNames: ['profile_detail_id'],
+        referencedTableName: 'profile_detail',
+        referencedColumnNames: ['id'],
+        onUpdate: 'CASCADE',
+      }),
+    );
+
     await queryRunner.createIndex(
-      'manager_limit',
+      'agent',
       new TableIndex({
-        name: 'fk-manager_limit-manager_id',
+        name: 'fk-agent-manager_id',
         columnNames: ['manager_id'],
+        parser: 'btree',
+      }),
+    );
+
+    await queryRunner.createIndex(
+      'agent',
+      new TableIndex({
+        name: 'fk-agent-profile_detail_id',
+        columnNames: ['profile_detail_id'],
         parser: 'btree',
       }),
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('manager_limit');
+    await queryRunner.dropTable('agent');
   }
 }
