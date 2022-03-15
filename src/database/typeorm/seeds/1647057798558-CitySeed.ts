@@ -1,6 +1,5 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 import fs from 'fs';
-import { randomUUID } from 'crypto';
 
 const json: any = JSON.parse(
   fs.readFileSync(`${__dirname}/data/city.json`, 'utf-8'),

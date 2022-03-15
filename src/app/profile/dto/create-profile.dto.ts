@@ -1,5 +1,4 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { ProfileLimitTypeRole } from '../entities/profile-limit.entity';
 import { CreateProfileLimitDto } from './create-profile-limit.dto';
 
 export class CreateProfileDto {
