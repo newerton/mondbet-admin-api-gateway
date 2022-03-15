@@ -10,6 +10,7 @@ export class CreateCountry1647053597514 implements MigrationInterface {
             name: 'id',
             type: 'uuid',
             isPrimary: true,
+            isGenerated: true,
             generationStrategy: 'uuid',
           },
           {

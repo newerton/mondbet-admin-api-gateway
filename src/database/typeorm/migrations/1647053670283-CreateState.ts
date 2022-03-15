@@ -16,6 +16,7 @@ export class CreateState1647053670283 implements MigrationInterface {
             name: 'id',
             type: 'uuid',
             isPrimary: true,
+            isGenerated: true,
             generationStrategy: 'uuid',
           },
           {

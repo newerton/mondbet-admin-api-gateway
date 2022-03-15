@@ -3,6 +3,10 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+function migrationDirectory() {
+  return process.env.NODE_ENV === 'migration' ? 'src' : `dist`;
+}
+
 const config: TypeOrmModuleOptions = {
   type: process.env.DB_DIALECT as any,
   host: process.env.DB_HOST,
@@ -13,8 +17,10 @@ const config: TypeOrmModuleOptions = {
   logging: process.env.DB_LOGGING === 'true',
   autoLoadEntities: true,
   charset: 'utf8mb4_unicode_ci',
-  entities: ['./dist/**/*.entity{.ts,.js}'],
-  migrations: ['./src/database/typeorm/migrations/*{.ts,.js}'],
+  entities: [`./${migrationDirectory()}/**/*.entity{.ts,.js}`],
+  migrations: [
+    `./${migrationDirectory()}/database/typeorm/migrations/*{.ts,.js}`,
+  ],
   cli: {
     migrationsDir: './src/database/typeorm/migrations',
   },

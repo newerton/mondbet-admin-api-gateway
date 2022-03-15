@@ -16,6 +16,7 @@ export class CreateProfileDetail1647263573145 implements MigrationInterface {
             name: 'id',
             type: 'uuid',
             isPrimary: true,
+            isGenerated: true,
             generationStrategy: 'uuid',
           },
           {

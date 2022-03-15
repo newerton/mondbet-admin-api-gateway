@@ -16,6 +16,7 @@ export class CreateAgentLimit1647281812064 implements MigrationInterface {
             name: 'id',
             type: 'uuid',
             isPrimary: true,
+            isGenerated: true,
             generationStrategy: 'uuid',
           },
           {

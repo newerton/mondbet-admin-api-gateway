@@ -10,6 +10,7 @@ import { ErrorFilter } from './common/filters/error.filter';
 import { JoiValidationExceptionFilter } from './common/filters/joi.validation-exception.filter';
 import { UserModule } from './app/user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { SportModule } from './app/sport/sport.module';
 import config from 'ormconfig';
 
 @Module({
@@ -21,6 +22,7 @@ import config from 'ormconfig';
     TypeOrmModule.forRoot(config),
     AuthModule,
     UserModule,
+    SportModule,
   ],
   providers: [
     // {

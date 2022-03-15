@@ -16,6 +16,7 @@ export class CreateCollectAddress1647283564458 implements MigrationInterface {
             name: 'id',
             type: 'uuid',
             isPrimary: true,
+            isGenerated: true,
             generationStrategy: 'uuid',
           },
           {

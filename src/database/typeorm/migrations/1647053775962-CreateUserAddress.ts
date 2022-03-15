@@ -16,6 +16,7 @@ export class CreateUserAddress1647053775962 implements MigrationInterface {
             name: 'id',
             type: 'uuid',
             isPrimary: true,
+            isGenerated: true,
             generationStrategy: 'uuid',
           },
           {

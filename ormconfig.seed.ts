@@ -12,7 +12,7 @@ export const config: TypeOrmModuleOptions = {
   database: process.env.DB_DATABASE,
   migrationsTableName: 'migrations_seed',
   logging: process.env.DB_LOGGING === 'true',
-  migrations: ['./src/database/typeorm/seeds/*.ts'],
+  migrations: ['./dist/database/typeorm/seeds/*.ts'],
   cli: {
     migrationsDir: './src/database/typeorm/seeds',
   },

@@ -28,6 +28,8 @@ import { ErrorSchema } from 'src/common/schemas/Error.schema';
 import { Payload } from '@nestjs/microservices';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { JwtAuthGuard } from 'src/common/auth/jwt/jwt-auth.guard';
+import { JoiValidationPipe } from 'src/common/pipes/JoiValidation.pipe';
+import { UserCreateSchema } from './validations/user-create.schema.validation';
 
 @ApiTags('user')
 @Controller('user')
@@ -47,7 +49,10 @@ export class UserController {
     description: 'Unprocessable Entity',
     type: ErrorSchema,
   })
-  async create(@Payload() payload: CreateUserDto): Promise<User> {
+  async create(
+    @Payload(new JoiValidationPipe(new UserCreateSchema()))
+    payload: CreateUserDto,
+  ): Promise<User> {
     return this.userService.create(payload);
   }
 

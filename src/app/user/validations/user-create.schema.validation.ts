@@ -23,6 +23,10 @@ export class UserCreateSchema implements CreateSchema {
         .messages(joiMessagesSchema),
       password: Joi.string()
         .required()
+        .label('Senha')
+        .messages(joiMessagesSchema),
+      repeat_password: Joi.string()
+        .required()
         .valid(Joi.ref('password'))
         .label('Repita a senha')
         .messages(joiMessagesSchema),

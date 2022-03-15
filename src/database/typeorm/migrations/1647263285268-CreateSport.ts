@@ -10,11 +10,17 @@ export class CreateSport1647263285268 implements MigrationInterface {
             name: 'id',
             type: 'uuid',
             isPrimary: true,
+            isGenerated: true,
             generationStrategy: 'uuid',
           },
           {
             name: 'title',
             type: 'varchar',
+          },
+          {
+            name: 'visible',
+            type: 'boolean',
+            default: true,
           },
           {
             name: 'created_at',

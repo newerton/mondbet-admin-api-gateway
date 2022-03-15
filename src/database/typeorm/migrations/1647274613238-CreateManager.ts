@@ -16,6 +16,7 @@ export class CreateSubManager1647274613238 implements MigrationInterface {
             name: 'id',
             type: 'uuid',
             isPrimary: true,
+            isGenerated: true,
             generationStrategy: 'uuid',
           },
           {
