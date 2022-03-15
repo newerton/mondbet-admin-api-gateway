@@ -7,7 +7,6 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
-  IsNull,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
