@@ -10,11 +10,16 @@ $ docker-compose up -d
 ```
 ## Migration
 
+### Run
 ```bash
 $ npm run typeorm migration:run
 ```
+### Create
+```bash
+$ npm run typeorm:migration:run CreateUser
+```
 
-## Seed
+### Seed
 
 ```bash
 $ npm run seed migration:run
@@ -31,6 +36,13 @@ $ npm run start:dev
 # production mode
 $ npm run start:prod
 ```
+
+## Swagger (API Documentation)
+
+```
+http://localhost:8000/docs
+```
+
 
 ## Test
 
