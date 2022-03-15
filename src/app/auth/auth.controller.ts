@@ -1,4 +1,5 @@
-import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
+import { Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
+import { Payload } from '@nestjs/microservices';
 import {
   ApiBadRequestResponse,
   ApiOkResponse,
@@ -13,8 +14,10 @@ import { Auth } from './entities/auth.entity';
 
 @ApiTags('auth')
 @Controller('auth')
+@ApiUnauthorizedResponse({ description: 'Unauthorized', type: ErrorSchema })
+@ApiBadRequestResponse({ description: 'Bad Request', type: ErrorSchema })
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(private readonly service: AuthService) {}
 
   @Post('login')
   @HttpCode(HttpStatus.OK)
@@ -23,10 +26,7 @@ export class AuthController {
     description: 'Login successfully',
     type: Auth,
   })
-  @ApiUnauthorizedResponse({ description: 'Unauthorized', type: ErrorSchema })
-  @ApiBadRequestResponse({ description: 'Bad Request', type: ErrorSchema })
-  async login(@Body() login: LoginAuthDto) {
-    console.log({ login });
-    return this.authService.login(login);
+  async login(@Payload() payload: LoginAuthDto) {
+    return this.service.login(payload);
   }
 }

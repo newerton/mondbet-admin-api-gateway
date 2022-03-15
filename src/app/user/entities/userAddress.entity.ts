@@ -1,5 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Exclude } from 'class-transformer';
+import { City } from 'src/app/city/entities/city.entity';
+import { State } from 'src/app/state/entities/state.entity';
 import {
   BeforeInsert,
   BeforeUpdate,
@@ -7,9 +9,12 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  JoinColumn,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { User } from './user.entity';
 
 @Entity('user_address')
 export class UserAddress {
@@ -17,12 +22,11 @@ export class UserAddress {
     Object.assign(this, partial);
   }
 
-  @ApiProperty()
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ApiProperty()
   @Column('uuid')
+  @Exclude()
   user_id: string;
 
   @ApiProperty()
@@ -45,12 +49,12 @@ export class UserAddress {
   @Column({ nullable: true, default: null })
   complement: string;
 
-  @ApiProperty()
   @Column()
+  @Exclude()
   state_id: string;
 
-  @ApiProperty()
   @Column()
+  @Exclude()
   city_id: string;
 
   @Exclude()
@@ -75,4 +79,18 @@ export class UserAddress {
   private setUpdateDate(): void {
     this.updated_at = new Date();
   }
+
+  @OneToOne(() => User, (user) => user.address)
+  @JoinColumn({ name: 'user_id' })
+  user: User;
+
+  @ApiProperty()
+  @OneToOne(() => City, (city) => city.userAddress)
+  @JoinColumn({ name: 'city_id' })
+  city: City;
+
+  @ApiProperty()
+  @OneToOne(() => State, (state) => state.userAddress)
+  @JoinColumn({ name: 'state_id' })
+  state: State;
 }

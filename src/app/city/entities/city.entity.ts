@@ -1,5 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Exclude } from 'class-transformer';
+import { State } from 'src/app/state/entities/state.entity';
+import { UserAddress } from 'src/app/user/entities/userAddress.entity';
 import {
   BeforeInsert,
   BeforeUpdate,
@@ -7,6 +9,9 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -21,8 +26,8 @@ export class City {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ApiProperty()
-  @Column('uuid')
+  @Column({ type: 'uuid' })
+  @Exclude()
   state_id: string;
 
   @ApiProperty()
@@ -31,31 +36,27 @@ export class City {
 
   @ApiProperty()
   @Column()
+  @Exclude()
   iso_code: string;
 
   @ApiProperty()
   @Column()
+  @Exclude()
   iso_calling: string;
 
   @ApiProperty()
-  @Column({ nullable: true, default: null })
-  latitude: string;
+  @Column({ nullable: true, default: true })
+  @Exclude()
+  latitude?: string;
 
   @ApiProperty()
-  @Column({ nullable: true, default: null })
-  longitude: string;
+  @Column({ nullable: true, default: true })
+  @Exclude()
+  longitude?: string;
 
-  @ApiProperty()
-  @Column({ nullable: true, default: null })
-  timezone: string;
-
-  @ApiProperty()
-  @Column({ nullable: true, default: null })
-  gmt: string;
-
-  @ApiProperty()
   @Column({ default: true })
-  visible: boolean;
+  @Exclude()
+  visible?: boolean;
 
   @Exclude()
   @CreateDateColumn()
@@ -79,4 +80,12 @@ export class City {
   private setUpdateDate(): void {
     this.updated_at = new Date();
   }
+
+  @OneToOne(() => State, (state) => state.city)
+  @JoinColumn({ name: 'state_id' })
+  state: State;
+
+  @ManyToOne(() => UserAddress, (userAddress) => userAddress.city)
+  @JoinColumn({ name: 'id' })
+  userAddress: UserAddress;
 }

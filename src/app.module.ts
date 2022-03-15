@@ -12,6 +12,8 @@ import { UserModule } from './app/user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { SportModule } from './app/sport/sport.module';
 import config from 'ormconfig';
+import { StateModule } from './app/state/state.module';
+import { CityModule } from './app/city/city.module';
 
 @Module({
   imports: [
@@ -22,6 +24,8 @@ import config from 'ormconfig';
     TypeOrmModule.forRoot(config),
     AuthModule,
     UserModule,
+    StateModule,
+    CityModule,
     SportModule,
   ],
   providers: [

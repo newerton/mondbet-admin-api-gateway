@@ -7,9 +7,12 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  JoinColumn,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { UserAddress } from './userAddress.entity';
 
 @Entity('user')
 export class User {
@@ -37,15 +40,24 @@ export class User {
   @Column()
   email_verified?: boolean;
 
-  @ApiProperty()
   @Column()
   @Exclude()
   password: string;
 
-  @ApiProperty()
   repeat_password: string;
 
   @ApiProperty()
+  @Column()
+  document?: string;
+
+  @ApiProperty()
+  @Column({ type: 'date', nullable: true })
+  birthday?: string;
+
+  @ApiProperty()
+  @Column()
+  phone?: string;
+
   @Column()
   visible?: boolean;
 
@@ -71,4 +83,9 @@ export class User {
   private setUpdateDate(): void {
     this.updated_at = new Date();
   }
+
+  @ApiProperty()
+  @OneToOne(() => UserAddress, (address) => address.user)
+  @JoinColumn({ name: 'id', referencedColumnName: 'user_id' })
+  address: UserAddress;
 }

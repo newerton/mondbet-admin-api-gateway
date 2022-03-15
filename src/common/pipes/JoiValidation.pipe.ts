@@ -5,7 +5,7 @@ import {
   HttpException,
   HttpStatus,
 } from '@nestjs/common';
-import { CreateSchema } from '../schemas/joi/products/joi.create.schema.factory';
+import { CreateSchema } from '../schemas/joi/joi.create.schema.factory';
 
 type ValidationType = {
   message: string;

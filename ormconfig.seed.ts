@@ -3,6 +3,10 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+function migrationDirectory() {
+  return process.env.NODE_ENV === 'migration' ? 'src' : `dist`;
+}
+
 export const config: TypeOrmModuleOptions = {
   type: process.env.DB_DIALECT as any,
   host: process.env.DB_HOST,
@@ -12,9 +16,9 @@ export const config: TypeOrmModuleOptions = {
   database: process.env.DB_DATABASE,
   migrationsTableName: 'migrations_seed',
   logging: process.env.DB_LOGGING === 'true',
-  migrations: ['./dist/database/typeorm/seeds/*.ts'],
+  migrations: [`./${migrationDirectory()}/database/typeorm/seeds/*.ts`],
   cli: {
-    migrationsDir: './src/database/typeorm/seeds',
+    migrationsDir: `./src/database/typeorm/seeds`,
   },
 };
 

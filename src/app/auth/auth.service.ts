@@ -4,6 +4,7 @@ import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { randomUUID } from 'crypto';
 import { LoginAuthDto } from './dto/login-auth.dto';
+import { compare } from 'bcrypt';
 
 @Injectable()
 export class AuthService {
@@ -22,17 +23,17 @@ export class AuthService {
     return null;
   }
 
-  async login({ email }: LoginAuthDto) {
+  async login({ email, password }: LoginAuthDto) {
     const user = await this.userService.findByEmail(email);
 
     if (!user) {
       throw new BadRequestException('E-mail e/ou senha inválidos.');
     }
 
-    // const passwordMatched = await compare(passwordCurrent, user.passwordCurrent);
-    // if (!passwordMatched) {
-    //   throw new BadRequestException('E-mail e/ou senha inválidos.');
-    // }
+    const passwordMatched = await compare(password, user.password);
+    if (!passwordMatched) {
+      throw new BadRequestException('E-mail e/ou senha inválidos.');
+    }
 
     if (!user.visible) {
       throw new BadRequestException('E-mail e/ou senha inválidos.');

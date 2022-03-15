@@ -9,13 +9,18 @@ import { hash } from 'bcrypt';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './entities/user.entity';
+import { UserAddress } from './entities/userAddress.entity';
 
 @Injectable()
 export class UserService {
-  constructor(@InjectRepository(User) private repository: Repository<User>) {}
+  constructor(
+    @InjectRepository(User) private repository: Repository<User>,
+    @InjectRepository(UserAddress)
+    private userAddressRepository: Repository<UserAddress>,
+  ) {}
 
-  async create(data: CreateUserDto): Promise<User | undefined> {
-    const { email, password } = data;
+  async create(data: CreateUserDto): Promise<void> {
+    const { email, password, address } = data;
     const userExist = await this.findByEmail(email);
 
     if (userExist) {
@@ -30,7 +35,12 @@ export class UserService {
         password: hashedPassword,
       });
       if (id) {
-        return await this.repository.findOne({ id });
+        if (address) {
+          await this.userAddressRepository.save({
+            ...address,
+            user: { id },
+          });
+        }
       } else {
         throw new BadRequestException({ error: 'User not created' });
       }
@@ -40,7 +50,15 @@ export class UserService {
   }
 
   async findById(id: string): Promise<User | undefined> {
-    return this.repository.findOne({ id });
+    const user = await this.repository.findOne({
+      where: { id },
+      relations: ['address', 'address.city', 'address.state'],
+    });
+
+    if (!user) {
+      throw new BadRequestException('Token not valid');
+    }
+    return user;
   }
 
   async findByEmail(email: string): Promise<User | undefined> {
