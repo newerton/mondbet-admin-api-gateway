@@ -57,6 +57,7 @@ export class CreateCollect1647283306619 implements MigrationInterface {
           {
             name: 'visible',
             type: 'boolean',
+            default: true,
           },
           {
             name: 'created_at',

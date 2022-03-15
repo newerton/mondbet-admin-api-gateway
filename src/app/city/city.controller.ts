@@ -2,7 +2,6 @@ import {
   Controller,
   Get,
   Param,
-  UseGuards,
   ClassSerializerInterceptor,
   UseInterceptors,
   HttpCode,
@@ -11,23 +10,18 @@ import {
 } from '@nestjs/common';
 import {
   ApiBadRequestResponse,
-  ApiBearerAuth,
   ApiOkResponse,
   ApiOperation,
   ApiTags,
-  ApiUnauthorizedResponse,
   ApiUnprocessableEntityResponse,
 } from '@nestjs/swagger';
-import { JwtAuthGuard } from 'src/common/auth/jwt/jwt-auth.guard';
 import { ErrorSchema } from 'src/common/schemas/Error.schema';
 import { CityService } from './city.service';
 import { City } from './entities/city.entity';
 
 @ApiTags('city')
 @Controller('city')
-@UseGuards(JwtAuthGuard)
 @UseInterceptors(ClassSerializerInterceptor)
-@ApiUnauthorizedResponse({ description: 'Unauthorized', type: ErrorSchema })
 @ApiBadRequestResponse({ description: 'Bad Request', type: ErrorSchema })
 @ApiUnprocessableEntityResponse({
   description: 'Unprocessable Entity',
@@ -38,7 +32,6 @@ export class CityController {
 
   @Get(':state_id')
   @HttpCode(200)
-  @ApiBearerAuth()
   @ApiOperation({ summary: 'List all cities by state ID' })
   @ApiOkResponse({ description: 'List all cities', type: City })
   findAll(
@@ -53,7 +46,6 @@ export class CityController {
 
   @Get(':id')
   @HttpCode(200)
-  @ApiBearerAuth()
   @ApiOperation({ summary: 'Get one city by ID' })
   @ApiOkResponse({ description: 'City object', type: City })
   findOne(

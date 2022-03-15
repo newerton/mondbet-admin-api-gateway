@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Exclude } from 'class-transformer';
+import { Sport } from 'src/app/sport/entities/sport.entity';
 import {
   BeforeInsert,
   BeforeUpdate,
@@ -12,11 +13,11 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { UserAddress } from './user_address.entity';
+import { ProfileLimit } from './profile-limit.entity';
 
-@Entity('user')
-export class User {
-  constructor(partial: Partial<User>) {
+@Entity('profile')
+export class Profile {
+  constructor(partial: Partial<Profile>) {
     Object.assign(this, partial);
   }
 
@@ -26,51 +27,31 @@ export class User {
 
   @ApiProperty()
   @Column()
-  first_name: string;
+  title: string;
 
   @ApiProperty()
-  @Column()
-  last_name: string;
-
-  @ApiProperty()
-  @Column()
-  email: string;
-
-  @ApiProperty()
-  @Column()
-  email_verified?: boolean;
-
-  @Column()
+  @Column({ type: 'uuid' })
   @Exclude()
-  password: string;
-
-  repeat_password: string;
+  sport_id: string;
 
   @ApiProperty()
   @Column()
-  document?: string;
-
-  @ApiProperty()
-  @Column({ type: 'date', nullable: true })
-  birthday?: string;
+  combined: number;
 
   @ApiProperty()
   @Column()
-  phone?: string;
-
-  @Column()
-  visible?: boolean;
+  visible: boolean;
 
   @Exclude()
   @CreateDateColumn()
   created_at: Date;
 
   @Exclude()
-  @UpdateDateColumn()
+  @UpdateDateColumn({ select: false })
   updated_at: Date;
 
   @Exclude()
-  @DeleteDateColumn({ nullable: true })
+  @DeleteDateColumn({ nullable: true, select: false })
   deleted_at: Date;
 
   @BeforeInsert()
@@ -85,7 +66,12 @@ export class User {
   }
 
   @ApiProperty()
-  @OneToOne(() => UserAddress, (address) => address.user)
-  @JoinColumn({ name: 'id', referencedColumnName: 'user_id' })
-  address: UserAddress;
+  @OneToOne(() => Sport, (sport) => sport.id)
+  @JoinColumn({ name: 'sport_id' })
+  sport: Sport;
+
+  @ApiProperty()
+  @OneToOne(() => ProfileLimit, (profileLimit) => profileLimit.profile_id)
+  @JoinColumn({ name: 'id', referencedColumnName: 'profile_id' })
+  limit: ProfileLimit;
 }

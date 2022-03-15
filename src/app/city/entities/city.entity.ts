@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Exclude } from 'class-transformer';
 import { State } from 'src/app/state/entities/state.entity';
-import { UserAddress } from 'src/app/user/entities/userAddress.entity';
+import { UserAddress } from 'src/app/user/entities/user_address.entity';
 import {
   BeforeInsert,
   BeforeUpdate,

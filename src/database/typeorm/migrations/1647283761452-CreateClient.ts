@@ -56,6 +56,7 @@ export class CreateClient1647283761452 implements MigrationInterface {
           {
             name: 'visible',
             type: 'boolean',
+            default: true,
           },
           {
             name: 'created_at',

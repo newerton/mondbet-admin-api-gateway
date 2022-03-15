@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { getConnection, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { buildPaginator, PagingResult } from 'typeorm-cursor-pagination';
 import { CreateSportDto } from './dto/create-sport.dto';
 import { UpdateSportDto } from './dto/update-sport.dto';
@@ -14,29 +14,36 @@ export class SportService {
     await this.repository.save(data);
   }
 
-  findAll(): Promise<PagingResult<Sport>> {
+  findAll(query: any): Promise<PagingResult<Sport>> {
     const queryBuilder = this.repository.createQueryBuilder('sport');
 
     const paginator = buildPaginator({
       entity: Sport,
       paginationKeys: ['id'],
       query: {
-        limit: 20,
+        limit: 2,
         order: 'ASC',
+        afterCursor: query?.page?.next,
+        beforeCursor: query?.page?.prev,
       },
     });
 
     return paginator.paginate(queryBuilder);
   }
 
-  findOne(id: string): Promise<Sport | undefined> {
-    return this.repository.findOne(id);
+  async findOne(id: string): Promise<Sport | undefined> {
+    const model = await this.repository.findOne(id);
+
+    if (!model) {
+      throw new BadRequestException('Esporte não encontrado.');
+    }
+    return model;
   }
 
   async update(id: string, payload: UpdateSportDto): Promise<void> {
-    const sport = await this.repository.findOne(id);
+    const model = await this.repository.findOne(id);
 
-    if (!sport) {
+    if (!model) {
       throw new BadRequestException('Esporte não encontrado.');
     }
 
@@ -44,9 +51,9 @@ export class SportService {
   }
 
   async remove(id: string): Promise<void> {
-    const sport = await this.repository.findOne(id);
+    const model = await this.repository.findOne(id);
 
-    if (!sport) {
+    if (!model) {
       throw new BadRequestException('Esporte não encontrado.');
     }
 

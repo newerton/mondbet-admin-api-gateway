@@ -10,7 +10,6 @@ export class CitySeed1647057798558 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await Promise.all(
       json.map(async (data) => {
-        data.id = randomUUID();
         data.title = data.title.replace(/'/g, "\\'");
         return await queryRunner.query(
           `INSERT INTO city (id, state_id, title, iso_code, iso_calling, latitude, longitude, timezone, gmt)
@@ -23,8 +22,7 @@ export class CitySeed1647057798558 implements MigrationInterface {
   public async down(queryRunner: QueryRunner): Promise<void> {
     await Promise.all(
       json.map((data) => {
-        data.title = data.title.replace(/'/g, "\\'");
-        queryRunner.query(`DELETE FROM city WHERE title=E'${data.title}';`);
+        queryRunner.query(`DELETE FROM city WHERE id='${data.id}';`);
       }),
     );
   }

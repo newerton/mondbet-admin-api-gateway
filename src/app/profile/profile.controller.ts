@@ -13,9 +13,6 @@ import {
   HttpStatus,
   Query,
 } from '@nestjs/common';
-import { SportService } from './sport.service';
-import { CreateSportDto } from './dto/create-sport.dto';
-import { UpdateSportDto } from './dto/update-sport.dto';
 import {
   ApiBadRequestResponse,
   ApiBearerAuth,
@@ -29,15 +26,18 @@ import {
 } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/common/auth/jwt/jwt-auth.guard';
 import { Payload } from '@nestjs/microservices';
-import { Sport } from './entities/sport.entity';
 import { ErrorSchema } from 'src/common/schemas/Error.schema';
 import { JoiValidationPipe } from 'src/common/pipes/JoiValidation.pipe';
-import { SportCreateSchema } from './validations/sport-create.schema.validation';
 import { HeadersPaginationInterceptor } from 'src/common/interceptors/headers-pagination.interceptors';
-import { SportUpdateSchema } from './validations/sport-update.schema.validation';
+import { ProfileService } from './profile.service';
+import { CreateProfileDto } from './dto/create-profile.dto';
+import { Profile } from './entities/profile.entity';
+import { ProfileCreateSchema } from './validations/profile-create.schema.validation';
+import { ProfileUpdateSchema } from './validations/profile-update.schema.validation';
+import { UpdateProfileDto } from './dto/update-profile.dto';
 
-@ApiTags('sport')
-@Controller('sport')
+@ApiTags('profile')
+@Controller('profile')
 @UseGuards(JwtAuthGuard)
 @UseInterceptors(ClassSerializerInterceptor)
 @ApiUnauthorizedResponse({ description: 'Unauthorized', type: ErrorSchema })
@@ -46,17 +46,17 @@ import { SportUpdateSchema } from './validations/sport-update.schema.validation'
   description: 'Unprocessable Entity',
   type: ErrorSchema,
 })
-export class SportController {
-  constructor(private readonly service: SportService) {}
+export class ProfileController {
+  constructor(private readonly service: ProfileService) {}
 
   @Post()
   @HttpCode(201)
   @ApiBearerAuth()
-  @ApiOperation({ summary: 'Create sport' })
+  @ApiOperation({ summary: 'Create profile' })
   @ApiCreatedResponse({ description: 'Not content' })
   create(
-    @Payload(new JoiValidationPipe(new SportCreateSchema()))
-    payload: CreateSportDto,
+    @Payload(new JoiValidationPipe(new ProfileCreateSchema()))
+    payload: CreateProfileDto,
   ) {
     return this.service.create(payload);
   }
@@ -64,8 +64,8 @@ export class SportController {
   @Get()
   @HttpCode(200)
   @ApiBearerAuth()
-  @ApiOperation({ summary: 'List all sports' })
-  @ApiOkResponse({ description: 'List all sports', type: Sport })
+  @ApiOperation({ summary: 'List all profiles' })
+  @ApiOkResponse({ description: 'List all profiles', type: Profile })
   @UseInterceptors(HeadersPaginationInterceptor)
   async findAll(@Query() query): Promise<any> {
     const { data, cursor } = await this.service.findAll(query);
@@ -75,22 +75,22 @@ export class SportController {
   @Get(':id')
   @HttpCode(200)
   @ApiBearerAuth()
-  @ApiOperation({ summary: 'Get one sport by ID' })
-  @ApiOkResponse({ description: 'Sport object', type: Sport })
+  @ApiOperation({ summary: 'Get one profile by ID' })
+  @ApiOkResponse({ description: 'Profile object', type: Profile })
   findOne(
     @Param(
       'id',
       new ParseUUIDPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
     )
     id: string,
-  ): Promise<Sport | undefined> {
+  ): Promise<Profile | undefined> {
     return this.service.findOne(id);
   }
 
   @Patch(':id')
   @HttpCode(204)
   @ApiBearerAuth()
-  @ApiOperation({ summary: 'Update a sport' })
+  @ApiOperation({ summary: 'Update a profile' })
   @ApiNoContentResponse({ description: 'No content' })
   update(
     @Param(
@@ -98,8 +98,8 @@ export class SportController {
       new ParseUUIDPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
     )
     id: string,
-    @Payload(new JoiValidationPipe(new SportUpdateSchema()))
-    payload: UpdateSportDto,
+    @Payload(new JoiValidationPipe(new ProfileUpdateSchema()))
+    payload: UpdateProfileDto,
   ) {
     return this.service.update(id, payload);
   }
@@ -107,7 +107,7 @@ export class SportController {
   @Delete(':id')
   @HttpCode(204)
   @ApiBearerAuth()
-  @ApiOperation({ summary: 'Delete a sport' })
+  @ApiOperation({ summary: 'Delete a profile' })
   @ApiNoContentResponse({ description: 'No content' })
   remove(
     @Param(

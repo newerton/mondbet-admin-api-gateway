@@ -26,7 +26,7 @@ export class CreateSubManager1647274613238 implements MigrationInterface {
             isNullable: true,
           },
           {
-            name: 'profile_detail_id',
+            name: 'profile_id',
             type: 'uuid',
           },
           {
@@ -76,6 +76,7 @@ export class CreateSubManager1647274613238 implements MigrationInterface {
           {
             name: 'visible',
             type: 'boolean',
+            default: true,
           },
           {
             name: 'created_at',
@@ -100,9 +101,9 @@ export class CreateSubManager1647274613238 implements MigrationInterface {
     await queryRunner.createForeignKey(
       'manager',
       new TableForeignKey({
-        name: 'fk-manager-profile_detail_id',
-        columnNames: ['profile_detail_id'],
-        referencedTableName: 'profile_detail',
+        name: 'fk-manager-profile_id',
+        columnNames: ['profile_id'],
+        referencedTableName: 'profile',
         referencedColumnNames: ['id'],
         onUpdate: 'CASCADE',
       }),
@@ -111,8 +112,8 @@ export class CreateSubManager1647274613238 implements MigrationInterface {
     await queryRunner.createIndex(
       'manager',
       new TableIndex({
-        name: 'fk-manager-profile_detail_id',
-        columnNames: ['profile_detail_id'],
+        name: 'fk-manager-profile_id',
+        columnNames: ['profile_id'],
         parser: 'btree',
       }),
     );

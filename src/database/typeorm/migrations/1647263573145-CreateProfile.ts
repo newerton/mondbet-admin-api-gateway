@@ -6,11 +6,11 @@ import {
   TableIndex,
 } from 'typeorm';
 
-export class CreateProfileDetail1647263573145 implements MigrationInterface {
+export class CreateProfile1647263573145 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'profile_detail',
+        name: 'profile',
         columns: [
           {
             name: 'id',
@@ -20,14 +20,21 @@ export class CreateProfileDetail1647263573145 implements MigrationInterface {
             generationStrategy: 'uuid',
           },
           {
+            name: 'title',
+            type: 'varchar',
+          },
+          {
             name: 'sport_id',
             type: 'uuid',
           },
           {
             name: 'combined',
-            type: 'decimal',
-            precision: 10,
-            scale: 2,
+            type: 'integer',
+          },
+          {
+            name: 'visible',
+            type: 'boolean',
+            default: true,
           },
           {
             name: 'created_at',
@@ -50,9 +57,9 @@ export class CreateProfileDetail1647263573145 implements MigrationInterface {
     );
 
     await queryRunner.createForeignKey(
-      'profile_detail',
+      'profile',
       new TableForeignKey({
-        name: 'fk-profile_detail-sport_id',
+        name: 'fk-profile-sport_id',
         columnNames: ['sport_id'],
         referencedTableName: 'sport',
         referencedColumnNames: ['id'],
@@ -61,9 +68,9 @@ export class CreateProfileDetail1647263573145 implements MigrationInterface {
     );
 
     await queryRunner.createIndex(
-      'profile_detail',
+      'profile',
       new TableIndex({
-        name: 'fk-profile_detail-sport_id',
+        name: 'fk-profile-sport_id',
         columnNames: ['sport_id'],
         parser: 'btree',
       }),
@@ -71,6 +78,6 @@ export class CreateProfileDetail1647263573145 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('profile_detail');
+    await queryRunner.dropTable('profile');
   }
 }

@@ -5,6 +5,7 @@ import { ConfigService } from '@nestjs/config';
 import { randomUUID } from 'crypto';
 import { LoginAuthDto } from './dto/login-auth.dto';
 import { compare } from 'bcrypt';
+import { User } from '../user/entities/user.entity';
 
 @Injectable()
 export class AuthService {
@@ -14,13 +15,8 @@ export class AuthService {
     private readonly configService: ConfigService,
   ) {}
 
-  async validateUser(email: string, pass: string): Promise<any> {
-    const user = await this.userService.findByEmail(email);
-    if (user && user.password === pass) {
-      const { ...result } = user;
-      return result;
-    }
-    return null;
+  validateUser(id: string): Promise<User | undefined> {
+    return this.userService.findById(id);
   }
 
   async login({ email, password }: LoginAuthDto) {

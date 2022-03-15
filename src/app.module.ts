@@ -14,7 +14,7 @@ import { SportModule } from './app/sport/sport.module';
 import config from 'ormconfig';
 import { StateModule } from './app/state/state.module';
 import { CityModule } from './app/city/city.module';
-
+import { ProfileModule } from './app/profile/profile.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -27,6 +27,7 @@ import { CityModule } from './app/city/city.module';
     StateModule,
     CityModule,
     SportModule,
+    ProfileModule,
   ],
   providers: [
     // {

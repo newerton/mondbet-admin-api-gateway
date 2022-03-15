@@ -56,6 +56,7 @@ export class CreateUser1647043223930 implements MigrationInterface {
           {
             name: 'visible',
             type: 'boolean',
+            default: true,
           },
           {
             name: 'created_at',

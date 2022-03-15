@@ -6,13 +6,11 @@ import {
   TableIndex,
 } from 'typeorm';
 
-export class CreateProfileDetailLimit1647269112285
-  implements MigrationInterface
-{
+export class CreateProfileLimit1647269112285 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'profile_detail_limit',
+        name: 'profile_limit',
         columns: [
           {
             name: 'id',
@@ -22,12 +20,13 @@ export class CreateProfileDetailLimit1647269112285
             generationStrategy: 'uuid',
           },
           {
-            name: 'profile_detail_id',
+            name: 'profile_id',
             type: 'uuid',
           },
           {
             name: 'type',
             type: 'varchar',
+            default: 'prematch',
           },
           {
             name: 'bet_max',
@@ -98,27 +97,27 @@ export class CreateProfileDetailLimit1647269112285
     );
 
     await queryRunner.createForeignKey(
-      'profile_detail_limit',
+      'profile_limit',
       new TableForeignKey({
-        name: 'fk-profile_detail_limit-profile_detail_id',
-        columnNames: ['profile_detail_id'],
-        referencedTableName: 'profile_detail',
+        name: 'fk-profile_limit-profile_id',
+        columnNames: ['profile_id'],
+        referencedTableName: 'profile',
         referencedColumnNames: ['id'],
         onUpdate: 'CASCADE',
       }),
     );
 
     await queryRunner.createIndex(
-      'profile_detail_limit',
+      'profile_limit',
       new TableIndex({
-        name: 'fk-profile_detail_limit-profile_detail_id',
-        columnNames: ['profile_detail_id'],
+        name: 'fk-profile_limit-profile_id',
+        columnNames: ['profile_id'],
         parser: 'btree',
       }),
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('profile_detail_limit');
+    await queryRunner.dropTable('profile_limit');
   }
 }

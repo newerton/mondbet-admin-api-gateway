@@ -24,7 +24,7 @@ export class CreateAgent1647280302386 implements MigrationInterface {
             type: 'uuid',
           },
           {
-            name: 'profile_detail_id',
+            name: 'profile_id',
             type: 'uuid',
           },
           {
@@ -71,6 +71,7 @@ export class CreateAgent1647280302386 implements MigrationInterface {
           {
             name: 'visible',
             type: 'boolean',
+            default: true,
           },
           {
             name: 'created_at',
@@ -106,9 +107,9 @@ export class CreateAgent1647280302386 implements MigrationInterface {
     await queryRunner.createForeignKey(
       'agent',
       new TableForeignKey({
-        name: 'fk-agent-profile_detail_id',
-        columnNames: ['profile_detail_id'],
-        referencedTableName: 'profile_detail',
+        name: 'fk-agent-profile_id',
+        columnNames: ['profile_id'],
+        referencedTableName: 'profile',
         referencedColumnNames: ['id'],
         onUpdate: 'CASCADE',
       }),
@@ -126,8 +127,8 @@ export class CreateAgent1647280302386 implements MigrationInterface {
     await queryRunner.createIndex(
       'agent',
       new TableIndex({
-        name: 'fk-agent-profile_detail_id',
-        columnNames: ['profile_detail_id'],
+        name: 'fk-agent-profile_id',
+        columnNames: ['profile_id'],
         parser: 'btree',
       }),
     );

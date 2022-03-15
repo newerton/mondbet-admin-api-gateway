@@ -9,7 +9,7 @@ import { hash } from 'bcrypt';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './entities/user.entity';
-import { UserAddress } from './entities/userAddress.entity';
+import { UserAddress } from './entities/user_address.entity';
 
 @Injectable()
 export class UserService {
@@ -51,7 +51,7 @@ export class UserService {
 
   async findById(id: string): Promise<User | undefined> {
     const user = await this.repository.findOne({
-      where: { id },
+      where: { id, visible: true },
       relations: ['address', 'address.city', 'address.state'],
     });
 

@@ -30,6 +30,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { JwtAuthGuard } from 'src/common/auth/jwt/jwt-auth.guard';
 import { JoiValidationPipe } from 'src/common/pipes/JoiValidation.pipe';
 import { UserCreateSchema } from './validations/user-create.schema.validation';
+import { Public } from 'src/common/decorators/public.decorator';
 
 @ApiTags('user')
 @Controller('user')
@@ -46,9 +47,9 @@ export class UserController {
 
   @Post()
   @HttpCode(201)
-  @ApiBearerAuth()
   @ApiOperation({ summary: 'Create user' })
   @ApiCreatedResponse({ description: 'Not content' })
+  @Public()
   async create(
     @Payload(new JoiValidationPipe(new UserCreateSchema()))
     payload: CreateUserDto,
