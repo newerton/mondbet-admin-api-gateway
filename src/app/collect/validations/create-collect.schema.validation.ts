@@ -11,18 +11,29 @@ const Joi = JoiBase.extend(dateValidator)
   .extend(phoneValidator)
   .extend(postalcodeValidator);
 
-export class CollectUpdateSchema implements CreateSchema {
+export class CreateCollectSchema implements CreateSchema {
   createSchema(): JoiBase.ObjectSchema {
     return Joi.object({
-      first_name: Joi.string().label('Nome').messages(joiMessagesSchema),
-      last_name: Joi.string().label('Sobrenome').messages(joiMessagesSchema),
+      first_name: Joi.string()
+        .required()
+        .label('Nome')
+        .messages(joiMessagesSchema),
+      last_name: Joi.string()
+        .required()
+        .label('Sobrenome')
+        .messages(joiMessagesSchema),
       email: Joi.string()
         .email()
         .lowercase()
+        .required()
         .label('E-mail')
         .messages(joiMessagesSchema),
-      password: Joi.string().label('Senha').messages(joiMessagesSchema),
+      password: Joi.string()
+        .required()
+        .label('Senha')
+        .messages(joiMessagesSchema),
       repeat_password: Joi.string()
+        .required()
         .valid(Joi.ref('password'))
         .label('Repita a senha')
         .messages(joiMessagesSchema),
@@ -62,26 +73,39 @@ export class CollectUpdateSchema implements CreateSchema {
           return errors;
         }),
       visible: Joi.boolean()
+        .required()
         .label('Liberar o acesso')
         .messages(joiMessagesSchema),
       address: {
         zipcode: Joi.string()
           .postalCode('BR')
+          .required()
           .label('CEP')
           .messages(joiMessagesSchema),
-        street: Joi.string().label('Rua/Avenida').messages(joiMessagesSchema),
-        number: Joi.string().label('Número').messages(joiMessagesSchema),
+        street: Joi.string()
+          .required()
+          .label('Rua/Avenida')
+          .messages(joiMessagesSchema),
+        number: Joi.string()
+          .required()
+          .label('Número')
+          .messages(joiMessagesSchema),
         complement: Joi.string()
           .allow('', null)
           .label('Complemento')
           .messages(joiMessagesSchema),
-        neighborhood: Joi.string().label('Bairro').messages(joiMessagesSchema),
+        neighborhood: Joi.string()
+          .required()
+          .label('Bairro')
+          .messages(joiMessagesSchema),
         state_id: Joi.string()
           .guid({ version: 'uuidv4' })
+          .required()
           .label('Estado')
           .messages(joiMessagesSchema),
         city_id: Joi.string()
           .guid({ version: 'uuidv4' })
+          .required()
           .label('Cidade')
           .messages(joiMessagesSchema),
       },

@@ -7,22 +7,22 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { hash } from 'bcrypt';
 import { Connection, getManager, Repository } from 'typeorm';
 import { buildPaginator, PagingResult } from 'typeorm-cursor-pagination';
-import { CreateCollectDto } from './dto/create-collect.dto';
-import { UpdateCollectDto } from './dto/update-collect.dto';
-import { Collect } from './entities/collect.entity';
-import { CollectAddress } from './entities/collect-address.entity';
+import { CreateClientDto } from './dto/create-client.dto';
+import { UpdateClientDto } from './dto/update-client.dto';
+import { Client } from './entities/client.entity';
+import { ClientAddress } from './entities/client-address.entity';
 
 @Injectable()
-export class CollectService {
+export class ClientService {
   constructor(
-    @InjectRepository(Collect) private repository: Repository<Collect>,
-    @InjectRepository(CollectAddress)
-    private collectAddressRepository: Repository<CollectAddress>,
+    @InjectRepository(Client) private repository: Repository<Client>,
+    @InjectRepository(ClientAddress)
+    private clientAddressRepository: Repository<ClientAddress>,
     private connection: Connection,
   ) {}
 
-  async create(data: CreateCollectDto): Promise<void> {
-    const { email, password, address } = data;
+  async create(data: CreateClientDto): Promise<void> {
+    const { email, password } = data;
     const exist = await this.findByEmail(email);
 
     if (exist) {
@@ -35,32 +35,32 @@ export class CollectService {
     await queryRunner.connect();
     await queryRunner.startTransaction();
     try {
-      const model = await queryRunner.manager.save(Collect, {
+      await queryRunner.manager.save(Client, {
         ...data,
         password: hashedPassword,
       });
-      if (model.id && address) {
-        await queryRunner.manager.save(CollectAddress, {
-          ...address,
-          collect_id: model.id,
-        });
-      }
+      // if (model.id && address) {
+      //   await queryRunner.manager.save(ClientAddress, {
+      //     ...address,
+      //     client_id: model.id,
+      //   });
+      // }
       await queryRunner.commitTransaction();
     } catch (error) {
       await queryRunner.rollbackTransaction();
       throw new BadRequestException({
-        error: 'Recolhe não criado',
+        error: 'Cliente não criado',
       });
     } finally {
       await queryRunner.release();
     }
   }
 
-  findAll(query: any): Promise<PagingResult<Collect>> {
-    const queryBuilder = this.repository.createQueryBuilder('collect');
+  findAll(query: any): Promise<PagingResult<Client>> {
+    const queryBuilder = this.repository.createQueryBuilder('client');
 
     const paginator = buildPaginator({
-      entity: Collect,
+      entity: Client,
       paginationKeys: ['first_name'],
       query: {
         limit: 20,
@@ -73,10 +73,9 @@ export class CollectService {
     return paginator.paginate(queryBuilder);
   }
 
-  async findById(id: string): Promise<Collect | undefined> {
+  async findById(id: string): Promise<Client | undefined> {
     const model = await this.repository.findOne({
       where: { id },
-      relations: ['address', 'address.city', 'address.state'],
     });
 
     if (!model) {
@@ -85,22 +84,22 @@ export class CollectService {
     return model;
   }
 
-  async findByEmail(email: string): Promise<Collect | undefined> {
+  async findByEmail(email: string): Promise<Client | undefined> {
     return this.repository.findOne({ email });
   }
 
-  exist(id: string): Promise<Collect | undefined> {
+  exist(id: string): Promise<Client | undefined> {
     return this.repository.findOne({
       select: ['id'],
       where: { id, visible: true },
     });
   }
 
-  async update(id: string, payload: UpdateCollectDto): Promise<void> {
+  async update(id: string, payload: UpdateClientDto): Promise<void> {
     const model = await this.repository.findOne(id);
 
     if (!model) {
-      throw new BadRequestException('Recolhe não encontrado.');
+      throw new BadRequestException('Cliente não encontrado.');
     }
 
     const newPayload = { id, ...payload };
@@ -113,13 +112,13 @@ export class CollectService {
     await getManager().transaction(async () => {
       await this.repository.save(newPayload);
 
-      const { address } = payload;
-      if (address) {
-        await this.collectAddressRepository.save({
-          ...address,
-          id: model.address.id,
-        });
-      }
+      // const { address } = payload;
+      // if (address) {
+      //   await this.clientAddressRepository.save({
+      //     ...address,
+      //     id: model.address.id,
+      //   });
+      // }
     });
   }
 
@@ -127,7 +126,7 @@ export class CollectService {
     const model = await this.repository.findOne(id);
 
     if (!model) {
-      throw new BadRequestException('Recolhe não encontrado.');
+      throw new BadRequestException('Cliente não encontrado.');
     }
 
     await this.repository.softDelete(id);

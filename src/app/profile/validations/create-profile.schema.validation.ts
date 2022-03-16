@@ -4,17 +4,22 @@ import joiMessagesSchema from 'src/common/schemas/joi/joi.messages.schema';
 
 const Joi = JoiBase;
 
-export class ProfileUpdateSchema implements CreateSchema {
+export class CreateProfileSchema implements CreateSchema {
   createSchema(): JoiBase.ObjectSchema {
     return Joi.object({
-      title: Joi.string().label('Título').messages(joiMessagesSchema),
+      title: Joi.string()
+        .required()
+        .label('Título')
+        .messages(joiMessagesSchema),
       sport_id: Joi.string()
         .guid({ version: 'uuidv4' })
+        .required()
         .label('Esporte')
         .messages(joiMessagesSchema),
       combined: Joi.number()
         .integer()
         .min(0)
+        .required()
         .label('Combinada')
         .messages({
           ...joiMessagesSchema,
@@ -23,11 +28,13 @@ export class ProfileUpdateSchema implements CreateSchema {
           },
         }),
       visible: Joi.boolean()
+        .required()
         .label('Liberar o acesso')
         .messages(joiMessagesSchema),
       limit: {
         bet_max: Joi.number()
           .min(0)
+          .required()
           .label('Aposta máxima')
           .messages({
             ...joiMessagesSchema,
@@ -37,6 +44,7 @@ export class ProfileUpdateSchema implements CreateSchema {
           }),
         bet_max_multiple: Joi.number()
           .min(0)
+          .required()
           .label('Casadinha máxima')
           .messages({
             ...joiMessagesSchema,
@@ -46,6 +54,7 @@ export class ProfileUpdateSchema implements CreateSchema {
           }),
         bet_max_event: Joi.number()
           .min(0)
+          .required()
           .label('Máxima por evento')
           .messages({
             ...joiMessagesSchema,
@@ -55,6 +64,7 @@ export class ProfileUpdateSchema implements CreateSchema {
           }),
         bet_max_win: Joi.number()
           .min(0)
+          .required()
           .label('Máximo ganho aposta')
           .messages({
             ...joiMessagesSchema,
@@ -64,6 +74,7 @@ export class ProfileUpdateSchema implements CreateSchema {
           }),
         bet_max_multiple_win: Joi.number()
           .min(0)
+          .required()
           .label('Máximo ganho casadinha')
           .messages({
             ...joiMessagesSchema,
@@ -73,6 +84,7 @@ export class ProfileUpdateSchema implements CreateSchema {
           }),
         bet_min: Joi.number()
           .min(0)
+          .required()
           .label('Cotação minima aposta')
           .messages({
             ...joiMessagesSchema,
@@ -82,6 +94,7 @@ export class ProfileUpdateSchema implements CreateSchema {
           }),
         bet_min_multiple: Joi.number()
           .min(0)
+          .required()
           .label('Cotação minima casadinha')
           .messages({
             ...joiMessagesSchema,
@@ -91,6 +104,7 @@ export class ProfileUpdateSchema implements CreateSchema {
           }),
         quote_min_ticket: Joi.number()
           .min(0)
+          .required()
           .label('Cotação minima bilhete')
           .messages({
             ...joiMessagesSchema,

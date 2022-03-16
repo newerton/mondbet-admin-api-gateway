@@ -11,19 +11,9 @@ const Joi = JoiBase.extend(dateValidator)
   .extend(phoneValidator)
   .extend(postalcodeValidator);
 
-export class AgentCreateSchema implements CreateSchema {
+export class CreateUserSchema implements CreateSchema {
   createSchema(): JoiBase.ObjectSchema {
     return Joi.object({
-      profile_id: Joi.string()
-        .guid({ version: 'uuidv4' })
-        .required()
-        .label('Pefil')
-        .messages(joiMessagesSchema),
-      manager_id: Joi.string()
-        .guid({ version: 'uuidv4' })
-        .required()
-        .label('Sub-Gerente')
-        .messages(joiMessagesSchema),
       first_name: Joi.string()
         .required()
         .label('Nome')
@@ -82,7 +72,6 @@ export class AgentCreateSchema implements CreateSchema {
           });
           return errors;
         }),
-      description: Joi.string().label('Observação').messages(joiMessagesSchema),
       visible: Joi.boolean()
         .required()
         .label('Liberar o acesso')
@@ -119,58 +108,6 @@ export class AgentCreateSchema implements CreateSchema {
           .required()
           .label('Cidade')
           .messages(joiMessagesSchema),
-      },
-      limit: {
-        general_limit: Joi.number()
-          .min(0)
-          .required()
-          .label('Limite de caixa geral')
-          .messages({
-            ...joiMessagesSchema,
-            ...{
-              'number.min': 'O valor mínimo não pode ser menor que 0',
-            },
-          }),
-        reward_percentage: Joi.number()
-          .min(0)
-          .required()
-          .label('Máximo de agentes')
-          .messages({
-            ...joiMessagesSchema,
-            ...{
-              'number.min': 'O valor mínimo não pode ser menor que 0',
-            },
-          }),
-        daily_limit_single_bet: Joi.number()
-          .min(0)
-          .required()
-          .label('Limite diário de aposta simples')
-          .messages({
-            ...joiMessagesSchema,
-            ...{
-              'number.min': 'O valor mínimo não pode ser menor que 0',
-            },
-          }),
-        daily_limit_double_bet: Joi.number()
-          .min(0)
-          .required()
-          .label('Limite diário de aposta dupla')
-          .messages({
-            ...joiMessagesSchema,
-            ...{
-              'number.min': 'O valor mínimo não pode ser menor que 0',
-            },
-          }),
-        daily_limit_triple_bet: Joi.number()
-          .min(0)
-          .required()
-          .label('Limite diário de aposta tripla')
-          .messages({
-            ...joiMessagesSchema,
-            ...{
-              'number.min': 'O valor mínimo não pode ser menor que 0',
-            },
-          }),
       },
     });
   }

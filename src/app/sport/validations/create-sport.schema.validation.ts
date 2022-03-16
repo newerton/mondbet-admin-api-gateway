@@ -4,7 +4,7 @@ import joiMessagesSchema from 'src/common/schemas/joi/joi.messages.schema';
 
 const Joi = JoiBase;
 
-export class SportCreateSchema implements CreateSchema {
+export class CreateSportSchema implements CreateSchema {
   createSchema(): JoiBase.ObjectSchema {
     return Joi.object({
       title: Joi.string()

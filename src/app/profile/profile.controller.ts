@@ -32,9 +32,9 @@ import { HeadersPaginationInterceptor } from 'src/common/interceptors/headers-pa
 import { ProfileService } from './profile.service';
 import { CreateProfileDto } from './dto/create-profile.dto';
 import { Profile } from './entities/profile.entity';
-import { ProfileCreateSchema } from './validations/profile-create.schema.validation';
-import { ProfileUpdateSchema } from './validations/profile-update.schema.validation';
 import { UpdateProfileDto } from './dto/update-profile.dto';
+import { CreateProfileSchema } from './validations/create-profile.schema.validation';
+import { UpdateProfileSchema } from './validations/update-profile.schema.validation';
 
 @ApiTags('profile')
 @Controller('profile')
@@ -55,7 +55,7 @@ export class ProfileController {
   @ApiOperation({ summary: 'Create profile' })
   @ApiCreatedResponse({ description: 'Not content' })
   create(
-    @Payload(new JoiValidationPipe(new ProfileCreateSchema()))
+    @Payload(new JoiValidationPipe(new CreateProfileSchema()))
     payload: CreateProfileDto,
   ) {
     return this.service.create(payload);
@@ -98,7 +98,7 @@ export class ProfileController {
       new ParseUUIDPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
     )
     id: string,
-    @Payload(new JoiValidationPipe(new ProfileUpdateSchema()))
+    @Payload(new JoiValidationPipe(new UpdateProfileSchema()))
     payload: UpdateProfileDto,
   ) {
     return this.service.update(id, payload);

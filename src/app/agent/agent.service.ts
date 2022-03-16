@@ -110,7 +110,7 @@ export class AgentService {
 
   async findById(id: string): Promise<Agent | undefined> {
     const model = await this.repository.findOne({
-      where: { id, visible: true },
+      where: { id },
       relations: ['address', 'address.city', 'address.state', 'limit'],
     });
 
@@ -141,6 +141,8 @@ export class AgentService {
     }
 
     const newPayload = { id, ...payload };
+    delete newPayload.email;
+
     this.repository.metadata.ownRelations.map(
       (item) => delete newPayload[item.propertyName],
     );

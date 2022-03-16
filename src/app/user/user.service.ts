@@ -57,7 +57,7 @@ export class UserService {
 
   async findById(id: string): Promise<User | undefined> {
     const model = await this.repository.findOne({
-      where: { id, visible: true },
+      where: { id },
       relations: ['address', 'address.city', 'address.state'],
     });
 
@@ -88,6 +88,8 @@ export class UserService {
     }
 
     const newPayload = { id, ...payload };
+    delete newPayload.email;
+
     this.repository.metadata.ownRelations.map(
       (item) => delete newPayload[item.propertyName],
     );

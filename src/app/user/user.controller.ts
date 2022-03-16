@@ -32,9 +32,9 @@ import { Payload } from '@nestjs/microservices';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { JwtAuthGuard } from 'src/common/auth/jwt/jwt-auth.guard';
 import { JoiValidationPipe } from 'src/common/pipes/JoiValidation.pipe';
-import { UserCreateSchema } from './validations/user-create.schema.validation';
 import { Public } from 'src/common/decorators/public.decorator';
-import { UserUpdateSchema } from './validations/user-update.schema.validation';
+import { CreateUserSchema } from './validations/create-user.schema.validation';
+import { UpdateUserSchema } from './validations/update-user.schema.validation';
 
 @ApiTags('user')
 @Controller('user')
@@ -55,7 +55,7 @@ export class UserController {
   @ApiCreatedResponse({ description: 'Not content' })
   @Public()
   async create(
-    @Payload(new JoiValidationPipe(new UserCreateSchema()))
+    @Payload(new JoiValidationPipe(new CreateUserSchema()))
     payload: CreateUserDto,
   ): Promise<void> {
     return this.service.create(payload);
@@ -73,7 +73,7 @@ export class UserController {
       new ParseUUIDPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
     )
     id: string,
-    @Payload(new JoiValidationPipe(new UserUpdateSchema()))
+    @Payload(new JoiValidationPipe(new UpdateUserSchema()))
     payload: UpdateUserDto,
   ): Promise<void> {
     return this.service.update(id, payload);

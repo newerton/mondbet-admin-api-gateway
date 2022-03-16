@@ -32,9 +32,9 @@ import { Payload } from '@nestjs/microservices';
 import { UpdateCollectDto } from './dto/update-collect.dto';
 import { JwtAuthGuard } from 'src/common/auth/jwt/jwt-auth.guard';
 import { JoiValidationPipe } from 'src/common/pipes/JoiValidation.pipe';
-import { CollectCreateSchema } from './validations/collect-create.schema.validation';
-import { CollectUpdateSchema } from './validations/collect-update.schema.validation';
 import { HeadersPaginationInterceptor } from 'src/common/interceptors/headers-pagination.interceptors';
+import { CreateCollectSchema } from './validations/create-collect.schema.validation';
+import { UpdateCollectSchema } from './validations/update-collect.schema.validation';
 
 @ApiTags('collect')
 @Controller('collect')
@@ -55,7 +55,7 @@ export class CollectController {
   @ApiOperation({ summary: 'Create collect' })
   @ApiCreatedResponse({ description: 'Not content' })
   async create(
-    @Payload(new JoiValidationPipe(new CollectCreateSchema()))
+    @Payload(new JoiValidationPipe(new CreateCollectSchema()))
     payload: CreateCollectDto,
   ): Promise<void> {
     return this.service.create(payload);
@@ -98,7 +98,7 @@ export class CollectController {
       new ParseUUIDPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
     )
     id: string,
-    @Payload(new JoiValidationPipe(new CollectUpdateSchema()))
+    @Payload(new JoiValidationPipe(new UpdateCollectSchema()))
     payload: UpdateCollectDto,
   ): Promise<void> {
     return this.service.update(id, payload);

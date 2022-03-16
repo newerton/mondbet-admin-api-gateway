@@ -32,9 +32,9 @@ import { Payload } from '@nestjs/microservices';
 import { Sport } from './entities/sport.entity';
 import { ErrorSchema } from 'src/common/schemas/Error.schema';
 import { JoiValidationPipe } from 'src/common/pipes/JoiValidation.pipe';
-import { SportCreateSchema } from './validations/sport-create.schema.validation';
 import { HeadersPaginationInterceptor } from 'src/common/interceptors/headers-pagination.interceptors';
-import { SportUpdateSchema } from './validations/sport-update.schema.validation';
+import { CreateSportSchema } from './validations/create-sport.schema.validation';
+import { UpdateSportSchema } from './validations/update-sport.schema.validation';
 
 @ApiTags('sport')
 @Controller('sport')
@@ -55,7 +55,7 @@ export class SportController {
   @ApiOperation({ summary: 'Create sport' })
   @ApiCreatedResponse({ description: 'Not content' })
   create(
-    @Payload(new JoiValidationPipe(new SportCreateSchema()))
+    @Payload(new JoiValidationPipe(new CreateSportSchema()))
     payload: CreateSportDto,
   ) {
     return this.service.create(payload);
@@ -98,7 +98,7 @@ export class SportController {
       new ParseUUIDPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
     )
     id: string,
-    @Payload(new JoiValidationPipe(new SportUpdateSchema()))
+    @Payload(new JoiValidationPipe(new UpdateSportSchema()))
     payload: UpdateSportDto,
   ) {
     return this.service.update(id, payload);

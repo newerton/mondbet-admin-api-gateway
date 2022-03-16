@@ -11,7 +11,7 @@ const Joi = JoiBase.extend(dateValidator)
   .extend(phoneValidator)
   .extend(postalcodeValidator);
 
-export class UserCreateSchema implements CreateSchema {
+export class CreateClientSchema implements CreateSchema {
   createSchema(): JoiBase.ObjectSchema {
     return Joi.object({
       first_name: Joi.string()

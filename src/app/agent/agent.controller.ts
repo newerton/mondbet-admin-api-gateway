@@ -31,12 +31,12 @@ import { JwtAuthGuard } from 'src/common/auth/jwt/jwt-auth.guard';
 import { JoiValidationPipe } from 'src/common/pipes/JoiValidation.pipe';
 import { HeadersPaginationInterceptor } from 'src/common/interceptors/headers-pagination.interceptors';
 import { AgentService } from './agent.service';
-import { AgentCreateSchema } from './validations/agent-create.schema.validation';
 import { CreateAgentDto } from './dto/create-agent.dto';
-import { AgentUpdateSchema } from './validations/agent-update.schema.validation';
 import { UpdateAgentDto } from './dto/update-agent.dto';
 import { Agent } from './entities/agent.entity';
 import { Request } from 'express';
+import { CreateAgentSchema } from './validations/create-agent.schema.validation';
+import { UpdateAgentSchema } from './validations/update-agent.schema.validation';
 
 @ApiTags('agent')
 @Controller('agent')
@@ -57,7 +57,7 @@ export class AgentController {
   @ApiOperation({ summary: 'Create agent' })
   @ApiCreatedResponse({ description: 'Not content' })
   async create(
-    @Payload(new JoiValidationPipe(new AgentCreateSchema()))
+    @Payload(new JoiValidationPipe(new CreateAgentSchema()))
     payload: CreateAgentDto,
     @Req() request: Request,
   ): Promise<void> {
@@ -103,7 +103,7 @@ export class AgentController {
       new ParseUUIDPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
     )
     id: string,
-    @Payload(new JoiValidationPipe(new AgentUpdateSchema()))
+    @Payload(new JoiValidationPipe(new UpdateAgentSchema()))
     payload: UpdateAgentDto,
   ): Promise<void> {
     return this.service.update(id, payload);
