@@ -1,12 +1,13 @@
 import { forwardRef, Module } from '@nestjs/common';
-import { AuthService } from './auth.service';
-import { AuthController } from './auth.controller';
 import { ConfigService } from '@nestjs/config';
-import { UserModule } from '../user/user.module';
-import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
+import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from 'src/common/auth/jwt/jwt.strategy';
-import { AuthManagerModule } from '../auth-manager/auth-manager.module';
+import { AuthModule } from '../auth/auth.module';
+import { ManagerModule } from '../manager/manager.module';
+import { AuthManagerController } from './auth-manager.controller';
+import { AuthManagerService } from './auth-manager.service';
+
 @Module({
   imports: [
     PassportModule,
@@ -19,11 +20,11 @@ import { AuthManagerModule } from '../auth-manager/auth-manager.module';
         },
       }),
     }),
-    forwardRef(() => AuthManagerModule),
-    UserModule,
+    forwardRef(() => AuthModule),
+    ManagerModule,
   ],
-  controllers: [AuthController],
-  providers: [AuthService, JwtStrategy],
-  exports: [AuthService],
+  controllers: [AuthManagerController],
+  providers: [AuthManagerService, JwtStrategy],
+  exports: [AuthManagerService],
 })
-export class AuthModule {}
+export class AuthManagerModule {}

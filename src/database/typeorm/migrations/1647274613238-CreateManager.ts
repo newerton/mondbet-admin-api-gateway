@@ -70,8 +70,9 @@ export class CreateSubManager1647274613238 implements MigrationInterface {
             isNullable: true,
           },
           {
-            name: 'permission_delete_tocket',
+            name: 'permission_delete_ticket',
             type: 'boolean',
+            default: false,
           },
           {
             name: 'visible',

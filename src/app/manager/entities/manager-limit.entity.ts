@@ -1,6 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Exclude } from 'class-transformer';
-import { State } from 'src/app/state/entities/state.entity';
 import {
   BeforeInsert,
   BeforeUpdate,
@@ -8,53 +7,48 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
-  JoinColumn,
-  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity('city')
-export class City {
-  constructor(partial: Partial<City>) {
+@Entity('manager_limit')
+export class ManagerLimit {
+  constructor(partial: Partial<ManagerLimit>) {
     Object.assign(this, partial);
   }
 
   @ApiProperty()
   @PrimaryGeneratedColumn('uuid')
+  @Exclude()
   id: string;
 
   @Column({ type: 'uuid' })
   @Exclude()
-  state_id: string;
+  manager_id: string;
 
   @ApiProperty()
-  @Column()
-  title: string;
+  @Column({ type: 'decimal', precision: 10, scale: 2 })
+  general_limit: number;
 
   @ApiProperty()
-  @Column()
-  @Exclude()
-  iso_code: string;
+  @Column({ type: 'integer' })
+  agent_max: number;
 
   @ApiProperty()
-  @Column()
-  @Exclude()
-  iso_calling: string;
+  @Column({ type: 'decimal', precision: 10, scale: 2 })
+  daily_limit_single_bet: number;
 
   @ApiProperty()
-  @Column({ nullable: true, default: true })
-  @Exclude()
-  latitude?: string;
+  @Column({ type: 'decimal', precision: 10, scale: 2 })
+  weekly_limit_single_bet: number;
 
   @ApiProperty()
-  @Column({ nullable: true, default: true })
-  @Exclude()
-  longitude?: string;
+  @Column({ type: 'decimal', precision: 10, scale: 2 })
+  daily_limit_double_bet: number;
 
-  @Column({ default: true })
-  @Exclude()
-  visible?: boolean;
+  @ApiProperty()
+  @Column({ type: 'decimal', precision: 10, scale: 2 })
+  daily_limit_triple_bet: number;
 
   @Exclude()
   @CreateDateColumn()
@@ -78,8 +72,4 @@ export class City {
   private setUpdateDate(): void {
     this.updated_at = new Date();
   }
-
-  @OneToOne(() => State, (state) => state.id)
-  @JoinColumn({ name: 'state_id' })
-  state: State;
 }

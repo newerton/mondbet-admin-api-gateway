@@ -34,22 +34,6 @@ export class CreateAgentLimit1647281812064 implements MigrationInterface {
             type: 'integer',
           },
           {
-            name: 'daily_limit',
-            type: 'decimal',
-            precision: 10,
-            scale: 2,
-            default: null,
-            isNullable: true,
-          },
-          {
-            name: 'weekly_limit',
-            type: 'decimal',
-            precision: 10,
-            scale: 2,
-            default: null,
-            isNullable: true,
-          },
-          {
             name: 'daily_limit_single_bet',
             type: 'decimal',
             precision: 10,

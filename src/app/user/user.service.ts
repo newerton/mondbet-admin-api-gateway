@@ -1,13 +1,13 @@
 import {
   BadRequestException,
   Injectable,
-  NotFoundException,
   UnprocessableEntityException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { hash } from 'bcrypt';
-import { Repository } from 'typeorm';
+import { Connection, Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import { UserAddress } from './entities/user_address.entity';
 
@@ -17,61 +17,98 @@ export class UserService {
     @InjectRepository(User) private repository: Repository<User>,
     @InjectRepository(UserAddress)
     private userAddressRepository: Repository<UserAddress>,
+    private connection: Connection,
   ) {}
 
   async create(data: CreateUserDto): Promise<void> {
     const { email, password, address } = data;
-    const userExist = await this.findByEmail(email);
+    const exist = await this.findByEmail(email);
 
-    if (userExist) {
+    if (exist) {
       throw new UnprocessableEntityException('E-mail já cadastrado');
     }
 
     const hashedPassword = await hash(password, 8);
 
+    const queryRunner = this.connection.createQueryRunner();
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
     try {
-      const { id } = await this.repository.save({
+      const model = await queryRunner.manager.save(User, {
         ...data,
         password: hashedPassword,
       });
-      if (id) {
-        if (address) {
-          await this.userAddressRepository.save({
-            ...address,
-            user: { id },
-          });
-        }
-      } else {
-        throw new BadRequestException({ error: 'User not created' });
+      if (model.id && address) {
+        await queryRunner.manager.save(UserAddress, {
+          ...address,
+          manager_id: model.id,
+        });
       }
-    } catch (err) {
-      throw new BadRequestException({ error: 'User not created' });
+      await queryRunner.commitTransaction();
+    } catch (error) {
+      await queryRunner.rollbackTransaction();
+      throw new BadRequestException({
+        error: 'Usuário não criado',
+      });
+    } finally {
+      await queryRunner.release();
     }
   }
 
   async findById(id: string): Promise<User | undefined> {
-    const user = await this.repository.findOne({
+    const model = await this.repository.findOne({
       where: { id, visible: true },
       relations: ['address', 'address.city', 'address.state'],
     });
 
-    if (!user) {
-      throw new BadRequestException('Token not valid');
+    if (!model) {
+      throw new BadRequestException('Token inválido');
     }
-    return user;
+    return model;
   }
 
   async findByEmail(email: string): Promise<User | undefined> {
     return this.repository.findOne({ email });
   }
 
-  async update(id: string): Promise<void> {
-    const client = await this.repository.findOne(id);
+  exist(id: string): Promise<User | undefined> {
+    return this.repository.findOne({
+      select: ['id'],
+      where: { id, visible: true },
+    });
+  }
 
-    if (!client) {
-      throw new NotFoundException(
-        'Não foi possível atualizar os dados. Tente novamente mais tarde.',
-      );
+  async update(id: string, payload: UpdateUserDto): Promise<void> {
+    const model = await this.repository.findOne(id, {
+      relations: ['sport', 'limit'],
+    });
+
+    if (!model) {
+      throw new BadRequestException('Usuário não encontrado.');
     }
+
+    const newPayload = { id, ...payload };
+    this.repository.metadata.ownRelations.map(
+      (item) => delete newPayload[item.propertyName],
+    );
+    await this.repository.save(newPayload);
+
+    const { address } = payload;
+    if (address) {
+      await this.userAddressRepository.save({
+        ...address,
+        id: model.address.id,
+      });
+    }
+  }
+
+  async remove(id: string): Promise<void> {
+    const model = await this.repository.findOne(id);
+
+    if (!model) {
+      throw new BadRequestException('Usuário não encontrado.');
+    }
+
+    await this.repository.softDelete(id);
   }
 }

@@ -2,12 +2,15 @@ import {
   Controller,
   Post,
   HttpCode,
-  Put,
   Get,
   UseGuards,
   Request,
   ClassSerializerInterceptor,
   UseInterceptors,
+  Patch,
+  Param,
+  ParseUUIDPipe,
+  HttpStatus,
 } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './entities/user.entity';
@@ -31,6 +34,7 @@ import { JwtAuthGuard } from 'src/common/auth/jwt/jwt-auth.guard';
 import { JoiValidationPipe } from 'src/common/pipes/JoiValidation.pipe';
 import { UserCreateSchema } from './validations/user-create.schema.validation';
 import { Public } from 'src/common/decorators/public.decorator';
+import { UserUpdateSchema } from './validations/user-update.schema.validation';
 
 @ApiTags('user')
 @Controller('user')
@@ -43,7 +47,7 @@ import { Public } from 'src/common/decorators/public.decorator';
   type: ErrorSchema,
 })
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly service: UserService) {}
 
   @Post()
   @HttpCode(201)
@@ -54,29 +58,33 @@ export class UserController {
     @Payload(new JoiValidationPipe(new UserCreateSchema()))
     payload: CreateUserDto,
   ): Promise<void> {
-    return this.userService.create(payload);
+    return this.service.create(payload);
   }
 
-  @Put('update')
+  @Patch('update')
   @HttpCode(204)
   @ApiBearerAuth()
-  @ApiOperation({ summary: '[not finished] Update user info' })
+  @ApiOperation({ summary: 'Update manager info' })
   @ApiNoContentResponse({ description: 'Updated successfully', type: User })
   @ApiNotFoundResponse({ description: 'Not found', type: ErrorSchema })
   update(
-    @Payload() payload: UpdateUserDto,
-    @Request() request: any,
+    @Param(
+      'id',
+      new ParseUUIDPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
+    )
+    id: string,
+    @Payload(new JoiValidationPipe(new UserUpdateSchema()))
+    payload: UpdateUserDto,
   ): Promise<void> {
-    const id = request.user.id;
-    return this.userService.update(id);
+    return this.service.update(id, payload);
   }
 
-  @Get()
+  @Get('me')
   @ApiBearerAuth()
   @ApiOperation({ summary: 'Show user info' })
   @ApiOkResponse({ description: 'User info', type: User })
   @ApiNotFoundResponse({ description: 'Not found', type: ErrorSchema })
   me(@Request() request: any): Promise<User> {
-    return this.userService.findById(request.user.id);
+    return this.service.findById(request.user.id);
   }
 }

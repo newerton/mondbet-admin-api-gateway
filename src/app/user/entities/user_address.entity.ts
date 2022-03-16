@@ -85,12 +85,12 @@ export class UserAddress {
   user: User;
 
   @ApiProperty()
-  @OneToOne(() => City, (city) => city.userAddress)
+  @OneToOne(() => City, (city) => city.id)
   @JoinColumn({ name: 'city_id' })
   city: City;
 
   @ApiProperty()
-  @OneToOne(() => State, (state) => state.userAddress)
+  @OneToOne(() => State, (state) => state.id)
   @JoinColumn({ name: 'state_id' })
   state: State;
 }

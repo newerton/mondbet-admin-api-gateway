@@ -1,5 +1,6 @@
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import {
   DocumentBuilder,
   SwaggerCustomOptions,
@@ -29,7 +30,7 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('API Gateway')
-    .setDescription('The API Gateway description')
+    .setDescription('The Admin API Gateway description')
     .setVersion('1.0')
     .addBearerAuth()
     .build();
@@ -39,10 +40,11 @@ async function bootstrap() {
     swaggerOptions: {
       persistAuthorization: true,
     },
-    customSiteTitle: 'API Gateway Docs',
+    customSiteTitle: 'Admin API Gateway Docs',
   };
   SwaggerModule.setup('docs', app, document, customOptions);
 
-  await app.listen(8000, () => logger.log('api-gateway is running'));
+  await app.startAllMicroservices();
+  await app.listen(8000, () => logger.log('admin-api-gateway is running'));
 }
 bootstrap();

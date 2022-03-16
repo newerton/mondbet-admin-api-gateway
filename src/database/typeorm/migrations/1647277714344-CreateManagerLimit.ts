@@ -30,26 +30,8 @@ export class CreateManagerLimit1647277714344 implements MigrationInterface {
             scale: 2,
           },
           {
-            name: 'reward_percentage',
-            type: 'integer',
-            default: null,
-            isNullable: true,
-          },
-          {
             name: 'agent_max',
             type: 'integer',
-          },
-          {
-            name: 'daily_limit',
-            type: 'decimal',
-            precision: 10,
-            scale: 2,
-          },
-          {
-            name: 'weekly_limit',
-            type: 'decimal',
-            precision: 10,
-            scale: 2,
           },
           {
             name: 'daily_limit_single_bet',
@@ -62,6 +44,8 @@ export class CreateManagerLimit1647277714344 implements MigrationInterface {
             type: 'decimal',
             precision: 10,
             scale: 2,
+            default: null,
+            isNullable: true,
           },
           {
             name: 'daily_limit_double_bet',
@@ -74,6 +58,8 @@ export class CreateManagerLimit1647277714344 implements MigrationInterface {
             type: 'decimal',
             precision: 10,
             scale: 2,
+            default: null,
+            isNullable: true,
           },
           {
             name: 'daily_limit_triple_bet',

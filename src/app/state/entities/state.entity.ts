@@ -1,7 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Exclude } from 'class-transformer';
-import { City } from 'src/app/city/entities/city.entity';
-import { UserAddress } from 'src/app/user/entities/user_address.entity';
 import {
   BeforeInsert,
   BeforeUpdate,
@@ -9,8 +7,6 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
-  JoinColumn,
-  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -64,12 +60,4 @@ export class State {
   private setUpdateDate(): void {
     this.updated_at = new Date();
   }
-
-  @ManyToOne(() => City, (city) => city.state)
-  @JoinColumn({ name: 'id' })
-  city: City;
-
-  @ManyToOne(() => UserAddress, (userAddress) => userAddress.state)
-  @JoinColumn({ name: 'id' })
-  userAddress: UserAddress;
 }

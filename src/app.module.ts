@@ -15,6 +15,8 @@ import config from 'ormconfig';
 import { StateModule } from './app/state/state.module';
 import { CityModule } from './app/city/city.module';
 import { ProfileModule } from './app/profile/profile.module';
+import { ManagerModule } from './app/manager/manager.module';
+import { AuthManagerModule } from './app/auth-manager/auth-manager.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -23,11 +25,13 @@ import { ProfileModule } from './app/profile/profile.module';
     }),
     TypeOrmModule.forRoot(config),
     AuthModule,
+    AuthManagerModule,
     UserModule,
     StateModule,
     CityModule,
     SportModule,
     ProfileModule,
+    ManagerModule,
   ],
   providers: [
     // {
