@@ -18,6 +18,7 @@ import { ProfileModule } from './app/profile/profile.module';
 import { ManagerModule } from './app/manager/manager.module';
 import { AuthManagerModule } from './app/auth-manager/auth-manager.module';
 import { AgentModule } from './app/agent/agent.module';
+import { CollectModule } from './app/collect/collect.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -28,6 +29,7 @@ import { AgentModule } from './app/agent/agent.module';
     AuthModule,
     AuthManagerModule,
     AgentModule,
+    CollectModule,
     ManagerModule,
     ProfileModule,
     SportModule,

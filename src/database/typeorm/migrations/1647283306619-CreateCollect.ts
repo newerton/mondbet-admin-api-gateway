@@ -53,7 +53,6 @@ export class CreateCollect1647283306619 implements MigrationInterface {
             default: null,
             isNullable: true,
           },
-
           {
             name: 'visible',
             type: 'boolean',

@@ -24,11 +24,6 @@ export class AgentUpdateSchema implements CreateSchema {
         .messages(joiMessagesSchema),
       first_name: Joi.string().label('Nome').messages(joiMessagesSchema),
       last_name: Joi.string().label('Sobrenome').messages(joiMessagesSchema),
-      email: Joi.string()
-        .email()
-        .lowercase()
-        .label('E-mail')
-        .messages(joiMessagesSchema),
       password: Joi.string().label('Senha').messages(joiMessagesSchema),
       repeat_password: Joi.string()
         .valid(Joi.ref('password'))

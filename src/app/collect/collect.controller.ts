@@ -12,8 +12,9 @@ import {
   HttpStatus,
   Delete,
   Query,
-  Req,
 } from '@nestjs/common';
+import { CreateCollectDto } from './dto/create-collect.dto';
+import { Collect } from './entities/collect.entity';
 import {
   ApiBadRequestResponse,
   ApiBearerAuth,
@@ -25,21 +26,18 @@ import {
   ApiUnauthorizedResponse,
   ApiUnprocessableEntityResponse,
 } from '@nestjs/swagger';
+import { CollectService } from './collect.service';
 import { ErrorSchema } from 'src/common/schemas/Error.schema';
 import { Payload } from '@nestjs/microservices';
+import { UpdateCollectDto } from './dto/update-collect.dto';
 import { JwtAuthGuard } from 'src/common/auth/jwt/jwt-auth.guard';
 import { JoiValidationPipe } from 'src/common/pipes/JoiValidation.pipe';
+import { CollectCreateSchema } from './validations/collect-create.schema.validation';
+import { CollectUpdateSchema } from './validations/collect-update.schema.validation';
 import { HeadersPaginationInterceptor } from 'src/common/interceptors/headers-pagination.interceptors';
-import { AgentService } from './agent.service';
-import { AgentCreateSchema } from './validations/agent-create.schema.validation';
-import { CreateAgentDto } from './dto/create-agent.dto';
-import { AgentUpdateSchema } from './validations/agent-update.schema.validation';
-import { UpdateAgentDto } from './dto/update-agent.dto';
-import { Agent } from './entities/agent.entity';
-import { Request } from 'express';
 
-@ApiTags('agent')
-@Controller('agent')
+@ApiTags('collect')
+@Controller('collect')
 @UseGuards(JwtAuthGuard)
 @UseInterceptors(ClassSerializerInterceptor)
 @ApiUnauthorizedResponse({ description: 'Unauthorized', type: ErrorSchema })
@@ -48,54 +46,51 @@ import { Request } from 'express';
   description: 'Unprocessable Entity',
   type: ErrorSchema,
 })
-export class AgentController {
-  constructor(private readonly service: AgentService) {}
+export class CollectController {
+  constructor(private readonly service: CollectService) {}
 
   @Post()
   @HttpCode(201)
   @ApiBearerAuth()
-  @ApiOperation({ summary: 'Create agent' })
+  @ApiOperation({ summary: 'Create collect' })
   @ApiCreatedResponse({ description: 'Not content' })
   async create(
-    @Payload(new JoiValidationPipe(new AgentCreateSchema()))
-    payload: CreateAgentDto,
-    @Req() request: Request,
+    @Payload(new JoiValidationPipe(new CollectCreateSchema()))
+    payload: CreateCollectDto,
   ): Promise<void> {
-    const { user } = request;
-    return this.service.create(payload, user);
+    return this.service.create(payload);
   }
 
   @Get()
   @HttpCode(200)
   @ApiBearerAuth()
-  @ApiOperation({ summary: 'List all agents' })
-  @ApiOkResponse({ description: 'List all agents', type: Agent })
+  @ApiOperation({ summary: 'List all collects' })
+  @ApiOkResponse({ description: 'List all collects', type: Collect })
   @UseInterceptors(HeadersPaginationInterceptor)
-  async findAll(@Query() query, @Req() request): Promise<any> {
-    const { user } = request;
-    const { data, cursor } = await this.service.findAll(query, user);
+  async findAll(@Query() query): Promise<any> {
+    const { data, cursor } = await this.service.findAll(query);
     return { data, cursor };
   }
 
   @Get(':id')
   @HttpCode(200)
   @ApiBearerAuth()
-  @ApiOperation({ summary: 'Get one agent by ID' })
-  @ApiOkResponse({ description: 'Agent object', type: Agent })
+  @ApiOperation({ summary: 'Get one collect by ID' })
+  @ApiOkResponse({ description: 'Collect object', type: Collect })
   findOne(
     @Param(
       'id',
       new ParseUUIDPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
     )
     id: string,
-  ): Promise<Agent | undefined> {
+  ): Promise<Collect | undefined> {
     return this.service.findById(id);
   }
 
   @Patch(':id')
   @HttpCode(204)
   @ApiBearerAuth()
-  @ApiOperation({ summary: 'Update agent info' })
+  @ApiOperation({ summary: 'Update collect info' })
   @ApiNoContentResponse({ description: 'No content' })
   update(
     @Param(
@@ -103,8 +98,8 @@ export class AgentController {
       new ParseUUIDPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
     )
     id: string,
-    @Payload(new JoiValidationPipe(new AgentUpdateSchema()))
-    payload: UpdateAgentDto,
+    @Payload(new JoiValidationPipe(new CollectUpdateSchema()))
+    payload: UpdateCollectDto,
   ): Promise<void> {
     return this.service.update(id, payload);
   }
@@ -112,7 +107,7 @@ export class AgentController {
   @Delete(':id')
   @HttpCode(204)
   @ApiBearerAuth()
-  @ApiOperation({ summary: 'Delete a agent' })
+  @ApiOperation({ summary: 'Delete a collect' })
   @ApiNoContentResponse({ description: 'No content' })
   remove(
     @Param(

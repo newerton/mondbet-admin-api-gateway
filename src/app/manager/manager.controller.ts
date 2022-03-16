@@ -20,7 +20,6 @@ import {
   ApiBearerAuth,
   ApiCreatedResponse,
   ApiNoContentResponse,
-  ApiNotFoundResponse,
   ApiOkResponse,
   ApiOperation,
   ApiTags,
@@ -92,8 +91,7 @@ export class ManagerController {
   @HttpCode(204)
   @ApiBearerAuth()
   @ApiOperation({ summary: 'Update manager info' })
-  @ApiNoContentResponse({ description: 'Updated successfully', type: Manager })
-  @ApiNotFoundResponse({ description: 'Not found', type: ErrorSchema })
+  @ApiNoContentResponse({ description: 'No content' })
   update(
     @Param(
       'id',
