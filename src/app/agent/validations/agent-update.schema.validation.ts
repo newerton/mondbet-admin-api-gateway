@@ -11,7 +11,7 @@ const Joi = JoiBase.extend(dateValidator)
   .extend(phoneValidator)
   .extend(postalcodeValidator);
 
-export class ManagerUpdateSchema implements CreateSchema {
+export class AgentUpdateSchema implements CreateSchema {
   createSchema(): JoiBase.ObjectSchema {
     return Joi.object({
       profile_id: Joi.string()
@@ -20,7 +20,6 @@ export class ManagerUpdateSchema implements CreateSchema {
         .messages(joiMessagesSchema),
       manager_id: Joi.string()
         .guid({ version: 'uuidv4' })
-        .allow(null)
         .label('Gerente')
         .messages(joiMessagesSchema),
       first_name: Joi.string().label('Nome').messages(joiMessagesSchema),

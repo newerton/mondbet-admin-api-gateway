@@ -12,12 +12,14 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { ManagerAddress } from './manager-address.entity';
-import { ManagerLimit } from './manager-limit.entity';
+import { AgentLimit } from './agent-limit.entity';
+import { AgentAddress } from './agent-address.entity';
+import { Manager } from 'src/app/manager/entities/manager.entity';
+import { Profile } from 'src/app/profile/entities/profile.entity';
 
-@Entity('manager')
-export class Manager {
-  constructor(partial: Partial<Manager>) {
+@Entity('agent')
+export class Agent {
+  constructor(partial: Partial<Agent>) {
     Object.assign(this, partial);
   }
 
@@ -33,7 +35,7 @@ export class Manager {
   @ApiProperty()
   @Column('uuid')
   @Exclude()
-  manager_id?: string;
+  manager_id: string;
 
   @ApiProperty()
   @Column()
@@ -71,7 +73,7 @@ export class Manager {
 
   @ApiProperty()
   @Column()
-  permission_delete_ticket: boolean;
+  description?: string;
 
   @Column()
   visible?: boolean;
@@ -100,17 +102,22 @@ export class Manager {
   }
 
   @ApiProperty()
-  @OneToOne(() => ManagerAddress, (address) => address.manager_id)
-  @JoinColumn({ name: 'id', referencedColumnName: 'manager_id' })
-  address: ManagerAddress;
+  @OneToOne(() => AgentAddress, (address) => address.agent_id)
+  @JoinColumn({ name: 'id', referencedColumnName: 'agent_id' })
+  address: AgentAddress;
 
   @ApiProperty()
-  @OneToOne(() => ManagerLimit, (managerLimit) => managerLimit.manager_id)
-  @JoinColumn({ name: 'id', referencedColumnName: 'manager_id' })
-  limit: ManagerLimit;
+  @OneToOne(() => AgentLimit, (agentLimit) => agentLimit.agent_id)
+  @JoinColumn({ name: 'id', referencedColumnName: 'agent_id' })
+  limit: AgentLimit;
 
   @ApiProperty()
-  @OneToOne(() => Manager, (manager) => manager.manager_id)
-  @JoinColumn({ name: 'id', referencedColumnName: 'manager_id' })
+  @OneToOne(() => Profile, (profile) => profile.id)
+  @JoinColumn({ name: 'id' })
+  profile: Profile;
+
+  @ApiProperty()
+  @OneToOne(() => Manager, (manager) => manager.id)
+  @JoinColumn({ name: 'manager_id' })
   manager: Manager;
 }

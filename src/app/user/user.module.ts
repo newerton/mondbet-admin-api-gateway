@@ -7,7 +7,7 @@ import {
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserRequestDataMiddleware } from 'src/common/middlewares/user-request-data.middleware';
 import { User } from './entities/user.entity';
-import { UserAddress } from './entities/user_address.entity';
+import { UserAddress } from './entities/user-address.entity';
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
 

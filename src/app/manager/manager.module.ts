@@ -8,7 +8,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ManagerRequestDataMiddleware } from 'src/common/middlewares/manager-request-data.middleware';
 import { ManagerLimit } from './entities/manager-limit.entity';
 import { Manager } from './entities/manager.entity';
-import { ManagerAddress } from './entities/manager_address.entity';
+import { ManagerAddress } from './entities/manager-address.entity';
 import { ManagerController } from './manager.controller';
 import { ManagerService } from './manager.service';
 

@@ -1,5 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Exclude } from 'class-transformer';
+import { City } from 'src/app/city/entities/city.entity';
+import { State } from 'src/app/state/entities/state.entity';
 import {
   BeforeInsert,
   BeforeUpdate,
@@ -12,54 +14,47 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { UserAddress } from './user-address.entity';
 
-@Entity('user')
-export class User {
-  constructor(partial: Partial<User>) {
+@Entity('agent_address')
+export class AgentAddress {
+  constructor(partial: Partial<AgentAddress>) {
     Object.assign(this, partial);
   }
 
-  @ApiProperty()
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ApiProperty()
-  @Column()
-  first_name: string;
+  @Column('uuid')
+  @Exclude()
+  agent_id: string;
 
   @ApiProperty()
   @Column()
-  last_name: string;
+  zipcode: string;
 
   @ApiProperty()
   @Column()
-  email: string;
+  street: string;
 
   @ApiProperty()
   @Column()
-  email_verified?: boolean;
+  number: string;
+
+  @ApiProperty()
+  @Column()
+  neighborhood: string;
+
+  @ApiProperty()
+  @Column({ nullable: true, default: null })
+  complement: string;
 
   @Column()
   @Exclude()
-  password: string;
-
-  repeat_password: string;
-
-  @ApiProperty()
-  @Column()
-  document?: string;
-
-  @ApiProperty()
-  @Column({ type: 'date', nullable: true })
-  birthday?: string;
-
-  @ApiProperty()
-  @Column()
-  phone?: string;
+  state_id: string;
 
   @Column()
-  visible?: boolean;
+  @Exclude()
+  city_id: string;
 
   @Exclude()
   @CreateDateColumn()
@@ -85,7 +80,12 @@ export class User {
   }
 
   @ApiProperty()
-  @OneToOne(() => UserAddress, (address) => address.user)
-  @JoinColumn({ name: 'id', referencedColumnName: 'user_id' })
-  address: UserAddress;
+  @OneToOne(() => City, (city) => city.id)
+  @JoinColumn({ name: 'city_id' })
+  city: City;
+
+  @ApiProperty()
+  @OneToOne(() => State, (state) => state.id)
+  @JoinColumn({ name: 'state_id' })
+  state: State;
 }

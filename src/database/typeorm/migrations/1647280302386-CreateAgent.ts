@@ -67,7 +67,12 @@ export class CreateAgent1647280302386 implements MigrationInterface {
             default: null,
             isNullable: true,
           },
-
+          {
+            name: 'description',
+            type: 'text',
+            default: null,
+            isNullable: true,
+          },
           {
             name: 'visible',
             type: 'boolean',

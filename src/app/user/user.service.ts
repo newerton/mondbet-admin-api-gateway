@@ -9,7 +9,7 @@ import { Connection, Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
-import { UserAddress } from './entities/user_address.entity';
+import { UserAddress } from './entities/user-address.entity';
 
 @Injectable()
 export class UserService {

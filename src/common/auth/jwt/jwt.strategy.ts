@@ -5,6 +5,10 @@ import { ExtractJwt, Strategy } from 'passport-jwt';
 import { AuthManagerService } from 'src/app/auth-manager/auth-manager.service';
 import { AuthService } from 'src/app/auth/auth.service';
 
+export type JwtData = {
+  id: string;
+  entity: string;
+};
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(
@@ -19,7 +23,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     });
   }
 
-  async validate(payload: any) {
+  async validate(payload: any): Promise<JwtData> {
     const id = payload.sub;
     const entity = payload.entity;
     let userExists = null;

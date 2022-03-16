@@ -17,7 +17,7 @@ export class ManagerCreateSchema implements CreateSchema {
       profile_id: Joi.string()
         .guid({ version: 'uuidv4' })
         .required()
-        .label('Profile')
+        .label('Perfil')
         .messages(joiMessagesSchema),
       manager_id: Joi.string()
         .guid({ version: 'uuidv4' })

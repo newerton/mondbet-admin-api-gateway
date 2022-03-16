@@ -7,59 +7,44 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
-  JoinColumn,
-  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { UserAddress } from './user-address.entity';
 
-@Entity('user')
-export class User {
-  constructor(partial: Partial<User>) {
+@Entity('agent_limit')
+export class AgentLimit {
+  constructor(partial: Partial<AgentLimit>) {
     Object.assign(this, partial);
   }
 
   @ApiProperty()
   @PrimaryGeneratedColumn('uuid')
+  @Exclude()
   id: string;
 
-  @ApiProperty()
-  @Column()
-  first_name: string;
-
-  @ApiProperty()
-  @Column()
-  last_name: string;
-
-  @ApiProperty()
-  @Column()
-  email: string;
-
-  @ApiProperty()
-  @Column()
-  email_verified?: boolean;
-
-  @Column()
+  @Column({ type: 'uuid' })
   @Exclude()
-  password: string;
-
-  repeat_password: string;
+  agent_id: string;
 
   @ApiProperty()
-  @Column()
-  document?: string;
+  @Column({ type: 'decimal', precision: 10, scale: 2 })
+  general_limit: number;
 
   @ApiProperty()
-  @Column({ type: 'date', nullable: true })
-  birthday?: string;
+  @Column({ type: 'decimal', precision: 10, scale: 2 })
+  reward_percentage: number;
 
   @ApiProperty()
-  @Column()
-  phone?: string;
+  @Column({ type: 'decimal', precision: 10, scale: 2 })
+  daily_limit_single_bet: number;
 
-  @Column()
-  visible?: boolean;
+  @ApiProperty()
+  @Column({ type: 'decimal', precision: 10, scale: 2 })
+  daily_limit_double_bet: number;
+
+  @ApiProperty()
+  @Column({ type: 'decimal', precision: 10, scale: 2 })
+  daily_limit_triple_bet: number;
 
   @Exclude()
   @CreateDateColumn()
@@ -83,9 +68,4 @@ export class User {
   private setUpdateDate(): void {
     this.updated_at = new Date();
   }
-
-  @ApiProperty()
-  @OneToOne(() => UserAddress, (address) => address.user)
-  @JoinColumn({ name: 'id', referencedColumnName: 'user_id' })
-  address: UserAddress;
 }

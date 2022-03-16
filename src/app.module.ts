@@ -17,6 +17,7 @@ import { CityModule } from './app/city/city.module';
 import { ProfileModule } from './app/profile/profile.module';
 import { ManagerModule } from './app/manager/manager.module';
 import { AuthManagerModule } from './app/auth-manager/auth-manager.module';
+import { AgentModule } from './app/agent/agent.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -26,12 +27,13 @@ import { AuthManagerModule } from './app/auth-manager/auth-manager.module';
     TypeOrmModule.forRoot(config),
     AuthModule,
     AuthManagerModule,
+    AgentModule,
+    ManagerModule,
+    ProfileModule,
+    SportModule,
     UserModule,
     StateModule,
     CityModule,
-    SportModule,
-    ProfileModule,
-    ManagerModule,
   ],
   providers: [
     // {
