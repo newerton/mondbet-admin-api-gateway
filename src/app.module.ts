@@ -40,18 +40,6 @@ import { ClientModule } from './app/client/client.module';
     CityModule,
   ],
   providers: [
-    // {
-    //   provide: APP_GUARD,
-    //   useClass: JwtAuthGuard,
-    // },
-    // {
-    //   provide: APP_GUARD,
-    //   useClass: ResourceGuard,
-    // },
-    // {
-    //   provide: APP_GUARD,
-    //   useClass: RoleGuard,
-    // },
     {
       provide: APP_FILTER,
       useClass: ExceptionFilter,
