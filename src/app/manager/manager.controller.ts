@@ -34,7 +34,6 @@ import { UpdateManagerDto } from './dto/update-manager.dto';
 import { JwtAuthGuard } from 'src/common/auth/jwt/jwt-auth.guard';
 import { JoiValidationPipe } from 'src/common/pipes/JoiValidation.pipe';
 import { ManagerCreateSchema } from './validations/manager-create.schema.validation';
-import { Public } from 'src/common/decorators/public.decorator';
 import { ManagerUpdateSchema } from './validations/manager-update.schema.validation';
 import { HeadersPaginationInterceptor } from 'src/common/interceptors/headers-pagination.interceptors';
 

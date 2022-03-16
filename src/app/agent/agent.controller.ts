@@ -30,7 +30,6 @@ import { ErrorSchema } from 'src/common/schemas/Error.schema';
 import { Payload } from '@nestjs/microservices';
 import { JwtAuthGuard } from 'src/common/auth/jwt/jwt-auth.guard';
 import { JoiValidationPipe } from 'src/common/pipes/JoiValidation.pipe';
-import { Public } from 'src/common/decorators/public.decorator';
 import { HeadersPaginationInterceptor } from 'src/common/interceptors/headers-pagination.interceptors';
 import { AgentService } from './agent.service';
 import { AgentCreateSchema } from './validations/agent-create.schema.validation';
