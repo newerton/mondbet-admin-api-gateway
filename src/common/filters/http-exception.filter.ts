@@ -18,7 +18,6 @@ export class HttpExceptionFilter implements ExceptionFilter {
       statusCode: status,
       error: '',
       message: '',
-      details: [],
     };
 
     if (exceptionResponse?.message) {
@@ -27,10 +26,6 @@ export class HttpExceptionFilter implements ExceptionFilter {
 
     if (exceptionResponse?.error) {
       json.error = exceptionResponse.error;
-    }
-
-    if (exceptionResponse?.details) {
-      json.details = exceptionResponse.details;
     }
 
     response.status(status).json(json);

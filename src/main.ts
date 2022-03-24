@@ -27,6 +27,12 @@ async function bootstrap() {
   //   });
   // }
 
+  app.enableCors({
+    origin: true,
+    credentials: true,
+    exposedHeaders: ['etag', 'x-next-cursor', 'x-prev-cursor'],
+  });
+
   const config = new DocumentBuilder()
     .setTitle('API Gateway')
     .setDescription('The Admin API Gateway description')

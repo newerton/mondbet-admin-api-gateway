@@ -68,9 +68,7 @@ export class AgentService {
       await queryRunner.commitTransaction();
     } catch (error) {
       await queryRunner.rollbackTransaction();
-      throw new BadRequestException({
-        error: 'Gerente não criado',
-      });
+      throw new BadRequestException('Gerente não criado');
     } finally {
       await queryRunner.release();
     }
@@ -96,7 +94,7 @@ export class AgentService {
 
     const paginator = buildPaginator({
       entity: Agent,
-      paginationKeys: ['first_name'],
+      paginationKeys: ['first_name', 'id'],
       query: {
         limit: 20,
         order: 'ASC',
@@ -133,7 +131,7 @@ export class AgentService {
 
   async update(id: string, payload: UpdateAgentDto): Promise<void> {
     const model = await this.repository.findOne(id, {
-      relations: ['sport', 'limit'],
+      relations: ['address', 'limit'],
     });
 
     if (!model) {

@@ -47,9 +47,7 @@ export class UserService {
       await queryRunner.commitTransaction();
     } catch (error) {
       await queryRunner.rollbackTransaction();
-      throw new BadRequestException({
-        error: 'Usuário não criado',
-      });
+      throw new BadRequestException('Usuário não criado');
     } finally {
       await queryRunner.release();
     }
@@ -80,7 +78,7 @@ export class UserService {
 
   async update(id: string, payload: UpdateUserDto): Promise<void> {
     const model = await this.repository.findOne(id, {
-      relations: ['sport', 'limit'],
+      relations: ['address', 'limit'],
     });
 
     if (!model) {

@@ -38,6 +38,7 @@
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
     "cpf-cnpj-validator": "^1.0.3",
+    "currency.js": "^2.0.4",
     "dayjs": "^1.11.0",
     "joi": "^17.6.0",
     "joi-date-dayjs": "^2.1.2",
@@ -53,7 +54,7 @@
     "rxjs": "^7.2.0",
     "swagger-ui-express": "^4.3.0",
     "typeorm": "^0.2.45",
-    "typeorm-cursor-pagination": "^0.7.0"
+    "typeorm-cursor-pagination": "^0.8.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^16.2.3",

@@ -9,7 +9,7 @@ import { Response } from 'express';
 @Catch(Error)
 export class ErrorFilter implements ExceptionFilter<Error> {
   catch(exception: Error, host: ArgumentsHost) {
-    // const error = JSON.parse(JSON.stringify(exception));
+    const error = JSON.parse(JSON.stringify(exception));
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
 
@@ -17,11 +17,26 @@ export class ErrorFilter implements ExceptionFilter<Error> {
       statusCode: 500,
       error: exception.message,
       message: exception.message,
-      // details: [error],
+      details: [],
     };
 
     if (exception instanceof HttpException) {
-      json = Object.assign(json, exception.getResponse());
+      const exceptionResponse = exception.getResponse() as any;
+      if (exceptionResponse.details) {
+        const details = JSON.parse(JSON.stringify(exceptionResponse.details));
+        if (details.query) {
+          delete exceptionResponse.details.query;
+        }
+      }
+      // let newResponse = exceptionResponse;
+      // if (exceptionResponse.details) {
+      //   const details = JSON.parse(JSON.stringify(exceptionResponse.details));
+      //   if (details.length > 0) {
+      //     delete details[0]);
+      //   }
+      // }
+
+      json = Object.assign(json, exceptionResponse);
     }
     response.status(json.statusCode).json(json);
   }

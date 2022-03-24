@@ -111,6 +111,6 @@ export class Manager {
 
   @ApiProperty()
   @OneToOne(() => Manager, (manager) => manager.manager_id)
-  @JoinColumn({ name: 'id', referencedColumnName: 'manager_id' })
+  @JoinColumn({ name: 'manager_id' })
   manager: Manager;
 }

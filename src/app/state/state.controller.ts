@@ -51,4 +51,15 @@ export class StateController {
   ): Promise<State | undefined> {
     return this.service.findOne(id);
   }
+
+  @Get('letter/:id')
+  @HttpCode(200)
+  @ApiOperation({ summary: 'Get one state by letter' })
+  @ApiOkResponse({ description: 'State object', type: State })
+  findOneByLetter(
+    @Param('id')
+    id: string,
+  ): Promise<State | undefined> {
+    return this.service.findOneByLetter(id);
+  }
 }

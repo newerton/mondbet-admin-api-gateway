@@ -30,18 +30,18 @@ import { City } from './entities/city.entity';
 export class CityController {
   constructor(private readonly service: CityService) {}
 
-  @Get(':state_id')
+  @Get('state/:id')
   @HttpCode(200)
   @ApiOperation({ summary: 'List all cities by state ID' })
   @ApiOkResponse({ description: 'List all cities', type: City })
   findAll(
     @Param(
-      'state_id',
+      'id',
       new ParseUUIDPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
     )
-    state_id: string,
+    id: string,
   ): Promise<City[]> {
-    return this.service.findAll(state_id);
+    return this.service.findAll(id);
   }
 
   @Get(':id')
@@ -56,5 +56,18 @@ export class CityController {
     id: string,
   ): Promise<City | undefined> {
     return this.service.findOne(id);
+  }
+
+  @Get(':state_id/:title')
+  @HttpCode(200)
+  @ApiOperation({ summary: 'Get one city by state ID and city title' })
+  @ApiOkResponse({ description: 'City object', type: City })
+  findOneByStateAndTitle(
+    @Param('state_id')
+    state_id: string,
+    @Param('title')
+    title: string,
+  ): Promise<City | undefined> {
+    return this.service.findOneByStateAndTitle(state_id, title);
   }
 }

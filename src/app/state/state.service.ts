@@ -14,4 +14,13 @@ export class StateService {
   findOne(id: string): Promise<State | undefined> {
     return this.repository.findOne(id);
   }
+
+  findOneByLetter(id: string): Promise<State | undefined> {
+    const letter = id.substring(0, 2).toUpperCase();
+    return this.repository.findOne({
+      where: {
+        letter,
+      },
+    });
+  }
 }

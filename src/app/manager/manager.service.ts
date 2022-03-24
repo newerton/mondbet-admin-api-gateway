@@ -5,7 +5,14 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { hash } from 'bcrypt';
-import { Connection, getManager, Repository } from 'typeorm';
+import {
+  Connection,
+  getManager,
+  IsNull,
+  Not,
+  Repository,
+  TypeORMError,
+} from 'typeorm';
 import { buildPaginator, PagingResult } from 'typeorm-cursor-pagination';
 import { CreateManagerDto } from './dto/create-manager.dto';
 import { UpdateManagerDto } from './dto/update-manager.dto';
@@ -55,11 +62,9 @@ export class ManagerService {
         });
       }
       await queryRunner.commitTransaction();
-    } catch (error) {
+    } catch (error: any) {
       await queryRunner.rollbackTransaction();
-      throw new BadRequestException({
-        error: 'Gerente não criado',
-      });
+      throw new BadRequestException('Gerente não criado');
     } finally {
       await queryRunner.release();
     }
@@ -70,9 +75,17 @@ export class ManagerService {
       .createQueryBuilder('manager')
       .leftJoinAndSelect('manager.manager', 'parent_manager');
 
+    if (query?.manager) {
+      queryBuilder.andWhere({ manager_id: IsNull() });
+    }
+
+    if (query?.submanager) {
+      queryBuilder.andWhere({ manager_id: Not(IsNull()) });
+    }
+
     const paginator = buildPaginator({
       entity: Manager,
-      paginationKeys: ['first_name'],
+      paginationKeys: ['first_name', 'id'],
       query: {
         limit: 20,
         order: 'ASC',
@@ -109,7 +122,7 @@ export class ManagerService {
 
   async update(id: string, payload: UpdateManagerDto): Promise<void> {
     const model = await this.repository.findOne(id, {
-      relations: ['sport', 'limit'],
+      relations: ['address', 'limit'],
     });
 
     if (!model) {

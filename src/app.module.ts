@@ -4,7 +4,7 @@ import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 import { ExceptionFilter } from './common/filters/rpc-exception.filter';
 import { AuthModule } from './app/auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
-import { AllExceptionFilter } from './common/filters/exception.filter';
+import { AllExceptionFilter } from './common/filters/all-exception.filter';
 import configuration from './common/config/configuration';
 import { ErrorFilter } from './common/filters/error.filter';
 import { JoiValidationExceptionFilter } from './common/filters/joi.validation-exception.filter';

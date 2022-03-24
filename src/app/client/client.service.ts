@@ -48,9 +48,7 @@ export class ClientService {
       await queryRunner.commitTransaction();
     } catch (error) {
       await queryRunner.rollbackTransaction();
-      throw new BadRequestException({
-        error: 'Cliente não criado',
-      });
+      throw new BadRequestException('Cliente não criado');
     } finally {
       await queryRunner.release();
     }

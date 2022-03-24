@@ -48,9 +48,7 @@ export class CollectService {
       await queryRunner.commitTransaction();
     } catch (error) {
       await queryRunner.rollbackTransaction();
-      throw new BadRequestException({
-        error: 'Recolhe não criado',
-      });
+      throw new BadRequestException('Recolhe não criado');
     } finally {
       await queryRunner.release();
     }
