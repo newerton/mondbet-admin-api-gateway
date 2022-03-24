@@ -1,5 +1,4 @@
 import { Injectable, NestMiddleware } from '@nestjs/common';
-import currency from 'currency.js';
 import { Request, Response, NextFunction } from 'express';
 import { stringToFloat } from '../utils/currency';
 
@@ -47,14 +46,6 @@ export class ManagerRequestDataMiddleware implements NestMiddleware {
         daily_limit_triple_bet,
       } = request.body.limit;
 
-      console.log({
-        general_limit,
-        daily_limit_single_bet,
-        weekly_limit_single_bet,
-        daily_limit_double_bet,
-        daily_limit_triple_bet,
-      });
-
       request.body.limit.general_limit = stringToFloat(general_limit);
       request.body.limit.daily_limit_single_bet = stringToFloat(
         daily_limit_single_bet,
@@ -70,7 +61,6 @@ export class ManagerRequestDataMiddleware implements NestMiddleware {
       );
     }
 
-    console.log(request.body);
     next();
   }
 }
