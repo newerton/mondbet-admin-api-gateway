@@ -23,6 +23,19 @@ export class AgentRequestDataMiddleware implements NestMiddleware {
     if (!phone) {
       request.body.phone = null;
     }
+
+    if (request.body.address) {
+      const { zipcode, street, neighborhood, state_id, city_id } =
+        request.body.address;
+
+      const addressIsValid =
+        !!zipcode && !!street && !!neighborhood && !!state_id && !!city_id;
+
+      if (!addressIsValid) {
+        delete request.body.address;
+      }
+    }
+
     next();
   }
 }
