@@ -1,9 +1,4 @@
-import {
-  MiddlewareConsumer,
-  Module,
-  NestModule,
-  RequestMethod,
-} from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserRequestDataMiddleware } from 'src/common/middlewares/user-request-data.middleware';
 import { User } from './entities/user.entity';
@@ -19,8 +14,6 @@ import { UserService } from './user.service';
 })
 export class UserModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(UserRequestDataMiddleware)
-      .forRoutes({ path: 'user', method: RequestMethod.POST });
+    consumer.apply(UserRequestDataMiddleware).forRoutes(UserController);
   }
 }

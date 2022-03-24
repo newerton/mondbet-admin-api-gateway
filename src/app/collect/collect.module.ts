@@ -1,9 +1,4 @@
-import {
-  MiddlewareConsumer,
-  Module,
-  NestModule,
-  RequestMethod,
-} from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { CollectService } from './collect.service';
 import { CollectController } from './collect.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -19,8 +14,6 @@ import { CollectRequestDataMiddleware } from 'src/common/middlewares/collect-req
 })
 export class CollectModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(CollectRequestDataMiddleware)
-      .forRoutes({ path: 'collect', method: RequestMethod.POST });
+    consumer.apply(CollectRequestDataMiddleware).forRoutes(CollectController);
   }
 }

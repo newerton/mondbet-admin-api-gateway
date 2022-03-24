@@ -1,9 +1,4 @@
-import {
-  MiddlewareConsumer,
-  Module,
-  NestModule,
-  RequestMethod,
-} from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AgentRequestDataMiddleware } from 'src/common/middlewares/agent-request-data.middleware';
 import { AgentLimit } from './entities/agent-limit.entity';
@@ -23,8 +18,6 @@ import { Manager } from '../manager/entities/manager.entity';
 })
 export class AgentModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(AgentRequestDataMiddleware)
-      .forRoutes({ path: 'agent', method: RequestMethod.POST });
+    consumer.apply(AgentRequestDataMiddleware).forRoutes(AgentController);
   }
 }

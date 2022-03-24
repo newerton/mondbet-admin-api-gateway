@@ -1,9 +1,4 @@
-import {
-  MiddlewareConsumer,
-  Module,
-  NestModule,
-  RequestMethod,
-} from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ClientService } from './client.service';
 import { ClientController } from './client.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -19,8 +14,6 @@ import { ClientRequestDataMiddleware } from 'src/common/middlewares/client-reque
 })
 export class ClientModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(ClientRequestDataMiddleware)
-      .forRoutes({ path: 'client', method: RequestMethod.POST });
+    consumer.apply(ClientRequestDataMiddleware).forRoutes(ClientController);
   }
 }
