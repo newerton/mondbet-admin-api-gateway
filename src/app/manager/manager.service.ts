@@ -5,14 +5,7 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { hash } from 'bcrypt';
-import {
-  Connection,
-  getManager,
-  IsNull,
-  Not,
-  Repository,
-  TypeORMError,
-} from 'typeorm';
+import { Connection, getManager, IsNull, Not, Repository } from 'typeorm';
 import { buildPaginator, PagingResult } from 'typeorm-cursor-pagination';
 import { CreateManagerDto } from './dto/create-manager.dto';
 import { UpdateManagerDto } from './dto/update-manager.dto';
