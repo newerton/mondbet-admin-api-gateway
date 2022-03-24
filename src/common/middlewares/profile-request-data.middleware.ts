@@ -25,8 +25,8 @@ export class ProfileRequestDataMiddleware implements NestMiddleware {
       request.body.bet_min = stringToFloat(bet_min);
       request.body.bet_min_multiple = stringToFloat(bet_min_multiple);
       request.body.quote_min_ticket = stringToFloat(quote_min_ticket);
-
-      next();
     }
+
+    next();
   }
 }
