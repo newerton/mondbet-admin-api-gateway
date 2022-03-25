@@ -159,12 +159,25 @@ export class AgentService {
       await this.repository.save(newPayload);
 
       const { address, limit } = payload;
+
       if (address) {
-        await this.agentAddressRepository.save({
-          ...address,
-          id: model.address.id,
+        if (model.address) {
+          await this.agentAddressRepository.save({
+            ...address,
+            id: model.address.id,
+          });
+        } else {
+          await this.agentAddressRepository.save({
+            ...address,
+            agent_id: model.id,
+          });
+        }
+      } else {
+        await this.agentAddressRepository.delete({
+          agent_id: model.id,
         });
       }
+
       if (limit) {
         await this.agentLimitRepository.save({
           ...limit,

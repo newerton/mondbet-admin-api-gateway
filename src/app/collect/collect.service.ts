@@ -122,10 +122,22 @@ export class CollectService {
       await this.repository.save(newPayload);
 
       const { address } = payload;
+
       if (address) {
-        await this.collectAddressRepository.save({
-          ...address,
-          id: model.address.id,
+        if (model.address) {
+          await this.collectAddressRepository.save({
+            ...address,
+            id: model.address.id,
+          });
+        } else {
+          await this.collectAddressRepository.save({
+            ...address,
+            collect_id: model.id,
+          });
+        }
+      } else {
+        await this.collectAddressRepository.delete({
+          collect_id: model.id,
         });
       }
     });
