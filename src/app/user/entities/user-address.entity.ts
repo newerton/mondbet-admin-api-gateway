@@ -50,11 +50,9 @@ export class UserAddress {
   complement: string;
 
   @Column()
-  @Exclude()
   state_id: string;
 
   @Column()
-  @Exclude()
   city_id: string;
 
   @Exclude()

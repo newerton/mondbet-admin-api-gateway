@@ -28,6 +28,9 @@ export class ManagerRequestDataMiddleware implements NestMiddleware {
     }
 
     if (request.body.address) {
+      delete request.body.address.city;
+      delete request.body.address.state;
+
       const { zipcode, street, neighborhood, state_id, city_id } =
         request.body.address;
 
