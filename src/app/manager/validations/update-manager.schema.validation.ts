@@ -14,14 +14,14 @@ const Joi = JoiBase.extend(dateValidator)
 export class UpdateManagerSchema implements CreateSchema {
   createSchema(): JoiBase.ObjectSchema {
     return Joi.object({
-      profile_id: Joi.string()
-        .guid({ version: 'uuidv4' })
-        .label('Perfil')
-        .messages(joiMessagesSchema),
       manager_id: Joi.string()
         .guid({ version: 'uuidv4' })
         .allow(null)
         .label('Gerente')
+        .messages(joiMessagesSchema),
+      profile_id: Joi.string()
+        .guid({ version: 'uuidv4' })
+        .label('Perfil')
         .messages(joiMessagesSchema),
       first_name: Joi.string().label('Nome').messages(joiMessagesSchema),
       last_name: Joi.string().label('Sobrenome').messages(joiMessagesSchema),

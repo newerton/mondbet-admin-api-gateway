@@ -14,18 +14,30 @@ const Joi = JoiBase.extend(dateValidator)
 export class UpdateAgentSchema implements CreateSchema {
   createSchema(): JoiBase.ObjectSchema {
     return Joi.object({
+      manager_id: Joi.string()
+        .guid({ version: 'uuidv4' })
+        .allow(null)
+        .label('Gerente')
+        .messages(joiMessagesSchema),
       profile_id: Joi.string()
         .guid({ version: 'uuidv4' })
         .label('Perfil')
         .messages(joiMessagesSchema),
-      manager_id: Joi.string()
-        .guid({ version: 'uuidv4' })
-        .label('Gerente')
-        .messages(joiMessagesSchema),
       first_name: Joi.string().label('Nome').messages(joiMessagesSchema),
       last_name: Joi.string().label('Sobrenome').messages(joiMessagesSchema),
-      password: Joi.string().label('Senha').messages(joiMessagesSchema),
+      email: Joi.string()
+        .email()
+        .lowercase()
+        .label('E-mail')
+        .messages(joiMessagesSchema),
+      password: Joi.string()
+        .allow(null)
+        .min(6)
+        .label('Senha')
+        .messages(joiMessagesSchema),
       repeat_password: Joi.string()
+        .allow(null)
+        .min(6)
         .valid(Joi.ref('password'))
         .label('Repita a senha')
         .messages(joiMessagesSchema),
@@ -64,33 +76,42 @@ export class UpdateAgentSchema implements CreateSchema {
           });
           return errors;
         }),
+      description: Joi.string()
+        .allow('', null)
+        .label('Observação')
+        .messages(joiMessagesSchema),
       visible: Joi.boolean()
         .label('Liberar o acesso')
         .messages(joiMessagesSchema),
-      address: {
-        zipcode: Joi.string()
-          .postalCode('BR')
-          .label('CEP')
-          .messages(joiMessagesSchema),
-        street: Joi.string().label('Rua/Avenida').messages(joiMessagesSchema),
-        number: Joi.string().label('Número').messages(joiMessagesSchema),
-        complement: Joi.string()
-          .allow('', null)
-          .label('Complemento')
-          .messages(joiMessagesSchema),
-        neighborhood: Joi.string().label('Bairro').messages(joiMessagesSchema),
-        state_id: Joi.string()
-          .guid({ version: 'uuidv4' })
-          .label('Estado')
-          .messages(joiMessagesSchema),
-        city_id: Joi.string()
-          .guid({ version: 'uuidv4' })
-          .label('Cidade')
-          .messages(joiMessagesSchema),
-      },
+      address: Joi.object()
+        .keys({
+          zipcode: Joi.string()
+            .postalCode('BR')
+            .label('CEP')
+            .messages(joiMessagesSchema),
+          street: Joi.string().label('Rua/Avenida').messages(joiMessagesSchema),
+          number: Joi.string().label('Número').messages(joiMessagesSchema),
+          complement: Joi.string()
+            .allow('', null)
+            .label('Complemento')
+            .messages(joiMessagesSchema),
+          neighborhood: Joi.string()
+            .label('Bairro')
+            .messages(joiMessagesSchema),
+          state_id: Joi.string()
+            .guid({ version: 'uuidv4' })
+            .label('Estado')
+            .messages(joiMessagesSchema),
+          city_id: Joi.string()
+            .guid({ version: 'uuidv4' })
+            .label('Cidade')
+            .messages(joiMessagesSchema),
+        })
+        .allow(null),
       limit: {
         general_limit: Joi.number()
           .min(0)
+          .required()
           .label('Limite de caixa geral')
           .messages({
             ...joiMessagesSchema,
@@ -98,9 +119,10 @@ export class UpdateAgentSchema implements CreateSchema {
               'number.min': 'O valor mínimo não pode ser menor que 0',
             },
           }),
-        agent_max: Joi.number()
+        reward_percentage: Joi.number()
           .min(0)
-          .label('Máximo de agentes')
+          .required()
+          .label('Percentual de prêmio')
           .messages({
             ...joiMessagesSchema,
             ...{
@@ -109,17 +131,8 @@ export class UpdateAgentSchema implements CreateSchema {
           }),
         daily_limit_single_bet: Joi.number()
           .min(0)
+          .required()
           .label('Limite diário de aposta simples')
-          .messages({
-            ...joiMessagesSchema,
-            ...{
-              'number.min': 'O valor mínimo não pode ser menor que 0',
-            },
-          }),
-        weekly_limit_single_bet: Joi.number()
-          .min(0)
-          .allow(null)
-          .label('Limite semanal de aposta simples')
           .messages({
             ...joiMessagesSchema,
             ...{
@@ -128,6 +141,7 @@ export class UpdateAgentSchema implements CreateSchema {
           }),
         daily_limit_double_bet: Joi.number()
           .min(0)
+          .required()
           .label('Limite diário de aposta dupla')
           .messages({
             ...joiMessagesSchema,
@@ -137,6 +151,7 @@ export class UpdateAgentSchema implements CreateSchema {
           }),
         daily_limit_triple_bet: Joi.number()
           .min(0)
+          .required()
           .label('Limite diário de aposta tripla')
           .messages({
             ...joiMessagesSchema,

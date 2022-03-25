@@ -71,6 +71,7 @@ export class ProfileService {
     }
 
     const newPayload = { id, ...payload };
+
     this.repository.metadata.ownRelations.map(
       (item) => delete newPayload[item.propertyName],
     );

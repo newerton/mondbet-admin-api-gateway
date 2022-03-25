@@ -16,8 +16,19 @@ export class UpdateUserSchema implements CreateSchema {
     return Joi.object({
       first_name: Joi.string().label('Nome').messages(joiMessagesSchema),
       last_name: Joi.string().label('Sobrenome').messages(joiMessagesSchema),
-      password: Joi.string().label('Senha').messages(joiMessagesSchema),
+      email: Joi.string()
+        .email()
+        .lowercase()
+        .label('E-mail')
+        .messages(joiMessagesSchema),
+      password: Joi.string()
+        .allow(null)
+        .min(6)
+        .label('Senha')
+        .messages(joiMessagesSchema),
       repeat_password: Joi.string()
+        .allow(null)
+        .min(6)
         .valid(Joi.ref('password'))
         .label('Repita a senha')
         .messages(joiMessagesSchema),
@@ -59,27 +70,31 @@ export class UpdateUserSchema implements CreateSchema {
       visible: Joi.boolean()
         .label('Liberar o acesso')
         .messages(joiMessagesSchema),
-      address: {
-        zipcode: Joi.string()
-          .postalCode('BR')
-          .label('CEP')
-          .messages(joiMessagesSchema),
-        street: Joi.string().label('Rua/Avenida').messages(joiMessagesSchema),
-        number: Joi.string().label('Número').messages(joiMessagesSchema),
-        complement: Joi.string()
-          .allow('', null)
-          .label('Complemento')
-          .messages(joiMessagesSchema),
-        neighborhood: Joi.string().label('Bairro').messages(joiMessagesSchema),
-        state_id: Joi.string()
-          .guid({ version: 'uuidv4' })
-          .label('Estado')
-          .messages(joiMessagesSchema),
-        city_id: Joi.string()
-          .guid({ version: 'uuidv4' })
-          .label('Cidade')
-          .messages(joiMessagesSchema),
-      },
+      address: Joi.object()
+        .keys({
+          zipcode: Joi.string()
+            .postalCode('BR')
+            .label('CEP')
+            .messages(joiMessagesSchema),
+          street: Joi.string().label('Rua/Avenida').messages(joiMessagesSchema),
+          number: Joi.string().label('Número').messages(joiMessagesSchema),
+          complement: Joi.string()
+            .allow('', null)
+            .label('Complemento')
+            .messages(joiMessagesSchema),
+          neighborhood: Joi.string()
+            .label('Bairro')
+            .messages(joiMessagesSchema),
+          state_id: Joi.string()
+            .guid({ version: 'uuidv4' })
+            .label('Estado')
+            .messages(joiMessagesSchema),
+          city_id: Joi.string()
+            .guid({ version: 'uuidv4' })
+            .label('Cidade')
+            .messages(joiMessagesSchema),
+        })
+        .allow(null),
     });
   }
 }

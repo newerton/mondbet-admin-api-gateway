@@ -29,12 +29,10 @@ export class Agent {
 
   @ApiProperty()
   @Column('uuid')
-  @Exclude()
   profile_id: string;
 
   @ApiProperty()
   @Column('uuid')
-  @Exclude()
   manager_id: string;
 
   @ApiProperty()
@@ -113,7 +111,7 @@ export class Agent {
 
   @ApiProperty()
   @OneToOne(() => Profile, (profile) => profile.id)
-  @JoinColumn({ name: 'id' })
+  @JoinColumn({ name: 'profile_id' })
   profile: Profile;
 
   @ApiProperty()

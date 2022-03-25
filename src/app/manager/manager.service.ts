@@ -126,9 +126,11 @@ export class ManagerService {
     delete newPayload.email;
 
     const password = newPayload.password;
+    const passwordIsValid =
+      password !== undefined && password !== null && password.length >= 6;
     delete newPayload.password;
     delete newPayload.repeat_password;
-    if (password !== null && password.length >= 6) {
+    if (passwordIsValid) {
       const hashedPassword = await hash(password, 8);
       newPayload.password = hashedPassword;
     }

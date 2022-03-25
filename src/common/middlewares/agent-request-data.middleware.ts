@@ -12,12 +12,14 @@ export class AgentRequestDataMiddleware implements NestMiddleware {
     }
 
     if (document) {
+      console.log({ document });
       request.body.document = document.replace(/[^\d]/g, '');
     } else {
       request.body.document = null;
     }
 
     if (birthday) {
+      console.log({ birthday });
       request.body.birthday = birthday.split('/').reverse().join('-');
     } else {
       request.body.birthday = null;

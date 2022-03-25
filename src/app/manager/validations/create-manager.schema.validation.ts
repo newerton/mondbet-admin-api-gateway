@@ -14,15 +14,15 @@ const Joi = JoiBase.extend(dateValidator)
 export class CreateManagerSchema implements CreateSchema {
   createSchema(): JoiBase.ObjectSchema {
     return Joi.object({
-      profile_id: Joi.string()
-        .guid({ version: 'uuidv4' })
-        .required()
-        .label('Perfil')
-        .messages(joiMessagesSchema),
       manager_id: Joi.string()
         .guid({ version: 'uuidv4' })
         .allow(null)
         .label('Gerente')
+        .messages(joiMessagesSchema),
+      profile_id: Joi.string()
+        .guid({ version: 'uuidv4' })
+        .required()
+        .label('Perfil')
         .messages(joiMessagesSchema),
       first_name: Joi.string()
         .required()
@@ -90,39 +90,41 @@ export class CreateManagerSchema implements CreateSchema {
         .required()
         .label('Liberar o acesso')
         .messages(joiMessagesSchema),
-      address: {
-        zipcode: Joi.string()
-          .postalCode('BR')
-          .required()
-          .label('CEP')
-          .messages(joiMessagesSchema),
-        street: Joi.string()
-          .required()
-          .label('Rua/Avenida')
-          .messages(joiMessagesSchema),
-        number: Joi.string()
-          .required()
-          .label('Número')
-          .messages(joiMessagesSchema),
-        complement: Joi.string()
-          .allow('', null)
-          .label('Complemento')
-          .messages(joiMessagesSchema),
-        neighborhood: Joi.string()
-          .required()
-          .label('Bairro')
-          .messages(joiMessagesSchema),
-        state_id: Joi.string()
-          .guid({ version: 'uuidv4' })
-          .required()
-          .label('Estado')
-          .messages(joiMessagesSchema),
-        city_id: Joi.string()
-          .guid({ version: 'uuidv4' })
-          .required()
-          .label('Cidade')
-          .messages(joiMessagesSchema),
-      },
+      address: Joi.object()
+        .keys({
+          zipcode: Joi.string()
+            .postalCode('BR')
+            .required()
+            .label('CEP')
+            .messages(joiMessagesSchema),
+          street: Joi.string()
+            .required()
+            .label('Rua/Avenida')
+            .messages(joiMessagesSchema),
+          number: Joi.string()
+            .required()
+            .label('Número')
+            .messages(joiMessagesSchema),
+          complement: Joi.string()
+            .allow('', null)
+            .label('Complemento')
+            .messages(joiMessagesSchema),
+          neighborhood: Joi.string()
+            .required()
+            .label('Bairro')
+            .messages(joiMessagesSchema),
+          state_id: Joi.string()
+            .guid({ version: 'uuidv4' })
+            .required()
+            .label('Estado')
+            .messages(joiMessagesSchema),
+          city_id: Joi.string()
+            .guid({ version: 'uuidv4' })
+            .required()
+            .label('Cidade')
+            .messages(joiMessagesSchema),
+        })
+        .allow(null),
       limit: {
         general_limit: Joi.number()
           .min(0)
