@@ -125,6 +125,14 @@ export class ManagerService {
     const newPayload = { id, ...payload };
     delete newPayload.email;
 
+    const password = newPayload.password;
+    delete newPayload.password;
+    delete newPayload.repeat_password;
+    if (password !== null && password.length >= 6) {
+      const hashedPassword = await hash(password, 8);
+      newPayload.password = hashedPassword;
+    }
+
     this.repository.metadata.ownRelations.map(
       (item) => delete newPayload[item.propertyName],
     );

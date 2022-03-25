@@ -27,7 +27,6 @@ export class Manager {
 
   @ApiProperty()
   @Column('uuid')
-  @Exclude()
   profile_id: string;
 
   @ApiProperty()

@@ -107,24 +107,6 @@ export class UpdateAgentSchema implements CreateSchema {
               'number.min': 'O valor mínimo não pode ser menor que 0',
             },
           }),
-        daily_limit: Joi.number()
-          .min(0)
-          .label('Limite diário')
-          .messages({
-            ...joiMessagesSchema,
-            ...{
-              'number.min': 'O valor mínimo não pode ser menor que 0',
-            },
-          }),
-        weekly_limit: Joi.number()
-          .min(0)
-          .label('Limite semanal')
-          .messages({
-            ...joiMessagesSchema,
-            ...{
-              'number.min': 'O valor mínimo não pode ser menor que 0',
-            },
-          }),
         daily_limit_single_bet: Joi.number()
           .min(0)
           .label('Limite diário de aposta simples')

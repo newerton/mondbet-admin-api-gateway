@@ -127,7 +127,7 @@ export class CreateManagerSchema implements CreateSchema {
         general_limit: Joi.number()
           .min(0)
           .required()
-          .label('Limite de caixa geral')
+          .label('Limite de geral')
           .messages({
             ...joiMessagesSchema,
             ...{
