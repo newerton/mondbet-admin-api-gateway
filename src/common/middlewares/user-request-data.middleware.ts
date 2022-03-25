@@ -34,7 +34,8 @@ export class UserRequestDataMiddleware implements NestMiddleware {
         !!zipcode && !!street && !!neighborhood && !!state_id && !!city_id;
 
       if (!addressIsValid) {
-        delete request.body.address;
+        delete request.body.address.id;
+        request.body.address = null;
       }
     }
 

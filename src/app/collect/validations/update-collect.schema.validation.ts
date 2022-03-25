@@ -64,27 +64,35 @@ export class UpdateCollectSchema implements CreateSchema {
       visible: Joi.boolean()
         .label('Liberar o acesso')
         .messages(joiMessagesSchema),
-      address: {
-        zipcode: Joi.string()
-          .postalCode('BR')
-          .label('CEP')
-          .messages(joiMessagesSchema),
-        street: Joi.string().label('Rua/Avenida').messages(joiMessagesSchema),
-        number: Joi.string().label('Número').messages(joiMessagesSchema),
-        complement: Joi.string()
-          .allow('', null)
-          .label('Complemento')
-          .messages(joiMessagesSchema),
-        neighborhood: Joi.string().label('Bairro').messages(joiMessagesSchema),
-        state_id: Joi.string()
-          .guid({ version: 'uuidv4' })
-          .label('Estado')
-          .messages(joiMessagesSchema),
-        city_id: Joi.string()
-          .guid({ version: 'uuidv4' })
-          .label('Cidade')
-          .messages(joiMessagesSchema),
-      },
+      address: Joi.object()
+        .keys({
+          id: Joi.string()
+            .guid({ version: 'uuidv4' })
+            .label('ID')
+            .messages(joiMessagesSchema),
+          zipcode: Joi.string()
+            .postalCode('BR')
+            .label('CEP')
+            .messages(joiMessagesSchema),
+          street: Joi.string().label('Rua/Avenida').messages(joiMessagesSchema),
+          number: Joi.string().label('Número').messages(joiMessagesSchema),
+          complement: Joi.string()
+            .allow('', null)
+            .label('Complemento')
+            .messages(joiMessagesSchema),
+          neighborhood: Joi.string()
+            .label('Bairro')
+            .messages(joiMessagesSchema),
+          state_id: Joi.string()
+            .guid({ version: 'uuidv4' })
+            .label('Estado')
+            .messages(joiMessagesSchema),
+          city_id: Joi.string()
+            .guid({ version: 'uuidv4' })
+            .label('Cidade')
+            .messages(joiMessagesSchema),
+        })
+        .allow(null),
     });
   }
 }

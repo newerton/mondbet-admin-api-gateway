@@ -84,6 +84,10 @@ export class UpdateManagerSchema implements CreateSchema {
         .messages(joiMessagesSchema),
       address: Joi.object()
         .keys({
+          id: Joi.string()
+            .guid({ version: 'uuidv4' })
+            .label('ID')
+            .messages(joiMessagesSchema),
           zipcode: Joi.string()
             .postalCode('BR')
             .label('CEP')
