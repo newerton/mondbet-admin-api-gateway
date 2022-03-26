@@ -9,6 +9,7 @@ import {
   DeleteDateColumn,
   Entity,
   JoinColumn,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -31,7 +32,6 @@ export class Profile {
 
   @ApiProperty()
   @Column({ type: 'uuid' })
-  @Exclude()
   sport_id: string;
 
   @ApiProperty()
@@ -71,7 +71,9 @@ export class Profile {
   sport: Sport;
 
   @ApiProperty()
-  @OneToOne(() => ProfileLimit, (profileLimit) => profileLimit.profile_id)
+  @OneToMany(() => ProfileLimit, (profileLimit) => profileLimit.profile, {
+    cascade: true,
+  })
   @JoinColumn({ name: 'id', referencedColumnName: 'profile_id' })
-  limit: ProfileLimit;
+  limit: ProfileLimit[];
 }

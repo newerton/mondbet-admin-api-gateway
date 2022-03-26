@@ -23,5 +23,5 @@ export class CreateProfileDto {
   readonly visible: boolean;
 
   @ApiProperty()
-  readonly limit: CreateProfileLimitDto;
+  readonly limit: CreateProfileLimitDto[];
 }

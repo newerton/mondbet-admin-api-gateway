@@ -4,30 +4,16 @@ import { Repository } from 'typeorm';
 import { buildPaginator, PagingResult } from 'typeorm-cursor-pagination';
 import { CreateProfileDto } from './dto/create-profile.dto';
 import { UpdateProfileDto } from './dto/update-profile.dto';
-import {
-  ProfileLimit,
-  ProfileLimitTypeRole,
-} from './entities/profile-limit.entity';
 import { Profile } from './entities/profile.entity';
 
 @Injectable()
 export class ProfileService {
   constructor(
     @InjectRepository(Profile) private repository: Repository<Profile>,
-    @InjectRepository(ProfileLimit)
-    private profileLimitRepository: Repository<ProfileLimit>,
   ) {}
 
   async create(data: CreateProfileDto): Promise<void> {
-    const { limit } = data;
-    const { id } = await this.repository.save(data);
-    if (id && limit) {
-      await this.profileLimitRepository.save({
-        ...limit,
-        type: ProfileLimitTypeRole.PREMATCH,
-        profile_id: id,
-      });
-    }
+    await this.repository.save(data);
   }
 
   findAll(query: any): Promise<PagingResult<Profile>> {
@@ -70,17 +56,7 @@ export class ProfileService {
       throw new BadRequestException('Perfil não encontrado.');
     }
 
-    const newPayload = { id, ...payload };
-
-    this.repository.metadata.ownRelations.map(
-      (item) => delete newPayload[item.propertyName],
-    );
-    await this.repository.save(newPayload);
-
-    const { limit } = payload;
-    if (limit) {
-      await this.profileLimitRepository.save({ ...limit, id: model.limit.id });
-    }
+    await this.repository.save({ id, ...payload });
   }
 
   async remove(id: string): Promise<void> {

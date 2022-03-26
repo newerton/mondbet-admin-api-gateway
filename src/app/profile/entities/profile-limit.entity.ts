@@ -7,9 +7,12 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { Profile } from './profile.entity';
 
 export enum ProfileLimitTypeRole {
   PREMATCH = 'prematch',
@@ -24,7 +27,6 @@ export class ProfileLimit {
 
   @ApiProperty()
   @PrimaryGeneratedColumn('uuid')
-  @Exclude()
   id: string;
 
   @Column({ type: 'uuid' })
@@ -37,7 +39,6 @@ export class ProfileLimit {
     enum: ProfileLimitTypeRole,
     default: ProfileLimitTypeRole.PREMATCH,
   })
-  @Exclude()
   type: ProfileLimitTypeRole;
 
   @ApiProperty()
@@ -94,4 +95,8 @@ export class ProfileLimit {
   private setUpdateDate(): void {
     this.updated_at = new Date();
   }
+
+  @ManyToOne(() => Profile, (profile) => profile.limit)
+  @JoinColumn({ name: 'profile_id', referencedColumnName: 'id' })
+  profile: Profile;
 }

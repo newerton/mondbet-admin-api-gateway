@@ -1,6 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { ProfileLimitTypeRole } from '../entities/profile-limit.entity';
 
 export class CreateProfileLimitDto {
+  @ApiProperty({ example: 'prematch or live' })
+  type: ProfileLimitTypeRole;
+
   @ApiProperty({ example: 500.0 })
   bet_max: number;
 

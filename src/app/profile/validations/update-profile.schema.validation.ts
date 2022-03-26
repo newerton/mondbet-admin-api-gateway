@@ -25,80 +25,95 @@ export class UpdateProfileSchema implements CreateSchema {
       visible: Joi.boolean()
         .label('Liberar o acesso')
         .messages(joiMessagesSchema),
-      limit: {
-        bet_max: Joi.number()
-          .min(0)
-          .label('Aposta máxima')
-          .messages({
-            ...joiMessagesSchema,
-            ...{
-              'number.min': 'O valor mínimo não pode ser menor que 0',
-            },
-          }),
-        bet_max_multiple: Joi.number()
-          .min(0)
-          .label('Casadinha máxima')
-          .messages({
-            ...joiMessagesSchema,
-            ...{
-              'number.min': 'O valor mínimo não pode ser menor que 0',
-            },
-          }),
-        bet_max_event: Joi.number()
-          .min(0)
-          .label('Máxima por evento')
-          .messages({
-            ...joiMessagesSchema,
-            ...{
-              'number.min': 'O valor mínimo não pode ser menor que 0',
-            },
-          }),
-        bet_max_win: Joi.number()
-          .min(0)
-          .label('Máximo ganho aposta')
-          .messages({
-            ...joiMessagesSchema,
-            ...{
-              'number.min': 'O valor mínimo não pode ser menor que 0',
-            },
-          }),
-        bet_max_multiple_win: Joi.number()
-          .min(0)
-          .label('Máximo ganho casadinha')
-          .messages({
-            ...joiMessagesSchema,
-            ...{
-              'number.min': 'O valor mínimo não pode ser menor que 0',
-            },
-          }),
-        bet_min: Joi.number()
-          .min(0)
-          .label('Cotação minima aposta')
-          .messages({
-            ...joiMessagesSchema,
-            ...{
-              'number.min': 'O valor mínimo não pode ser menor que 0',
-            },
-          }),
-        bet_min_multiple: Joi.number()
-          .min(0)
-          .label('Cotação minima casadinha')
-          .messages({
-            ...joiMessagesSchema,
-            ...{
-              'number.min': 'O valor mínimo não pode ser menor que 0',
-            },
-          }),
-        quote_min_ticket: Joi.number()
-          .min(0)
-          .label('Cotação minima bilhete')
-          .messages({
-            ...joiMessagesSchema,
-            ...{
-              'number.min': 'O valor mínimo não pode ser menor que 0',
-            },
-          }),
-      },
+      limit: Joi.array().items(
+        Joi.object({
+          id: Joi.string()
+            .guid({ version: 'uuidv4' })
+            .label('Limit ID')
+            .messages(joiMessagesSchema),
+          type: Joi.string().required().label('Tipo').valid('prematch', 'live'),
+          bet_max: Joi.number()
+            .min(0)
+            .required()
+            .label('Aposta máxima')
+            .messages({
+              ...joiMessagesSchema,
+              ...{
+                'number.min': 'O valor mínimo não pode ser menor que 0',
+              },
+            }),
+          bet_max_multiple: Joi.number()
+            .min(0)
+            .required()
+            .label('Casadinha máxima')
+            .messages({
+              ...joiMessagesSchema,
+              ...{
+                'number.min': 'O valor mínimo não pode ser menor que 0',
+              },
+            }),
+          bet_max_event: Joi.number()
+            .min(0)
+            .required()
+            .label('Máxima por evento')
+            .messages({
+              ...joiMessagesSchema,
+              ...{
+                'number.min': 'O valor mínimo não pode ser menor que 0',
+              },
+            }),
+          bet_max_win: Joi.number()
+            .min(0)
+            .required()
+            .label('Máximo ganho por aposta')
+            .messages({
+              ...joiMessagesSchema,
+              ...{
+                'number.min': 'O valor mínimo não pode ser menor que 0',
+              },
+            }),
+          bet_max_multiple_win: Joi.number()
+            .min(0)
+            .required()
+            .label('Máximo ganho por aposta casadinha')
+            .messages({
+              ...joiMessagesSchema,
+              ...{
+                'number.min': 'O valor mínimo não pode ser menor que 0',
+              },
+            }),
+          bet_min: Joi.number()
+            .min(0)
+            .required()
+            .label('Cotação minima de uma aposta')
+            .messages({
+              ...joiMessagesSchema,
+              ...{
+                'number.min': 'O valor mínimo não pode ser menor que 0',
+              },
+            }),
+          bet_min_multiple: Joi.number()
+            .min(0)
+            .required()
+            .label('Cotação minima de uma aposta casadinha')
+            .messages({
+              ...joiMessagesSchema,
+              ...{
+                'number.min': 'O valor mínimo não pode ser menor que 0',
+              },
+            }),
+          quote_min_ticket: Joi.number()
+            .min(0)
+            .required()
+            .label('Cotação minima do bilhete')
+            .messages({
+              ...joiMessagesSchema,
+              ...{
+                'number.min': 'O valor mínimo não pode ser menor que 0',
+              },
+            }),
+        }),
+      ),
     });
   }
 }

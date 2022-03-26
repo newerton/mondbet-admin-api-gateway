@@ -16,6 +16,7 @@ import { AgentLimit } from './agent-limit.entity';
 import { AgentAddress } from './agent-address.entity';
 import { Manager } from 'src/app/manager/entities/manager.entity';
 import { Profile } from 'src/app/profile/entities/profile.entity';
+import { Collect } from 'src/app/collect/entities/collect.entity';
 
 @Entity('agent')
 export class Agent {
@@ -34,6 +35,14 @@ export class Agent {
   @ApiProperty()
   @Column('uuid')
   manager_id: string;
+
+  @ApiProperty()
+  @Column('uuid')
+  submanager_id: string;
+
+  @ApiProperty()
+  @Column('uuid')
+  collect_id: string;
 
   @ApiProperty()
   @Column()
@@ -118,4 +127,14 @@ export class Agent {
   @OneToOne(() => Manager, (manager) => manager.id)
   @JoinColumn({ name: 'manager_id' })
   manager: Manager;
+
+  @ApiProperty()
+  @OneToOne(() => Manager, (manager) => manager.id)
+  @JoinColumn({ name: 'submanager_id' })
+  submanager: Manager;
+
+  @ApiProperty()
+  @OneToOne(() => Collect, (collect) => collect.id)
+  @JoinColumn({ name: 'collect_id' })
+  collect: Collect;
 }
