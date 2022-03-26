@@ -6,11 +6,11 @@ import {
   TableIndex,
 } from 'typeorm';
 
-export class CreateAgent1647280302386 implements MigrationInterface {
+export class CreateAgentAddress1648254301811 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'agent',
+        name: 'agent_address',
         columns: [
           {
             name: 'id',
@@ -20,63 +20,38 @@ export class CreateAgent1647280302386 implements MigrationInterface {
             generationStrategy: 'uuid',
           },
           {
-            name: 'manager_id',
+            name: 'agent_id',
             type: 'uuid',
           },
           {
-            name: 'profile_id',
+            name: 'zipcode',
+            type: 'varchar',
+          },
+          {
+            name: 'street',
+            type: 'varchar',
+          },
+          {
+            name: 'number',
+            type: 'varchar',
+          },
+          {
+            name: 'neighborhood',
+            type: 'varchar',
+          },
+          {
+            name: 'complement',
+            type: 'varchar',
+            default: null,
+            isNullable: true,
+          },
+          {
+            name: 'state_id',
             type: 'uuid',
           },
           {
-            name: 'first_name',
-            type: 'varchar',
-          },
-          {
-            name: 'last_name',
-            type: 'varchar',
-          },
-          {
-            name: 'email',
-            type: 'varchar',
-            isUnique: true,
-          },
-          {
-            name: 'email_verified',
-            type: 'boolean',
-            default: false,
-          },
-          {
-            name: 'password',
-            type: 'varchar',
-          },
-          {
-            name: 'document',
-            type: 'varchar',
-            default: null,
-            isNullable: true,
-          },
-          {
-            name: 'birthday',
-            type: 'date',
-            default: null,
-            isNullable: true,
-          },
-          {
-            name: 'phone',
-            type: 'varchar',
-            default: null,
-            isNullable: true,
-          },
-          {
-            name: 'description',
-            type: 'text',
-            default: null,
-            isNullable: true,
-          },
-          {
-            name: 'visible',
-            type: 'boolean',
-            default: true,
+            name: 'city_id',
+            type: 'uuid',
           },
           {
             name: 'created_at',
@@ -99,47 +74,67 @@ export class CreateAgent1647280302386 implements MigrationInterface {
     );
 
     await queryRunner.createForeignKey(
-      'agent',
+      'agent_address',
       new TableForeignKey({
-        name: 'fk-agent-manager_id',
-        columnNames: ['manager_id'],
-        referencedTableName: 'manager',
+        name: 'fk-agent_address-agent_id',
+        columnNames: ['agent_id'],
+        referencedTableName: 'agent',
         referencedColumnNames: ['id'],
         onUpdate: 'CASCADE',
       }),
     );
 
     await queryRunner.createForeignKey(
-      'agent',
+      'agent_address',
       new TableForeignKey({
-        name: 'fk-agent-profile_id',
-        columnNames: ['profile_id'],
-        referencedTableName: 'profile',
+        name: 'fk-agent_address-state_id',
+        columnNames: ['state_id'],
+        referencedTableName: 'state',
+        referencedColumnNames: ['id'],
+        onUpdate: 'CASCADE',
+      }),
+    );
+
+    await queryRunner.createForeignKey(
+      'agent_address',
+      new TableForeignKey({
+        name: 'fk-agent_address-city_id',
+        columnNames: ['city_id'],
+        referencedTableName: 'city',
         referencedColumnNames: ['id'],
         onUpdate: 'CASCADE',
       }),
     );
 
     await queryRunner.createIndex(
-      'agent',
+      'agent_address',
       new TableIndex({
-        name: 'fk-agent-manager_id',
-        columnNames: ['manager_id'],
+        name: 'fk-agent_address-agent_id',
+        columnNames: ['agent_id'],
         parser: 'btree',
       }),
     );
 
     await queryRunner.createIndex(
-      'agent',
+      'agent_address',
       new TableIndex({
-        name: 'fk-agent-profile_id',
-        columnNames: ['profile_id'],
+        name: 'fk-agent_address-state_id',
+        columnNames: ['state_id'],
+        parser: 'btree',
+      }),
+    );
+
+    await queryRunner.createIndex(
+      'agent_address',
+      new TableIndex({
+        name: 'fk-agent_address-city_id',
+        columnNames: ['city_id'],
         parser: 'btree',
       }),
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('agent');
+    await queryRunner.dropTable('agent_address');
   }
 }
