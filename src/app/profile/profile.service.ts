@@ -21,9 +21,13 @@ export class ProfileService {
       .createQueryBuilder('profile')
       .leftJoinAndSelect('profile.sport', 'sport');
 
+    if (query?.status) {
+      queryBuilder.andWhere({ status: true });
+    }
+
     const paginator = buildPaginator({
       entity: Profile,
-      paginationKeys: ['id'],
+      paginationKeys: ['title', 'id'],
       query: {
         limit: 20,
         order: 'ASC',

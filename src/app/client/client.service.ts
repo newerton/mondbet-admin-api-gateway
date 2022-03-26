@@ -57,9 +57,13 @@ export class ClientService {
   findAll(query: any): Promise<PagingResult<Client>> {
     const queryBuilder = this.repository.createQueryBuilder('client');
 
+    if (query?.status) {
+      queryBuilder.andWhere({ status: true });
+    }
+
     const paginator = buildPaginator({
       entity: Client,
-      paginationKeys: ['first_name'],
+      paginationKeys: ['first_name', 'id'],
       query: {
         limit: 20,
         order: 'ASC',

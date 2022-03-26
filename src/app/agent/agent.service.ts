@@ -92,6 +92,10 @@ export class AgentService {
       }
     }
 
+    if (query?.status) {
+      queryBuilder.andWhere({ status: true });
+    }
+
     const paginator = buildPaginator({
       entity: Agent,
       paginationKeys: ['first_name', 'id'],

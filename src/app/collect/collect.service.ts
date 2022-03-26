@@ -57,9 +57,13 @@ export class CollectService {
   findAll(query: any): Promise<PagingResult<Collect>> {
     const queryBuilder = this.repository.createQueryBuilder('collect');
 
+    if (query?.status) {
+      queryBuilder.andWhere({ status: true });
+    }
+
     const paginator = buildPaginator({
       entity: Collect,
-      paginationKeys: ['first_name'],
+      paginationKeys: ['first_name', 'id'],
       query: {
         limit: 20,
         order: 'ASC',

@@ -17,9 +17,13 @@ export class SportService {
   findAll(query: any): Promise<PagingResult<Sport>> {
     const queryBuilder = this.repository.createQueryBuilder('sport');
 
+    if (query?.status) {
+      queryBuilder.andWhere({ status: true });
+    }
+
     const paginator = buildPaginator({
       entity: Sport,
-      paginationKeys: ['id'],
+      paginationKeys: ['title', 'id'],
       query: {
         limit: 2,
         order: 'ASC',

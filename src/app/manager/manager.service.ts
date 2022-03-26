@@ -76,6 +76,10 @@ export class ManagerService {
       queryBuilder.andWhere({ manager_id: Not(IsNull()) });
     }
 
+    if (query?.status) {
+      queryBuilder.andWhere({ status: true });
+    }
+
     const paginator = buildPaginator({
       entity: Manager,
       paginationKeys: ['first_name', 'id'],
