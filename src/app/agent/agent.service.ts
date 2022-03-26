@@ -92,8 +92,8 @@ export class AgentService {
       }
     }
 
-    if (query?.status) {
-      queryBuilder.andWhere({ status: true });
+    if (query?.visible) {
+      queryBuilder.andWhere({ visible: true });
     }
 
     const paginator = buildPaginator({

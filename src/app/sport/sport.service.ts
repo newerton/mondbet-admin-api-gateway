@@ -17,8 +17,8 @@ export class SportService {
   findAll(query: any): Promise<PagingResult<Sport>> {
     const queryBuilder = this.repository.createQueryBuilder('sport');
 
-    if (query?.status) {
-      queryBuilder.andWhere({ status: true });
+    if (query?.visible) {
+      queryBuilder.andWhere({ visible: true });
     }
 
     const paginator = buildPaginator({

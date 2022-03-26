@@ -57,8 +57,8 @@ export class ClientService {
   findAll(query: any): Promise<PagingResult<Client>> {
     const queryBuilder = this.repository.createQueryBuilder('client');
 
-    if (query?.status) {
-      queryBuilder.andWhere({ status: true });
+    if (query?.visible) {
+      queryBuilder.andWhere({ visible: true });
     }
 
     const paginator = buildPaginator({

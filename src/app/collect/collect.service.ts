@@ -57,8 +57,8 @@ export class CollectService {
   findAll(query: any): Promise<PagingResult<Collect>> {
     const queryBuilder = this.repository.createQueryBuilder('collect');
 
-    if (query?.status) {
-      queryBuilder.andWhere({ status: true });
+    if (query?.visible) {
+      queryBuilder.andWhere({ visible: true });
     }
 
     const paginator = buildPaginator({

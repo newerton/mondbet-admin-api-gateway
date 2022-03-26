@@ -76,8 +76,8 @@ export class ManagerService {
       queryBuilder.andWhere({ manager_id: Not(IsNull()) });
     }
 
-    if (query?.status) {
-      queryBuilder.andWhere({ status: true });
+    if (query?.visible) {
+      queryBuilder.andWhere({ visible: true });
     }
 
     const paginator = buildPaginator({

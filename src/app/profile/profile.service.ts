@@ -21,8 +21,8 @@ export class ProfileService {
       .createQueryBuilder('profile')
       .leftJoinAndSelect('profile.sport', 'sport');
 
-    if (query?.status) {
-      queryBuilder.andWhere({ status: true });
+    if (query?.visible) {
+      queryBuilder.andWhere({ visible: true });
     }
 
     const paginator = buildPaginator({
