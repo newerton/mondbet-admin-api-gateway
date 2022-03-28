@@ -26,7 +26,7 @@ export class CreateProfileLimit1647269112285 implements MigrationInterface {
           {
             name: 'type',
             type: 'varchar',
-            default: 'prematch',
+            default: "'prematch'",
           },
           {
             name: 'bet_max',
