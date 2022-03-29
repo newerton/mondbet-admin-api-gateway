@@ -37,6 +37,7 @@ import { Agent } from './entities/agent.entity';
 import { Request } from 'express';
 import { CreateAgentSchema } from './validations/create-agent.schema.validation';
 import { UpdateAgentSchema } from './validations/update-agent.schema.validation';
+import { PagingResult } from 'typeorm-cursor-pagination';
 
 @ApiTags('agent')
 @Controller('agent')
@@ -71,9 +72,10 @@ export class AgentController {
   @ApiOperation({ summary: 'List all agents' })
   @ApiOkResponse({ description: 'List all agents', type: Agent })
   @UseInterceptors(HeadersPaginationInterceptor)
-  async findAll(@Query() query, @Req() request): Promise<any> {
+  async findAll(@Query() query, @Req() request): Promise<PagingResult<Agent>> {
     const { user } = request;
     const { data, cursor } = await this.service.findAll(query, user);
+    console.log(data);
     return { data, cursor };
   }
 

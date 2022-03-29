@@ -14,15 +14,25 @@ const Joi = JoiBase.extend(dateValidator)
 export class CreateAgentSchema implements CreateSchema {
   createSchema(): JoiBase.ObjectSchema {
     return Joi.object({
-      manager_id: Joi.string()
-        .guid({ version: 'uuidv4' })
-        .allow(null)
-        .label('Sub-Gerente')
-        .messages(joiMessagesSchema),
       profile_id: Joi.string()
         .guid({ version: 'uuidv4' })
         .required()
         .label('Perfil')
+        .messages(joiMessagesSchema),
+      manager_id: Joi.string()
+        .guid({ version: 'uuidv4' })
+        .allow(null)
+        .label('Gerente')
+        .messages(joiMessagesSchema),
+      submanager_id: Joi.string()
+        .guid({ version: 'uuidv4' })
+        .allow(null)
+        .label('Sub-Gerente')
+        .messages(joiMessagesSchema),
+      collect_id: Joi.string()
+        .guid({ version: 'uuidv4' })
+        .allow(null)
+        .label('Recolhe')
         .messages(joiMessagesSchema),
       first_name: Joi.string()
         .required()

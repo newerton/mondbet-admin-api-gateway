@@ -19,6 +19,16 @@ export class UpdateAgentSchema implements CreateSchema {
         .allow(null)
         .label('Gerente')
         .messages(joiMessagesSchema),
+      submanager_id: Joi.string()
+        .guid({ version: 'uuidv4' })
+        .allow(null)
+        .label('Sub-Gerente')
+        .messages(joiMessagesSchema),
+      collect_id: Joi.string()
+        .guid({ version: 'uuidv4' })
+        .allow(null)
+        .label('Recolhe')
+        .messages(joiMessagesSchema),
       profile_id: Joi.string()
         .guid({ version: 'uuidv4' })
         .label('Perfil')

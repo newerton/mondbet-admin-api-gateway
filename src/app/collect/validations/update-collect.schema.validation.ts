@@ -21,8 +21,14 @@ export class UpdateCollectSchema implements CreateSchema {
         .lowercase()
         .label('E-mail')
         .messages(joiMessagesSchema),
-      password: Joi.string().label('Senha').messages(joiMessagesSchema),
+      password: Joi.string()
+        .allow(null)
+        .min(6)
+        .label('Senha')
+        .messages(joiMessagesSchema),
       repeat_password: Joi.string()
+        .allow(null)
+        .min(6)
         .valid(Joi.ref('password'))
         .label('Repita a senha')
         .messages(joiMessagesSchema),

@@ -6,12 +6,22 @@ export class CreateAgentDto {
   @ApiProperty({
     example: null,
   })
-  readonly profile_id: string;
+  manager_id: string;
 
   @ApiProperty({
     example: null,
   })
-  manager_id: string;
+  submanager_id: string;
+
+  @ApiProperty({
+    example: null,
+  })
+  collect_id: string;
+
+  @ApiProperty({
+    example: null,
+  })
+  readonly profile_id: string;
 
   @ApiProperty({
     example: 'Newerton',

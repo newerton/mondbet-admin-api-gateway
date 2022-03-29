@@ -78,7 +78,19 @@ export class AgentService {
     const queryBuilder = this.repository
       .createQueryBuilder('agent')
       .leftJoin('agent.manager', 'manager', 'manager.visible = true')
-      .addSelect(['manager.id', 'manager.first_name', 'manager.last_name']);
+      .leftJoin('agent.submanager', 'submanager', 'submanager.visible = true')
+      .leftJoin('agent.collect', 'collect', 'collect.visible = true')
+      .addSelect([
+        'manager.id',
+        'manager.first_name',
+        'manager.last_name',
+        'submanager.id',
+        'submanager.first_name',
+        'submanager.last_name',
+        'collect.id',
+        'collect.first_name',
+        'collect.last_name',
+      ]);
 
     if (user.entity === 'manager') {
       const isSubManager = await this.isSubManager(user.id);

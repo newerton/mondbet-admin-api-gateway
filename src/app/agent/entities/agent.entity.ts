@@ -119,22 +119,22 @@ export class Agent {
   limit: AgentLimit;
 
   @ApiProperty()
-  @OneToOne(() => Profile, (profile) => profile.id)
-  @JoinColumn({ name: 'profile_id' })
-  profile: Profile;
-
-  @ApiProperty()
-  @OneToOne(() => Manager, (manager) => manager.id)
+  @OneToOne(() => Manager, (manager) => manager.id, { cascade: true })
   @JoinColumn({ name: 'manager_id' })
   manager: Manager;
 
   @ApiProperty()
-  @OneToOne(() => Manager, (manager) => manager.id)
+  @OneToOne(() => Manager, (manager) => manager.id, { cascade: true })
   @JoinColumn({ name: 'submanager_id' })
   submanager: Manager;
 
   @ApiProperty()
-  @OneToOne(() => Collect, (collect) => collect.id)
+  @OneToOne(() => Collect, (collect) => collect.id, { cascade: true })
   @JoinColumn({ name: 'collect_id' })
   collect: Collect;
+
+  @ApiProperty()
+  @OneToOne(() => Profile, (profile) => profile.id, { cascade: true })
+  @JoinColumn({ name: 'profile_id' })
+  profile: Profile;
 }
