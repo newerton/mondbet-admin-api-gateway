@@ -75,7 +75,6 @@ export class AgentController {
   async findAll(@Query() query, @Req() request): Promise<PagingResult<Agent>> {
     const { user } = request;
     const { data, cursor } = await this.service.findAll(query, user);
-    console.log(data);
     return { data, cursor };
   }
 

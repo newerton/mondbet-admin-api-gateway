@@ -6,9 +6,9 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { hash } from 'bcrypt';
 import { JwtData } from 'src/common/auth/jwt/jwt.strategy';
-import { Connection, getManager, IsNull, Not, Repository } from 'typeorm';
+import { Connection, getManager, Repository } from 'typeorm';
 import { buildPaginator, PagingResult } from 'typeorm-cursor-pagination';
-import { Manager } from '../manager/entities/manager.entity';
+import { ManagerService } from '../manager/manager.service';
 import { CreateAgentDto } from './dto/create-agent.dto';
 import { UpdateAgentDto } from './dto/update-agent.dto';
 import { AgentAddress } from './entities/agent-address.entity';
@@ -24,8 +24,7 @@ export class AgentService {
     @InjectRepository(AgentLimit)
     private agentLimitRepository: Repository<AgentLimit>,
     private connection: Connection,
-    @InjectRepository(Manager)
-    private managerRepository: Repository<Manager>,
+    private managerService: ManagerService,
   ) {}
 
   async create(data: CreateAgentDto, user: JwtData): Promise<void> {
@@ -37,9 +36,13 @@ export class AgentService {
     }
 
     if (user.entity === 'manager') {
-      const isSubManager = await this.isSubManager(user.id);
-      if (isSubManager) {
+      const manager = await this.managerService.findById(user.id);
+      if (manager.manager_id === null) {
         data.manager_id = user.id;
+        data.submanager_id = data.submanager_id || null;
+      } else {
+        data.submanager_id = user.id;
+        data.manager_id = manager.manager_id;
       }
     }
 
@@ -48,6 +51,7 @@ export class AgentService {
     const queryRunner = this.connection.createQueryRunner();
     await queryRunner.connect();
     await queryRunner.startTransaction();
+
     try {
       const model = await queryRunner.manager.save(Agent, {
         ...data,
@@ -93,14 +97,11 @@ export class AgentService {
       ]);
 
     if (user.entity === 'manager') {
-      const isSubManager = await this.isSubManager(user.id);
-      if (isSubManager) {
+      const isManager = await this.managerService.isManager(user.id);
+      if (isManager) {
         queryBuilder.where('agent.manager_id = :id', { id: user.id });
       } else {
-        const allSubManager = await this.allSubManager(user.id);
-        queryBuilder.where('agent.manager_id IN (:...ids)', {
-          ids: allSubManager,
-        });
+        queryBuilder.where('agent.submanager_id = :id', { id: user.id });
       }
     }
 
@@ -211,22 +212,5 @@ export class AgentService {
     }
 
     await this.repository.softDelete(id);
-  }
-
-  async isSubManager(id: string): Promise<boolean> {
-    const model = await this.managerRepository.findOne(id, {
-      where: { visible: true, manager_id: Not(IsNull()) },
-    });
-
-    return !!model;
-  }
-
-  async allSubManager(id: string): Promise<string[]> {
-    const model = await this.managerRepository.find({
-      select: ['id'],
-      where: { visible: true, manager_id: id },
-    });
-
-    return model.map((item) => item.id);
   }
 }

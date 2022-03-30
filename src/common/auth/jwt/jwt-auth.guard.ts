@@ -12,6 +12,7 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
   constructor(private reflector: Reflector) {
     super();
   }
+
   canActivate(context: ExecutionContext) {
     const isPublic = this.reflector.getAllAndOverride<boolean>(IS_PUBLIC_KEY, [
       context.getHandler(),
@@ -25,7 +26,7 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
 
   handleRequest(err, user, info) {
     if (err || !user) {
-      console.log({ err, user, info });
+      console.log(JwtAuthGuard, { err, user, info: info.message });
       throw err || new UnauthorizedException();
     }
     return user;

@@ -7,10 +7,12 @@ import { AgentAddress } from './entities/agent-address.entity';
 import { AgentController } from './agent.controller';
 import { AgentService } from './agent.service';
 import { Manager } from '../manager/entities/manager.entity';
+import { ManagerModule } from '../manager/manager.module';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([Agent, AgentAddress, AgentLimit, Manager]),
+    ManagerModule,
   ],
   controllers: [AgentController],
   providers: [AgentService],

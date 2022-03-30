@@ -12,6 +12,7 @@ import { UpdateManagerDto } from './dto/update-manager.dto';
 import { ManagerLimit } from './entities/manager-limit.entity';
 import { Manager } from './entities/manager.entity';
 import { ManagerAddress } from './entities/manager-address.entity';
+import { JwtData } from 'src/common/auth/jwt/jwt.strategy';
 
 @Injectable()
 export class ManagerService {
@@ -24,12 +25,19 @@ export class ManagerService {
     private connection: Connection,
   ) {}
 
-  async create(data: CreateManagerDto): Promise<void> {
+  async create(data: CreateManagerDto, user: JwtData): Promise<void> {
     const { email, password, address, limit } = data;
     const exist = await this.findByEmail(email);
 
     if (exist) {
       throw new UnprocessableEntityException('E-mail já cadastrado');
+    }
+
+    if (user.entity === 'manager') {
+      const isManager = await this.isManager(user.id);
+      if (isManager) {
+        data.manager_id = user.id;
+      }
     }
 
     const hashedPassword = await hash(password, 8);
@@ -56,6 +64,7 @@ export class ManagerService {
       }
       await queryRunner.commitTransaction();
     } catch (error: any) {
+      console.log(error);
       await queryRunner.rollbackTransaction();
       throw new BadRequestException('Gerente não criado');
     } finally {
@@ -80,11 +89,15 @@ export class ManagerService {
       queryBuilder.andWhere({ visible: true });
     }
 
+    if (query?.manager_id) {
+      queryBuilder.andWhere({ manager_id: query?.manager_id });
+    }
+
     const paginator = buildPaginator({
       entity: Manager,
       paginationKeys: ['first_name', 'id'],
       query: {
-        limit: 20,
+        limit: query?.manager_id ? 0 : 20,
         order: 'ASC',
         afterCursor: query?.page?.next,
         beforeCursor: query?.page?.prev,
@@ -182,5 +195,22 @@ export class ManagerService {
     }
 
     await this.repository.softDelete(id);
+  }
+
+  async isManager(id: string): Promise<boolean> {
+    const model = await this.repository.findOne(id, {
+      where: { visible: true, manager_id: IsNull() },
+    });
+
+    return !!model;
+  }
+
+  async allSubManager(id: string): Promise<string[]> {
+    const model = await this.repository.find({
+      select: ['id'],
+      where: { visible: true, manager_id: id },
+    });
+
+    return model.map((item) => item.id);
   }
 }

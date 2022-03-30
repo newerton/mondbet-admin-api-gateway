@@ -20,6 +20,7 @@ import { AuthManagerModule } from './app/auth-manager/auth-manager.module';
 import { AgentModule } from './app/agent/agent.module';
 import { CollectModule } from './app/collect/collect.module';
 import { ClientModule } from './app/client/client.module';
+// import { CaslModule } from './casl/casl.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -38,6 +39,7 @@ import { ClientModule } from './app/client/client.module';
     UserModule,
     StateModule,
     CityModule,
+    // CaslModule,
   ],
   providers: [
     {

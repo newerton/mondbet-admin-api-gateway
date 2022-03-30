@@ -6,66 +6,66 @@ export class CreateManagerDto {
   @ApiProperty({
     example: null,
   })
-  readonly profile_id: string;
+  profile_id: string;
 
   @ApiProperty({
     example: null,
   })
-  readonly manager_id?: string;
+  manager_id?: string;
 
   @ApiProperty({
     example: 'Newerton',
   })
-  readonly first_name: string;
+  first_name: string;
 
   @ApiProperty({
     example: 'Vargas de Araujo',
   })
-  readonly last_name: string;
+  last_name: string;
 
   @ApiProperty({
     example: 'newerton.araujo@gmail.com',
   })
-  readonly email: string;
+  email: string;
 
   @ApiProperty({
     example: '123456',
   })
-  readonly password: string;
+  password: string;
 
   @ApiProperty({
     example: '123456',
   })
-  readonly repeat_password: string;
+  repeat_password: string;
 
   @ApiProperty({
     example: null,
   })
-  readonly document?: string;
+  document?: string;
 
   @ApiProperty({
     example: null,
   })
-  readonly birthday?: string;
+  birthday?: string;
 
   @ApiProperty({
     example: null,
   })
-  readonly phone?: string;
+  phone?: string;
 
   @ApiProperty({
     example: false,
   })
-  readonly permission_delete_ticket: boolean;
+  permission_delete_ticket: boolean;
 
   @ApiProperty({
     example: true,
   })
-  readonly visible: boolean;
+  visible: boolean;
 
   @ApiProperty()
-  readonly address?: CreateManagerAddressDto;
+  address?: CreateManagerAddressDto;
 
   @ApiProperty()
-  readonly limit: CreateManagerLimitDto;
+  limit: CreateManagerLimitDto;
 }

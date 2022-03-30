@@ -12,6 +12,7 @@ import {
   HttpStatus,
   Delete,
   Query,
+  Req,
 } from '@nestjs/common';
 import { CreateManagerDto } from './dto/create-manager.dto';
 import { Manager } from './entities/manager.entity';
@@ -35,6 +36,7 @@ import { JoiValidationPipe } from 'src/common/pipes/JoiValidation.pipe';
 import { HeadersPaginationInterceptor } from 'src/common/interceptors/headers-pagination.interceptors';
 import { CreateManagerSchema } from './validations/create-manager.schema.validation';
 import { UpdateManagerSchema } from './validations/update-manager.schema.validation';
+import { Request } from 'express';
 
 @ApiTags('manager')
 @Controller('manager')
@@ -57,8 +59,10 @@ export class ManagerController {
   async create(
     @Payload(new JoiValidationPipe(new CreateManagerSchema()))
     payload: CreateManagerDto,
+    @Req() request: Request,
   ): Promise<void> {
-    return this.service.create(payload);
+    const { user } = request;
+    return this.service.create(payload, user);
   }
 
   @Get()

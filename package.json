@@ -24,6 +24,7 @@
     "typeorm:migration:create": "env NODE_ENV=development npm run typeorm migration:create -- -n"
   },
   "dependencies": {
+    "@casl/ability": "^5.4.3",
     "@nestjs/common": "^8.4.0",
     "@nestjs/config": "^1.2.0",
     "@nestjs/core": "^8.0.0",

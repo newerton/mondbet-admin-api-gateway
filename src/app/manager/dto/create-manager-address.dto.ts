@@ -4,35 +4,35 @@ export class CreateManagerAddressDto {
   @ApiProperty({
     example: '04538-133',
   })
-  readonly zipcode: string;
+  zipcode: string;
 
   @ApiProperty({
     example: 'Av. Brigadeiro Faria Lima',
   })
-  readonly street: string;
+  street: string;
 
   @ApiProperty({
     example: '3477',
   })
-  readonly number: string;
+  number: string;
 
   @ApiProperty({
     example: 'Itaim Bibi',
   })
-  readonly neighborhood: string;
+  neighborhood: string;
 
   @ApiProperty({
     example: null,
   })
-  readonly complement?: string;
+  complement?: string;
 
   @ApiProperty({
     example: '',
   })
-  readonly state_id: string;
+  state_id: string;
 
   @ApiProperty({
     example: '',
   })
-  readonly city_id: string;
+  city_id: string;
 }
