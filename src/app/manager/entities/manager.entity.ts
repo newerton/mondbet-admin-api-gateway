@@ -8,12 +8,14 @@ import {
   DeleteDateColumn,
   Entity,
   JoinColumn,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { ManagerAddress } from './manager-address.entity';
 import { ManagerLimit } from './manager-limit.entity';
+import { ManagerRole } from './manager_role.entity';
 
 @Entity('manager')
 export class Manager {
@@ -111,4 +113,9 @@ export class Manager {
   @OneToOne(() => Manager, (manager) => manager.manager_id)
   @JoinColumn({ name: 'manager_id' })
   manager: Manager;
+
+  @ApiProperty()
+  @OneToMany(() => ManagerRole, (namagerRole) => namagerRole.owner)
+  @JoinColumn({ name: 'id', referencedColumnName: 'manager_id' })
+  roles: ManagerRole[];
 }

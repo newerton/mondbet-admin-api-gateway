@@ -26,7 +26,7 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
 
   handleRequest(err, user, info) {
     if (err || !user) {
-      console.log(JwtAuthGuard, { err, user, info: info.message });
+      console.log(JwtAuthGuard, { err, user, info });
       throw err || new UnauthorizedException();
     }
     return user;

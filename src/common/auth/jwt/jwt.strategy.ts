@@ -5,9 +5,20 @@ import { ExtractJwt, Strategy } from 'passport-jwt';
 import { AuthManagerService } from 'src/app/auth-manager/auth-manager.service';
 import { AuthService } from 'src/app/auth/auth.service';
 
+type ResourceAccessProps = {
+  resource: string;
+  roles: {
+    create: boolean;
+    read: boolean;
+    update: boolean;
+  };
+};
+
 export type JwtData = {
   id: string;
+  manager_id?: string;
   entity: string;
+  resource_access: ResourceAccessProps[] | null;
 };
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
@@ -26,6 +37,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   async validate(payload: any): Promise<JwtData> {
     const id = payload.sub;
     const entity = payload.entity;
+    const resource_access = payload.resource_access;
     let userExists = null;
 
     if (entity === 'user') {
@@ -36,6 +48,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     if (!userExists) {
       throw new UnauthorizedException();
     }
-    return { id: payload.sub, entity: payload.entity };
+    return { id, resource_access, entity: payload.entity };
   }
 }

@@ -22,6 +22,9 @@ export class ErrorFilter implements ExceptionFilter<Error> {
 
     if (exception instanceof HttpException) {
       const exceptionResponse = exception.getResponse() as any;
+      const statusCode = exception.getStatus();
+      exceptionResponse.statusCode = statusCode;
+      exceptionResponse.error = exception.name;
       if (exceptionResponse.details) {
         const details = JSON.parse(JSON.stringify(exceptionResponse.details));
         if (details.query) {

@@ -64,7 +64,6 @@ export class ManagerService {
       }
       await queryRunner.commitTransaction();
     } catch (error: any) {
-      console.log(error);
       await queryRunner.rollbackTransaction();
       throw new BadRequestException('Gerente não criado');
     } finally {
@@ -72,10 +71,14 @@ export class ManagerService {
     }
   }
 
-  findAll(query: any): Promise<PagingResult<Manager>> {
+  findAll(query: any, user: JwtData): Promise<PagingResult<Manager>> {
     const queryBuilder = this.repository
       .createQueryBuilder('manager')
       .leftJoinAndSelect('manager.manager', 'parent_manager');
+
+    if (user.entity === 'manager') {
+      queryBuilder.andWhere({ manager_id: user.id });
+    }
 
     if (query?.manager) {
       queryBuilder.andWhere({ manager_id: IsNull() });
@@ -110,7 +113,7 @@ export class ManagerService {
   async findById(id: string): Promise<Manager | undefined> {
     const model = await this.repository.findOne({
       where: { id },
-      relations: ['address', 'address.city', 'address.state', 'limit'],
+      relations: ['address', 'address.city', 'address.state', 'limit', 'roles'],
     });
 
     if (!model) {
@@ -120,7 +123,12 @@ export class ManagerService {
   }
 
   async findByEmail(email: string): Promise<Manager | undefined> {
-    return this.repository.findOne({ email });
+    return this.repository.findOne(
+      { email },
+      {
+        relations: ['roles'],
+      },
+    );
   }
 
   exist(id: string): Promise<Manager | undefined> {
