@@ -1,24 +1,20 @@
 import {
-  BadRequestException,
   Injectable,
+  NotFoundException,
   UnprocessableEntityException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { hash } from 'bcrypt';
-import { Connection, getManager, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { buildPaginator, PagingResult } from 'typeorm-cursor-pagination';
 import { CreateClientDto } from './dto/create-client.dto';
 import { UpdateClientDto } from './dto/update-client.dto';
 import { Client } from './entities/client.entity';
-import { ClientAddress } from './entities/client-address.entity';
 
 @Injectable()
 export class ClientService {
   constructor(
     @InjectRepository(Client) private repository: Repository<Client>,
-    @InjectRepository(ClientAddress)
-    private clientAddressRepository: Repository<ClientAddress>,
-    private connection: Connection,
   ) {}
 
   async create(data: CreateClientDto): Promise<void> {
@@ -31,27 +27,10 @@ export class ClientService {
 
     const hashedPassword = await hash(password, 8);
 
-    const queryRunner = this.connection.createQueryRunner();
-    await queryRunner.connect();
-    await queryRunner.startTransaction();
-    try {
-      await queryRunner.manager.save(Client, {
-        ...data,
-        password: hashedPassword,
-      });
-      // if (model.id && address) {
-      //   await queryRunner.manager.save(ClientAddress, {
-      //     ...address,
-      //     client_id: model.id,
-      //   });
-      // }
-      await queryRunner.commitTransaction();
-    } catch (error) {
-      await queryRunner.rollbackTransaction();
-      throw new BadRequestException('Cliente não criado');
-    } finally {
-      await queryRunner.release();
-    }
+    await this.repository.save({
+      ...data,
+      password: hashedPassword,
+    });
   }
 
   findAll(query: any): Promise<PagingResult<Client>> {
@@ -81,7 +60,7 @@ export class ClientService {
     });
 
     if (!model) {
-      throw new BadRequestException('Token inválido');
+      throw new NotFoundException('Cliente não encontrado');
     }
     return model;
   }
@@ -101,7 +80,7 @@ export class ClientService {
     const model = await this.repository.findOne(id);
 
     if (!model) {
-      throw new BadRequestException('Cliente não encontrado.');
+      throw new NotFoundException('Cliente não encontrado');
     }
 
     const newPayload = { id, ...payload };
@@ -111,24 +90,14 @@ export class ClientService {
       (item) => delete newPayload[item.propertyName],
     );
 
-    await getManager().transaction(async () => {
-      await this.repository.save(newPayload);
-
-      // const { address } = payload;
-      // if (address) {
-      //   await this.clientAddressRepository.save({
-      //     ...address,
-      //     id: model.address.id,
-      //   });
-      // }
-    });
+    await this.repository.save(newPayload);
   }
 
   async remove(id: string): Promise<void> {
     const model = await this.repository.findOne(id);
 
     if (!model) {
-      throw new BadRequestException('Cliente não encontrado.');
+      throw new NotFoundException('Cliente não encontrado');
     }
 
     await this.repository.softDelete(id);

@@ -14,6 +14,11 @@ import {
 } from 'typeorm';
 import { Manager } from './manager.entity';
 
+export enum ManagerResources {
+  MANAGER = 'Manager',
+  AGENT = 'Agent',
+  COLLECT = 'Collect',
+}
 @Entity('manager_role')
 export class ManagerRole {
   constructor(partial: Partial<ManagerRole>) {
@@ -21,6 +26,7 @@ export class ManagerRole {
   }
 
   @PrimaryGeneratedColumn('uuid')
+  @Exclude()
   id: string;
 
   @Column('uuid')
@@ -36,6 +42,7 @@ export class ManagerRole {
   resource: string;
 
   @Column()
+  @Exclude()
   manager: boolean;
 
   @ApiProperty()
@@ -51,9 +58,11 @@ export class ManagerRole {
   update: boolean;
 
   @Column()
+  @Exclude()
   delete: boolean;
 
   @Column()
+  @Exclude()
   visible: boolean;
 
   @Exclude()

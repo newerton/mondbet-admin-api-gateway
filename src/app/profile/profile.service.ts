@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { buildPaginator, PagingResult } from 'typeorm-cursor-pagination';
@@ -45,7 +45,7 @@ export class ProfileService {
     });
 
     if (!model) {
-      throw new BadRequestException('Perfil não encontrado.');
+      throw new NotFoundException('Perfil não encontrado');
     }
 
     return model;
@@ -57,7 +57,7 @@ export class ProfileService {
     });
 
     if (!model) {
-      throw new BadRequestException('Perfil não encontrado.');
+      throw new NotFoundException('Perfil não encontrado');
     }
 
     await this.repository.save({ id, ...payload });
@@ -67,7 +67,7 @@ export class ProfileService {
     const model = await this.repository.findOne(id);
 
     if (!model) {
-      throw new BadRequestException('Perfil não encontrado.');
+      throw new NotFoundException('Perfil não encontrado');
     }
 
     await this.repository.softDelete(id);

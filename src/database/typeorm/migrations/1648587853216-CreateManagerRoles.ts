@@ -97,7 +97,7 @@ export class CreateManagerRoles1648587853216 implements MigrationInterface {
       new TableIndex({
         name: 'idx_manager_id',
         columnNames: ['manager_id'],
-        isUnique: true,
+        isUnique: false,
         parser: 'btree',
       }),
     );

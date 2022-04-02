@@ -7,11 +7,9 @@ import { AuthService } from 'src/app/auth/auth.service';
 
 type ResourceAccessProps = {
   resource: string;
-  roles: {
-    create: boolean;
-    read: boolean;
-    update: boolean;
-  };
+  create: boolean;
+  read: boolean;
+  update: boolean;
 };
 
 export type JwtData = {
@@ -37,17 +35,20 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   async validate(payload: any): Promise<JwtData> {
     const id = payload.sub;
     const entity = payload.entity;
-    const resource_access = payload.resource_access;
-    let userExists = null;
+    let manager_id = null;
+    let resource_access = [];
 
+    let userExists = null;
     if (entity === 'user') {
       userExists = await this.authService.validateUser(id);
     } else if (entity === 'manager') {
       userExists = await this.authManagerService.validateUser(id);
+      manager_id = userExists.manager_id;
+      resource_access = userExists.roles;
     }
     if (!userExists) {
       throw new UnauthorizedException();
     }
-    return { id, resource_access, entity: payload.entity };
+    return { id, manager_id, resource_access, entity: payload.entity };
   }
 }

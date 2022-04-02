@@ -1,12 +1,13 @@
 import {
   BadRequestException,
   Injectable,
+  NotFoundException,
   UnprocessableEntityException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { hash } from 'bcrypt';
 import { JwtData } from 'src/common/auth/jwt/jwt.strategy';
-import { Connection, getManager, Repository } from 'typeorm';
+import { Connection, Repository } from 'typeorm';
 import { buildPaginator, PagingResult } from 'typeorm-cursor-pagination';
 import { ManagerService } from '../manager/manager.service';
 import { CreateAgentDto } from './dto/create-agent.dto';
@@ -19,10 +20,6 @@ import { Agent } from './entities/agent.entity';
 export class AgentService {
   constructor(
     @InjectRepository(Agent) private repository: Repository<Agent>,
-    @InjectRepository(AgentAddress)
-    private agentAddressRepository: Repository<AgentAddress>,
-    @InjectRepository(AgentLimit)
-    private agentLimitRepository: Repository<AgentLimit>,
     private connection: Connection,
     private managerService: ManagerService,
   ) {}
@@ -51,7 +48,6 @@ export class AgentService {
     const queryRunner = this.connection.createQueryRunner();
     await queryRunner.connect();
     await queryRunner.startTransaction();
-
     try {
       const model = await queryRunner.manager.save(Agent, {
         ...data,
@@ -72,7 +68,7 @@ export class AgentService {
       await queryRunner.commitTransaction();
     } catch (error) {
       await queryRunner.rollbackTransaction();
-      throw new BadRequestException('Gerente não criado');
+      throw new BadRequestException('Agente não criado');
     } finally {
       await queryRunner.release();
     }
@@ -130,7 +126,7 @@ export class AgentService {
     });
 
     if (!model) {
-      throw new BadRequestException('Token inválido');
+      throw new NotFoundException('Agente não encontrado');
     }
     return model;
   }
@@ -152,7 +148,7 @@ export class AgentService {
     });
 
     if (!model) {
-      throw new BadRequestException('Gerente não encontrado.');
+      throw new NotFoundException('Agente não encontrado');
     }
 
     const newPayload = { id, ...payload };
@@ -172,43 +168,53 @@ export class AgentService {
       (item) => delete newPayload[item.propertyName],
     );
 
-    await getManager().transaction(async () => {
-      await this.repository.save(newPayload);
+    const queryRunner = this.connection.createQueryRunner();
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
+    try {
+      await queryRunner.manager.save(Agent, newPayload);
 
       const { address, limit } = payload;
 
       if (address) {
         if (model.address) {
-          await this.agentAddressRepository.save({
+          await queryRunner.manager.save(AgentAddress, {
             ...address,
             id: model.address.id,
           });
         } else {
-          await this.agentAddressRepository.save({
+          await queryRunner.manager.save(AgentAddress, {
             ...address,
             agent_id: model.id,
           });
         }
       } else {
-        await this.agentAddressRepository.delete({
+        await queryRunner.manager.save(AgentAddress, {
           agent_id: model.id,
         });
       }
 
       if (limit) {
-        await this.agentLimitRepository.save({
+        await queryRunner.manager.save(AgentLimit, {
           ...limit,
           id: model.limit.id,
         });
       }
-    });
+      await queryRunner.commitTransaction();
+    } catch (error: any) {
+      console.log(error);
+      await queryRunner.rollbackTransaction();
+      throw new BadRequestException('Agente não atualizado');
+    } finally {
+      await queryRunner.release();
+    }
   }
 
   async remove(id: string): Promise<void> {
     const model = await this.repository.findOne(id);
 
     if (!model) {
-      throw new BadRequestException('Gerente não encontrado.');
+      throw new NotFoundException('Agente não encontrado');
     }
 
     await this.repository.softDelete(id);

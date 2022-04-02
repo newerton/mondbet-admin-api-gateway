@@ -108,8 +108,6 @@ export class ManagerController {
     try {
       const ability = await this.caslAbilityFactory.defineAbility(user);
       ForbiddenError.from(ability).throwUnlessCan(Action.Read, model);
-
-      delete model.roles;
       return model;
     } catch (err) {
       if (err instanceof ForbiddenError) {

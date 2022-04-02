@@ -1,12 +1,8 @@
 import { Module } from '@nestjs/common';
 import { APP_FILTER } from '@nestjs/core';
-import { HttpExceptionFilter } from './common/filters/http-exception.filter';
-import { ExceptionFilter } from './common/filters/rpc-exception.filter';
 import { AuthModule } from './app/auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
-import { AllExceptionFilter } from './common/filters/all-exception.filter';
 import configuration from './common/config/configuration';
-import { ErrorFilter } from './common/filters/error.filter';
 import { JoiValidationExceptionFilter } from './common/filters/joi.validation-exception.filter';
 import { UserModule } from './app/user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -20,6 +16,7 @@ import { AuthManagerModule } from './app/auth-manager/auth-manager.module';
 import { AgentModule } from './app/agent/agent.module';
 import { CollectModule } from './app/collect/collect.module';
 import { ClientModule } from './app/client/client.module';
+import { AllExceptionsFilter } from './common/filters/all-exceptions.filter';
 
 @Module({
   imports: [
@@ -43,19 +40,7 @@ import { ClientModule } from './app/client/client.module';
   providers: [
     {
       provide: APP_FILTER,
-      useClass: ExceptionFilter,
-    },
-    {
-      provide: APP_FILTER,
-      useClass: HttpExceptionFilter,
-    },
-    {
-      provide: APP_FILTER,
-      useClass: AllExceptionFilter,
-    },
-    {
-      provide: APP_FILTER,
-      useClass: ErrorFilter,
+      useClass: AllExceptionsFilter,
     },
     {
       provide: APP_FILTER,

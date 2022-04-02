@@ -50,13 +50,14 @@ export class CaslAbilityFactory {
       if (user?.resource_access?.length > 0) {
         user.resource_access.forEach((role) => {
           const resource = entities.get(role.resource);
-          if (role.roles.create) {
+          if (role.create) {
             can(Action.Create, resource);
           }
-          if (role.roles.read) {
+          if (role.read) {
             can(Action.Read, resource, { manager_id: user.id });
           }
-          if (role.roles.update) {
+          if (role.update) {
+            can(Action.Read, resource, { manager_id: user.id });
             can(Action.Update, resource, { manager_id: user.id });
           }
         });

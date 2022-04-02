@@ -35,20 +35,19 @@ export class AuthManagerService {
       throw new BadRequestException('E-mail e/ou senha inválidos.');
     }
 
-    const resource_access = user.roles.map((item) => ({
-      resource: item.resource,
-      roles: {
-        create: item.create,
-        read: item.read,
-        update: item.update,
-      },
-    }));
+    // const resource_access = user.roles.map((item) => ({
+    //   resource: item.resource,
+    //   roles: {
+    //     create: item.create,
+    //     read: item.read,
+    //     update: item.update,
+    //   },
+    // }));
 
     const payload = {
       jti: randomUUID(),
       sub: user.id,
       entity: 'manager',
-      resource_access,
     };
 
     const access_token = this.jwtService.sign(payload, {

@@ -5,6 +5,7 @@ import dateValidator from 'joi-date-dayjs';
 import documentValidator from 'cpf-cnpj-validator';
 import phoneValidator from 'joi-phone-number';
 import postalcodeValidator from 'joi-postalcode';
+import { ManagerResources } from '../entities/manager_role.entity';
 
 const Joi = JoiBase.extend(dateValidator)
   .extend(documentValidator)
@@ -168,6 +169,36 @@ export class UpdateManagerSchema implements CreateSchema {
             },
           }),
       },
+      roles: Joi.array()
+        .items(
+          Joi.object({
+            title: Joi.string()
+              .required()
+              .label('Título')
+              .messages(joiMessagesSchema),
+            resource: Joi.string()
+              .required()
+              .valid(...Object.values(ManagerResources))
+              .label('Resource')
+              .messages(joiMessagesSchema),
+            create: Joi.boolean()
+              .allow('')
+              .required()
+              .label('Create')
+              .messages(joiMessagesSchema),
+            read: Joi.boolean()
+              .allow('')
+              .required()
+              .label('Read')
+              .messages(joiMessagesSchema),
+            update: Joi.boolean()
+              .allow('')
+              .required()
+              .label('Update')
+              .messages(joiMessagesSchema),
+          }),
+        )
+        .allow(null),
     });
   }
 }

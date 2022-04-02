@@ -102,7 +102,7 @@ export class Manager {
   @ApiProperty()
   @OneToOne(() => ManagerAddress, (address) => address.manager_id)
   @JoinColumn({ name: 'id', referencedColumnName: 'manager_id' })
-  address: ManagerAddress;
+  address?: ManagerAddress;
 
   @ApiProperty()
   @OneToOne(() => ManagerLimit, (managerLimit) => managerLimit.manager_id)
@@ -117,5 +117,5 @@ export class Manager {
   @ApiProperty()
   @OneToMany(() => ManagerRole, (namagerRole) => namagerRole.owner)
   @JoinColumn({ name: 'id', referencedColumnName: 'manager_id' })
-  roles: ManagerRole[];
+  roles?: ManagerRole[];
 }

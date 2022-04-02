@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { CreateManagerAddressDto } from './create-manager-address.dto';
 import { CreateManagerLimitDto } from './create-manager-limit.dto';
+import { CreateManagerRoleDto } from './create-manager-role.dto';
 
 export class CreateManagerDto {
   @ApiProperty({
@@ -68,4 +69,7 @@ export class CreateManagerDto {
 
   @ApiProperty()
   limit: CreateManagerLimitDto;
+
+  @ApiProperty()
+  roles?: CreateManagerRoleDto[];
 }

@@ -1,11 +1,12 @@
 import {
   BadRequestException,
   Injectable,
+  NotFoundException,
   UnprocessableEntityException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { hash } from 'bcrypt';
-import { Connection, getManager, Repository } from 'typeorm';
+import { Connection, Repository } from 'typeorm';
 import { buildPaginator, PagingResult } from 'typeorm-cursor-pagination';
 import { CreateCollectDto } from './dto/create-collect.dto';
 import { UpdateCollectDto } from './dto/update-collect.dto';
@@ -16,8 +17,6 @@ import { CollectAddress } from './entities/collect-address.entity';
 export class CollectService {
   constructor(
     @InjectRepository(Collect) private repository: Repository<Collect>,
-    @InjectRepository(CollectAddress)
-    private collectAddressRepository: Repository<CollectAddress>,
     private connection: Connection,
   ) {}
 
@@ -82,7 +81,7 @@ export class CollectService {
     });
 
     if (!model) {
-      throw new BadRequestException('Token inválido');
+      throw new NotFoundException('Recolhe não encontrado');
     }
     return model;
   }
@@ -102,7 +101,7 @@ export class CollectService {
     const model = await this.repository.findOne(id);
 
     if (!model) {
-      throw new BadRequestException('Recolhe não encontrado.');
+      throw new NotFoundException('Recolhe não encontrado');
     }
 
     const newPayload = { id, ...payload };
@@ -122,36 +121,45 @@ export class CollectService {
       (item) => delete newPayload[item.propertyName],
     );
 
-    await getManager().transaction(async () => {
-      await this.repository.save(newPayload);
+    const queryRunner = this.connection.createQueryRunner();
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
+    try {
+      await queryRunner.manager.save(Collect, newPayload);
 
       const { address } = payload;
 
       if (address) {
         if (model.address) {
-          await this.collectAddressRepository.save({
+          await queryRunner.manager.save(CollectAddress, {
             ...address,
             id: model.address.id,
           });
         } else {
-          await this.collectAddressRepository.save({
+          await queryRunner.manager.save(CollectAddress, {
             ...address,
             collect_id: model.id,
           });
         }
       } else {
-        await this.collectAddressRepository.delete({
+        await queryRunner.manager.delete(Collect, {
           collect_id: model.id,
         });
       }
-    });
+      await queryRunner.commitTransaction();
+    } catch (error) {
+      await queryRunner.rollbackTransaction();
+      throw new BadRequestException('Recolhe não atualizado');
+    } finally {
+      await queryRunner.release();
+    }
   }
 
   async remove(id: string): Promise<void> {
     const model = await this.repository.findOne(id);
 
     if (!model) {
-      throw new BadRequestException('Recolhe não encontrado.');
+      throw new NotFoundException('Recolhe não encontrado');
     }
 
     await this.repository.softDelete(id);

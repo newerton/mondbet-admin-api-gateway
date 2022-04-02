@@ -1,11 +1,11 @@
 import {
-  BadRequestException,
   Injectable,
+  NotFoundException,
   UnprocessableEntityException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { hash } from 'bcrypt';
-import { Connection, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
@@ -17,7 +17,6 @@ export class UserService {
     @InjectRepository(User) private repository: Repository<User>,
     @InjectRepository(UserAddress)
     private userAddressRepository: Repository<UserAddress>,
-    private connection: Connection,
   ) {}
 
   async create(data: CreateUserDto): Promise<void> {
@@ -30,26 +29,16 @@ export class UserService {
 
     const hashedPassword = await hash(password, 8);
 
-    const queryRunner = this.connection.createQueryRunner();
-    await queryRunner.connect();
-    await queryRunner.startTransaction();
-    try {
-      const model = await queryRunner.manager.save(User, {
-        ...data,
-        password: hashedPassword,
+    const model = await this.repository.save({
+      ...data,
+      password: hashedPassword,
+    });
+
+    if (address) {
+      await this.userAddressRepository.save({
+        ...address,
+        user_id: model.id,
       });
-      if (model.id && address) {
-        await queryRunner.manager.save(UserAddress, {
-          ...address,
-          manager_id: model.id,
-        });
-      }
-      await queryRunner.commitTransaction();
-    } catch (error) {
-      await queryRunner.rollbackTransaction();
-      throw new BadRequestException('Usuário não criado');
-    } finally {
-      await queryRunner.release();
     }
   }
 
@@ -60,7 +49,7 @@ export class UserService {
     });
 
     if (!model) {
-      throw new BadRequestException('Token inválido');
+      throw new NotFoundException('Usuário não encontrado');
     }
     return model;
   }
@@ -82,7 +71,7 @@ export class UserService {
     });
 
     if (!model) {
-      throw new BadRequestException('Usuário não encontrado.');
+      throw new NotFoundException('Usuário não encontrado');
     }
 
     const newPayload = { id, ...payload };
@@ -116,7 +105,7 @@ export class UserService {
     const model = await this.repository.findOne(id);
 
     if (!model) {
-      throw new BadRequestException('Usuário não encontrado.');
+      throw new NotFoundException('Usuário não encontrado');
     }
 
     await this.repository.softDelete(id);
