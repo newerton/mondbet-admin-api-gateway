@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { CreateAgentAddressDto } from './create-agent-address.dto';
 import { CreateAgentLimitDto } from './create-agent-limit.dto';
+import { CreateAgentRoleDto } from './create-agent-role.dto';
 
 export class CreateAgentDto {
   @ApiProperty({
@@ -78,4 +79,7 @@ export class CreateAgentDto {
 
   @ApiProperty()
   readonly limit: CreateAgentLimitDto;
+
+  @ApiProperty()
+  roles?: CreateAgentRoleDto[];
 }

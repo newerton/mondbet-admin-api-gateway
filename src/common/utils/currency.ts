@@ -4,7 +4,7 @@ const real = (value: any) =>
   currency(value, { symbol: 'R$', separator: '.', decimal: ',', precision: 2 });
 
 export const stringToFloat = (value: string): number => {
-  const number = currency(value.replace(/[^\d]/g, ''), {
+  const number = currency(value.toString().replace(/[^\d]/g, ''), {
     fromCents: true,
     precision: 2,
   });

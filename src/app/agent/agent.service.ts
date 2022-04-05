@@ -15,6 +15,7 @@ import { UpdateAgentDto } from './dto/update-agent.dto';
 import { AgentAddress } from './entities/agent-address.entity';
 import { AgentLimit } from './entities/agent-limit.entity';
 import { Agent } from './entities/agent.entity';
+import { AgentRole } from './entities/agent_role.entity';
 
 @Injectable()
 export class AgentService {
@@ -25,7 +26,7 @@ export class AgentService {
   ) {}
 
   async create(data: CreateAgentDto, user: JwtData): Promise<void> {
-    const { email, password, address, limit } = data;
+    const { email, password, address, limit, roles } = data;
     const exist = await this.findByEmail(email);
 
     if (exist) {
@@ -64,6 +65,16 @@ export class AgentService {
           ...limit,
           agent_id: model.id,
         });
+      }
+      if (model.id && roles) {
+        const saveAll = roles.map(
+          async (role: AgentRole) =>
+            await queryRunner.manager.save(AgentRole, {
+              ...role,
+              agent_id: model.id,
+            }),
+        );
+        await Promise.all(saveAll);
       }
       await queryRunner.commitTransaction();
     } catch (error) {
@@ -122,7 +133,7 @@ export class AgentService {
   async findById(id: string): Promise<Agent | undefined> {
     const model = await this.repository.findOne({
       where: { id },
-      relations: ['address', 'address.city', 'address.state', 'limit'],
+      relations: ['address', 'address.city', 'address.state', 'limit', 'roles'],
     });
 
     if (!model) {
@@ -139,6 +150,7 @@ export class AgentService {
     return this.repository.findOne({
       select: ['id'],
       where: { id, visible: true },
+      relations: ['roles'],
     });
   }
 
@@ -174,7 +186,7 @@ export class AgentService {
     try {
       await queryRunner.manager.save(Agent, newPayload);
 
-      const { address, limit } = payload;
+      const { address, limit, roles } = payload;
 
       if (address) {
         if (model.address) {
@@ -189,7 +201,7 @@ export class AgentService {
           });
         }
       } else {
-        await queryRunner.manager.save(AgentAddress, {
+        await queryRunner.manager.delete(AgentAddress, {
           agent_id: model.id,
         });
       }
@@ -199,6 +211,20 @@ export class AgentService {
           ...limit,
           id: model.limit.id,
         });
+      }
+      if (roles) {
+        await queryRunner.manager.delete(AgentRole, {
+          agent_id: model.id,
+        });
+
+        const saveAll = roles.map(
+          async (role: AgentRole) =>
+            await queryRunner.manager.save(AgentRole, {
+              ...role,
+              agent_id: model.id,
+            }),
+        );
+        await Promise.all(saveAll);
       }
       await queryRunner.commitTransaction();
     } catch (error: any) {

@@ -45,14 +45,12 @@ export class AgentRequestDataMiddleware implements NestMiddleware {
     if (request.body.limit) {
       const {
         general_limit,
-        reward_percentage,
         daily_limit_single_bet,
         daily_limit_double_bet,
         daily_limit_triple_bet,
       } = request.body.limit;
 
       request.body.limit.general_limit = stringToFloat(general_limit);
-      request.body.limit.reward_percentage = stringToFloat(reward_percentage);
       request.body.limit.daily_limit_single_bet = stringToFloat(
         daily_limit_single_bet,
       );

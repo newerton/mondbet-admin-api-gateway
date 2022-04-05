@@ -8,6 +8,7 @@ import {
   DeleteDateColumn,
   Entity,
   JoinColumn,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -17,6 +18,7 @@ import { AgentAddress } from './agent-address.entity';
 import { Manager } from 'src/app/manager/entities/manager.entity';
 import { Profile } from 'src/app/profile/entities/profile.entity';
 import { Collect } from 'src/app/collect/entities/collect.entity';
+import { AgentRole } from './agent_role.entity';
 
 @Entity('agent')
 export class Agent {
@@ -111,7 +113,7 @@ export class Agent {
   @ApiProperty()
   @OneToOne(() => AgentAddress, (address) => address.agent_id)
   @JoinColumn({ name: 'id', referencedColumnName: 'agent_id' })
-  address: AgentAddress;
+  address?: AgentAddress;
 
   @ApiProperty()
   @OneToOne(() => AgentLimit, (agentLimit) => agentLimit.agent_id)
@@ -137,4 +139,9 @@ export class Agent {
   @OneToOne(() => Profile, (profile) => profile.id, { cascade: true })
   @JoinColumn({ name: 'profile_id' })
   profile: Profile;
+
+  @ApiProperty()
+  @OneToMany(() => AgentRole, (agentRole) => agentRole.owner)
+  @JoinColumn({ name: 'id', referencedColumnName: 'agent_id' })
+  roles?: AgentRole[];
 }
